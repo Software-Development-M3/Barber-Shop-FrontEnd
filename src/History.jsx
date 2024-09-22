@@ -37,7 +37,7 @@ function History() {
       <div className="history-section">
         <h2>History</h2>
         {historyData.map((item) => (
-          <div className="history-item"  key={item.id} onClick={() => console.log(item.id)}>
+          <div className="history-item"  key={item.id} >
             <img src={item.image} alt={item.name} className="shop-image" />
             <div className="shop-details">
               <h3>{item.name}</h3>
