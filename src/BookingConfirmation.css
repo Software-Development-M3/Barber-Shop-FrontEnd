@@ -1,0 +1,92 @@
+/* ตั้งค่า background สำหรับหน้าเว็บ */
+body {
+  /* background-image: url('https://bestiebrand.com/wp-content/uploads/2023/08/nathon-oski-EW_rqoSdDes-unsplash-1355x900-1.webp'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  color: black;
+}
+
+/* สไตล์สำหรับ container ของ modal */
+.modal {
+  background-color: rgba(255, 255, 255, 0.9); /* สีพื้นหลังโปร่งแสง */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px; /* ขนาดของกล่อง */
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+/* หัวข้อหลัก */
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* ตารางสำหรับแสดงรายการ */
+.modal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* การจัดสไตล์ให้ตาราง */
+.modal table td {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.modal table td:nth-child(1) {
+  text-align: left;  /* จัดชิดซ้ายสำหรับข้อมูลกิจกรรม */
+}
+
+.modal table td:nth-child(2) {
+  text-align: left;  /* จัดชิดซ้ายสำหรับรายละเอียด */
+}
+
+.modal table td:nth-child(3) {
+  text-align: right; /* จัดชิดขวาสำหรับราคา */
+}
+
+/* การจัดวางปุ่ม */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* สไตล์ของปุ่มยืนยัน */
+.confirm-button {
+  background-color: #2D6A4F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* สไตล์ของปุ่มยกเลิก */
+.cancel-button {
+  background-color: #D9534F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* การเปลี่ยนสีปุ่มเมื่อ hover */
+.confirm-button:hover {
+  background-color: #1B4332;
+}
+
+.cancel-button:hover {
+  background-color: #C9302C;
+}
