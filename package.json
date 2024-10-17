@@ -10,8 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@devexpress/dx-react-core": "^4.0.9",
+    "@devexpress/dx-react-scheduler": "^4.0.9",
+    "@devexpress/dx-react-scheduler-material-ui": "^4.0.9",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.4",
+    "@mui/material": "^6.1.4",
+    "@mui/x-date-pickers": "^7.20.0",
+    "moment": "^2.30.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-time-picker": "^7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
