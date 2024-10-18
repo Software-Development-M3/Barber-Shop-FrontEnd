@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import Schedule from './assets/components/Schedule'
+import Schedule from './assets/components/BookingSchedule'
+import ViewSchedule from './assets/components/ViewSchedule'
 
 function App() {
 
   return (
     <div>
-      <Schedule></Schedule>
+      <ViewSchedule></ViewSchedule>
     </div>
   )
 }

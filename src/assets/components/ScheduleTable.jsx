@@ -25,8 +25,6 @@ import {
 export default class ScheduleTable extends React.PureComponent {
   constructor(props) {
     super(props);
-    
-
     this.state = {
       resources: [
         {
