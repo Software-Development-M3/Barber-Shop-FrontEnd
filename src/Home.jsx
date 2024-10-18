@@ -1,19 +1,39 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
+
 
 function Home() {
-  const historyData = [
+  //const [shopData, setShops] = useState([]);
+  
+  useEffect(() => {
+    axios.get('/shop')
+      .then((response) => {
+        setShops(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching bookings:', error);
+        if (error.response && error.response.status === 401) {
+        
+        }
+    });
+  }, []);
+       
+
+  const shopData = [
     {
       id: 4,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
       name: "Sansuay Shop",
-      description: "ร้านแสนสวยช็อป บริการตัดผมชายหญิง บริการทุกระดับประทีบใจ ร้านทำผมที่มีคุณภาพในเรื่องยืด ดัด ทำสีและทรีทเม้นท์ รักษาผมร่วง ผมเสียให้มีสุขภาพแข็งแรง ทำสีผมสวย ดัดเพิ่มวอลลุ่มเพิ่มวอลุ่มโคนผม แก้ปัญหาผมเสียให้สุขภาพผมแข็งแรง ช่างผมที่คุณไว้วางใจ แก้ผมพังให้ปังสวย ที่อยู่ ถนนฉลองกรุง เขตลาดกระบัง กรุงเทพฯ 10520 ประเทศไทย" ,             
+      description: "ร้านแสนสวยช็อป บริการตัดผมชายหญิง บริการทุกระดับประทีบใจ ร้านทำผมที่มีคุณภาพในเรื่องยืด ดัด ทำสีและทรีทเม้นท์ รักษาผมร่วง ผมเสียให้มีสุขภาพแข็งแรง ทำสีผมสวย ดัดเพิ่มวอลลุ่มเพิ่มวอลุ่มโคนผม แก้ปัญหาผมเสียให้สุขภาพผมแข็งแรง ช่างผมที่คุณไว้วางใจ แก้ผมพังให้ปังสวย" ,             
       open: 1,
       timeOpen : "10.00",
-      timeClose :"19.00"
-      
+      timeClose :"19.00",
+      tags: ['korean', 'modern'],
+      location: "ถนนฉลองกรุง เขตลาดกระบัง กรุงเทพฯ 10520, ประเทศไทย"
     },
     {
       id: 2,
@@ -23,13 +43,39 @@ function Home() {
       description: "สระผม",
       open: 0,
       timeOpen : "10.00",
-      timeClose :"19.00"
+      timeClose :"19.00",
+      tags: ['classic'],
+      location: "ถนนฉลองกรุง เขตลาดกระบัง กรุงเทพฯ 10520, ประเทศไทย"
+
     },
 
     {
       id: 3,
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
+      name: "Fighter Shop",
+      description: "ร้านแสนสวยช็อป บริการตัดผมชายหญิง บริการทุกระดับประทีบใจ ร้านทำผมที่มีคุณภาพในเรื่องยืด ดัดทำสีและทรีทเม้นท์ รักษาผมร่วง ผมเสียให้มีสุขภาพแข็งแรง ทำสีผมสวย ดัดเพิ่มวอลลุ่มเพิ่มวอลุ่มโคนผมแก้ปัญหาผมเสียให้สุขภาพผมแข็งแรง ช่างผมที่คุณไว้วางใจ แก้ผมพังให้ปังสวย",
+      tags: ['korean']
+
     },
   ];
+
+  const [selectedTag, setSelectedTag] = useState('');
+
+  // ฟังก์ชันสำหรับการกรองร้านค้า
+  const filterShopsByTag = (tag) => {
+    // ถ้าแท็กที่เลือกอยู่เท่ากับแท็กที่ถูกกดซ้ำ จะยกเลิกการเลือก
+    if (selectedTag === tag) {
+      setSelectedTag(''); // ยกเลิกการเลือกแท็ก
+    } else {
+      setSelectedTag(tag); // เลือกแท็กใหม่
+    }
+  };
+  const filteredShops = selectedTag
+    ? shopData.filter((shop) => shop.tags && shop.tags.includes(selectedTag))
+    : shopData;
+    
+  
 
   //เช็คว่าเปิดหรือปิด
   const parseTime = (timeString) => {
@@ -53,32 +99,57 @@ function Home() {
   };
   //เช็คว่าเปิดหรือปิด
   
-  const navigate = useNavigate();
   const goToShopProfile = (id) => {
-    navigate(`/Shop/${id}`);
+    navigate(`/shop/${id}`);
   };
 
   return (
     <>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/History">History</Link>
+        <Link to="/upcoming">Upcoming</Link>
       </nav>
-
-      <div className="history-section">
-        {historyData.map((item) => (
+      <div className="tag-div">
+        <button onClick={() => filterShopsByTag('classic')}
+          style={{
+            backgroundColor: selectedTag === 'classic' ? '#72D572' : 'white',
+            color: selectedTag === 'classic' ? 'white' : 'black',
+          }}>classic</button>
+        <button onClick={() => filterShopsByTag('modern')}
+          style={{
+            backgroundColor: selectedTag === 'modern' ? '#72D572' : 'white',
+            color: selectedTag === 'modern' ? 'white' : 'black',
+          }}>modern</button>
+        <button onClick={() => filterShopsByTag('korean')}
+          style={{
+            backgroundColor: selectedTag === 'korean' ? '#72D572' : 'white',
+            color: selectedTag === 'korean' ? 'white' : 'black',
+          }}>korean</button>
+      </div>
+      <div className="main-section">
+        {filteredShops.map((item) => (
           <div
-            className="history-item"
+            className="shop-item"
             key={item.id}
             onClick={() => goToShopProfile(item.id)}
           >
             <img src={item.image} alt={item.name} className="shop-image" />
             <div className="shop-details">
-              <h3>{item.name}</h3>
+              <div className="shop-name">
+                <h3>{item.name}</h3>              
+              
+                {item.tags.map((tag) => (
+                  <span key={tag} className="tag">#{tag}</span>
+                ))}
+              </div>
               <p>{item.description}</p>
+              <p>ที่อยู่ {item.location}</p>
+
             </div>
             <div className="shop-meta">
-              { isOpen(item.timeOpen, item.timeClose) ? <div style={{backgroundColor : "#72D572" }}>เปิดอยู่</div> : <div style={{backgroundColor : "#d66767" }} >ปิด</div>}
+              { isOpen(item.timeOpen, item.timeClose) ? 
+              <div style={{backgroundColor : "#72D572" }}>เปิดอยู่</div> 
+              : <div style={{backgroundColor : "#d66767" }} >ปิด</div>}
               <p>{item.timeOpen} - {item.timeClose}</p>
               
             </div>

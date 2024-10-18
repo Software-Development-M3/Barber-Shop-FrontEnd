@@ -18,12 +18,26 @@ body {
 
 
 
-.history-section {
+.main-section {
   padding: 20px;
   
 }
 
-.history-item {
+.tag-div {
+  display: flex;
+  column-gap: 20px;
+  padding: 20px;
+}
+
+.tag-div > button{
+  border-radius: 10%;
+  border: none;
+  font-size: 24px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.shop-item {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -36,9 +50,23 @@ body {
 
 .shop-image {
   min-width: 20vw;
-  height: 200px;
+  min-height: 200px;
   border-radius: 8px;
   margin-right: 3%;
+}
+
+.shop-name {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+.tag {
+  color: gray;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 28px;
 }
 
 .shop-details {
@@ -47,11 +75,11 @@ body {
   padding-right: 5%;
 }
 
-.shop-details > h3 {
-  font-size: 28px;
-}
+
 .shop-details > p {
   font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
 
 .shop-meta {
@@ -66,8 +94,10 @@ body {
   border-radius: 25px;
 }
 
+
+
 @media (max-width: 768px) {
-  .history-item {
+  .shop-item {
     flex-direction: column;
     align-items: center;
 
