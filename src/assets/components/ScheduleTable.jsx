@@ -47,6 +47,8 @@ export default class ScheduleTable extends React.PureComponent {
   render() {
     const {resources, grouping } = this.state;
     const appointment = this.props.appointment;
+    const date_available = this.props.date_available;
+    console.log("date_available: ", date_available);
     console.log("appointment: ", appointment);
    
 
@@ -55,7 +57,7 @@ export default class ScheduleTable extends React.PureComponent {
       <div>
         <Paper>
           <Scheduler data={appointment}>
-            <ViewState defaultCurrentDate="2024-10-11" />
+            <ViewState defaultCurrentDate={date_available[0]} />
             <GroupingState grouping={grouping} />
             <DayView startDayHour={9} endDayHour={17} />
             <Appointments />

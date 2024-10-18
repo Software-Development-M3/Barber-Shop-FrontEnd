@@ -1,35 +1,19 @@
 import React, { useState } from 'react'
 import ScheduleTable from './ScheduleTable.jsx'
 import ScheduleForm from './ScheduleForm.jsx'
+import { AlternateEmail } from '@mui/icons-material';
+import moment from 'moment';
 
 
 const Schedule = () => {
 
-
-    // const [appointments, setAppointments] = useState([
-    //     {
-    //       title: "0",
-    //       Barbers: 1,
-    //       startDate: "2017-04-28T09:30",
-    //       endDate: "2017-04-28T10:30",
-    //     },
-    //     {
-    //       title: "1",
-    //       Barbers: 3,
-    //       startDate: "2017-04-28T09:30",
-    //       endDate: "2017-04-28T10:30",
-    //     },
-    //     {
-    //         title: "2",
-    //         Barbers: 2,
-    //         startDate: "2017-04-29T09:30",
-    //         endDate: "2017-04-29T10:30",
-    //     }
-    //   ]
-    // );
-
-
-
+    const duration = 60;
+    let date_available = ["2024-10-10", "2024-10-11", "2024-10-12"]
+    //let date_available = [];
+    if(date_available.length == 0) {
+      console.log("set date availabel to : ", moment());
+      date_available.push(moment());
+    }
     const raw_response = [
         {
           "barberId": 1,
@@ -169,8 +153,8 @@ const Schedule = () => {
 
   return (
     <div>
-        <ScheduleTable appointment={appointments} barber_list={unique_barber_list}/>
-        <ScheduleForm setAppointments={setAppointments} option_barber={unique_barber_list}></ScheduleForm>
+        <ScheduleTable appointment={appointments} barber_list={unique_barber_list} date_available={date_available}/>
+        <ScheduleForm setAppointments={setAppointments} option_barber={unique_barber_list} duration={duration}></ScheduleForm>
     </div>
   )
 }
