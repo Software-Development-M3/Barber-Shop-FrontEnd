@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,61 +10,87 @@ function Login() {
   
   const navigate = useNavigate();
 
+  const validateForm = () => {
+    // ตรวจสอบรูปแบบอีเมลล์
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailRegex.test(email)) {
+      setError('กรุณากรอกอีเมลล์ที่ถูกต้อง');
+      return false;
+    }
+
+    // ตรวจสอบรหัสผ่าน
+    if (password.length < 6) {
+      setError('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร');
+      return false;
+    }
+
+    // ถ้าผ่านการตรวจสอบทั้งหมด
+    setError('');
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    if (!validateForm()) {
+      return;
+    }
+
     const loginData = { email, password };
-  
+
     try {
-      // ส่งข้อมูลเพื่อดึงผู้ใช้ทั้งหมด
-      const response = await axios.get('http://localhost:3000/users');
+      // ส่งข้อมูลล็อกอินผ่าน POST แทน GET
+      const response = await axios.post('http://localhost:3000/login', loginData);
       
-      // ค้นหาผู้ใช้ที่ตรงกับข้อมูลที่ป้อน
-      const user = response.data.find(user => user.email === email && user.password === password);
-      
-      if (user) {
-        // หากพบผู้ใช้ รับ JWT token (คุณสามารถสร้าง token นี้เองได้)
-        const token = "mock-token"; // ตัวอย่าง token
-        localStorage.setItem('token', token);
+      if (response.data.access_token) {
+        // รับ JWT token และบันทึกลง localStorage
+        localStorage.setItem('token', response.data.access_token);
         
         // เปลี่ยน path ไปหน้า home
         navigate('/home');
       } else {
-        setError('Invalid email or password');
+        setError('ข้อมูลอีเมลล์หรือรหัสผ่านไม่ถูกต้อง');
       }
     } catch (error) {
       console.error('Error:', error);
-      setError('An error occurred. Please check your credentials and try again.');
+      setError('เกิดข้อผิดพลาดในการเข้าสู่ระบบ. กรุณาลองใหม่อีกครั้ง.');
     }
   };
   
-  
+  const handleNavigateToRegister = () => {
+    navigate('/register');
+  };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* แสดง error message */}
+    <div className='login'>
+      <div className='form-container'>
+        <div className='title'>เข้าสู่ระบบ</div>      
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>อีเมลล์:</label>
+            <input 
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="อีเมลล์" 
+              required
+            />
+          </div>
+          <div>
+            <label>รหัสผ่าน:</label>
+            <input 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="รหัสผ่าน" 
+              required
+            />
+          </div>
+          <button type="submit">เข้าสู่ระบบ</button>
+          <div className ='movetoregister' onClick={handleNavigateToRegister}>หากยังไม่มีบัญชี สมัครสมาชิกที่นี่</div>
+        </form>
+        {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>} {/* แสดง error message */}
+      </div>  
     </div>
   );
 }

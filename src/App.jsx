@@ -1,13 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './login';
+import Login from './Login';
 import Register from './Register';
 import BookingConfirm from './BookingConfirmation';
 import Home from './Home';
+import Navbar from './Navbar';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={
           <div>
