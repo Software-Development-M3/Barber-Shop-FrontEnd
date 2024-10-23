@@ -1,13 +1,20 @@
 import './App.css'
-import ViewSchedule from './Components/ViewSchedulePage/ViewSchedule'
-import SelectSchedule from './Components/SelectSchedulePage/SelectSchedule';
+
+import Routing from './Routing';
+
 
 function App() {
 
   return (
-    <div>
-      <SelectSchedule />
-    </div>
+
+      <div>
+        <nav>This is Navbar</nav>
+        
+        <main> This is main section
+            {/* <Routing /> */}
+        </main>
+      </div>
+
   )
 }
 
