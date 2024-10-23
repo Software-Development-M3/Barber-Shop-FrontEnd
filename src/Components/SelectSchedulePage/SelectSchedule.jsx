@@ -5,7 +5,7 @@ import { AlternateEmail } from '@mui/icons-material';
 import moment from 'moment';
 
 
-const Schedule = () => {
+const SelectSchedule = () => {
 
     const duration = 60;
     let date_available = ["2024-10-10", "2024-10-11", "2024-10-12"]
@@ -150,7 +150,6 @@ const Schedule = () => {
       
       const [appointments, setAppointments] = useState(fix_format_rasponse)
 
-
   return (
     <div>
         <ScheduleTable appointment={appointments} barber_list={unique_barber_list} date_available={date_available}/>
@@ -159,4 +158,4 @@ const Schedule = () => {
   )
 }
 
-export default Schedule
+export default SelectSchedule;

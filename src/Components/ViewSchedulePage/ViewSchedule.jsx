@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import ScheduleTable from './ScheduleTable'
+import ScheduleTable from '../SelectSchedulePage/ScheduleTable'
 import axios from 'axios';
 import moment from 'moment';
 
