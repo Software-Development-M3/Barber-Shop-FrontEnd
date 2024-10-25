@@ -1,6 +1,6 @@
 
 import './App.css'
-import React, { useState } from 'react'
+import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 import ViewSchedule from './Components/ViewSchedulePage/ViewSchedule.jsx'
 import SelectSchedule from './Components/SelectSchedulePage/SelectSchedule';
@@ -11,8 +11,6 @@ import Login from './Login.jsx';
 import Register from './Register.jsx';
 
 function App()  {
-  const [bookingData, setBookings] = useState([]);
-
   return (
 
 
@@ -21,7 +19,7 @@ function App()  {
         <main> This is main section
         <Navbar/>
         <Routes>
-          <Route path='/' element={<Home /> }/>
+          <Route path='/' element={<Home />}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/profile' />
