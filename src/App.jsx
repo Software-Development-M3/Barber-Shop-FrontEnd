@@ -27,12 +27,12 @@ function App() {
           <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<div>Profile Page</div>} />
-          <Route path='/shop' element={<div>Shop Page</div>} />
-          <Route path='/booking/service' element={<div>Booking Service Page</div>} />
-          <Route path='/booking/schedule' element={<SelectSchedule />} />
-          <Route path='/view/service' element={<div>View Service Page</div>} />
-          <Route path='/view/schedule' element={<ViewSchedule />} />
-          <Route path='/booking/confirm' element={<BookingConfirmation />} />
+          <Route path='/shop/:shopId' element={<div>Shop Page</div>} />
+          <Route path='/booking/service/:shopId' element={<div>Booking Service Page</div>} />
+          <Route path='/booking/schedule/:shopId' element={<SelectSchedule />} />
+          <Route path='/view/service/:shopId' element={<div>View Service Page</div>} />
+          <Route path='/view/schedule/:shopId' element={<ViewSchedule />} />
+          <Route path='/booking/confirm/:shopId' element={<BookingConfirmation />} />
           <Route path='/upcoming' element={<Upcoming />} />
         </Routes>
       </main>

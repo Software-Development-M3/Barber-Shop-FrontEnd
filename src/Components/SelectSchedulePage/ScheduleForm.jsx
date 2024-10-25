@@ -31,7 +31,7 @@ const ScheduleForm = (props) => {
       e.preventDefault();
       const start_date_time = currentDate+'T'+startTime;
       const start_datetime = moment(start_date_time).format('YYYY-MM-DDTHH:mm');
-      const end_datetime = moment(start_date_time).add(duration, 'minute').format('YYYY-MM-DDTHH:mm');
+      const end_datetime = moment(start_date_time).add(duration, 'minute').format('YYYY-MM-DDTHH:mm');    //28-10-2024T09:30
       const newAppointment = {
         barberId: parseInt(currentBarber),
         barberName: barber_list[currentBarber].text,
