@@ -27,7 +27,7 @@
     font-size: 24px;    
     font-weight: bold;  
     color: rgb(0, 0, 0); 
-    
+    text-decoration: none;
 }
 
 .navbar-search {
@@ -68,7 +68,8 @@
     border: none;                 
     color: #fff;                   
     background-color: #6c757d;   
-    font-size: 16px;               
+    font-size: 16px;
+    text-decoration: none;               
 }
 
 .authbotton-signup:hover {
@@ -81,7 +82,8 @@
     border: none;                  
     color: #fff;                   
     background-color: #000000;     
-    font-size: 16px;               
+    font-size: 16px;
+    text-decoration: none;               
 }
 
 .authbutton-signup:hover {

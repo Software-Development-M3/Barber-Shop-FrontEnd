@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import logo from './assets/logo.png'; 
+import logo from './logo.png';
 
 const handleSearch = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar-logo">
                 <Link to="/">
-                    <img src={logo} alt="Barber Shop Logo" className="logo-img" />
+                    <img src= {logo} alt="Barber Shop Logo" className="logo-img" />
                 </Link>
             </div>
             <div className="navbar-logo">

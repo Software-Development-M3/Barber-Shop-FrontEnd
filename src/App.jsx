@@ -6,7 +6,9 @@ import ViewSchedule from './Components/ViewSchedulePage/ViewSchedule.jsx'
 import SelectSchedule from './Components/SelectSchedulePage/SelectSchedule';
 import Upcoming from './Components/UpcomingPage/Upcoming.jsx';
 import Home from './Components/HomePage/Home.jsx';
-
+import Navbar from './Components/Navbar/Navbar.jsx';
+import Login from './Login.jsx';
+import Register from './Register.jsx';
 
 function App()  {
   return (
@@ -15,10 +17,11 @@ function App()  {
       <div>
         <nav>This is Navbar</nav>
         <main> This is main section
+        <Navbar/>
         <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path='/login' />
-          <Route path='/register' />
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
           <Route path='/profile' />
           <Route path='/shop' />
           <Route path='/booking/service'/>
