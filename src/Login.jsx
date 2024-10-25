@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // import useLocation
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); // เพิ่ม state สำหรับ error message
   
   const navigate = useNavigate();
-  const location = useLocation(); // ใช้ useLocation เพื่อเก็บข้อมูลหน้าก่อนหน้า
-
-  // เก็บ state ของที่มาหน้าก่อนหน้า
-  const from = location.state?.from?.pathname || '/'; 
 
   const validateForm = () => {
+    // ตรวจสอบรูปแบบอีเมลล์
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailRegex.test(email)) {
       setError('กรุณากรอกอีเมลล์ที่ถูกต้อง');
       return false;
     }
 
+    // ตรวจสอบรหัสผ่าน
     if (password.length < 6) {
       setError('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร');
       return false;
     }
 
+    // ถ้าผ่านการตรวจสอบทั้งหมด
     setError('');
     return true;
   };
@@ -40,14 +39,15 @@ function Login() {
     const loginData = { email, password };
 
     try {
+      // ส่งข้อมูลล็อกอินผ่าน POST แทน GET
       const response = await axios.post('http://localhost:3000/login', loginData);
       
       if (response.data.access_token) {
-        // เก็บ token ใน sessionStorage
-        sessionStorage.setItem('token', response.data.access_token);
+        // รับ JWT token และบันทึกลง localStorage
+        localStorage.setItem('token', response.data.access_token);
         
-        // Redirect ไปยังหน้าที่ผู้ใช้เข้าถึงก่อนหน้า
-        navigate(from);
+        // เปลี่ยน path ไปหน้า home
+        navigate('/home');
       } else {
         setError('ข้อมูลอีเมลล์หรือรหัสผ่านไม่ถูกต้อง');
       }
