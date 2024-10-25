@@ -1,3 +1,4 @@
+
 import './App.css'
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
@@ -7,7 +8,10 @@ import SelectSchedule from './Components/SelectSchedulePage/SelectSchedule';
 
 function App() {
 
+
+function App()  {
   return (
+
 
       <div>
         <nav>This is Navbar</nav>
@@ -32,4 +36,5 @@ function App() {
 }
 
 export default App
+
 
