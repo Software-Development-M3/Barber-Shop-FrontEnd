@@ -1,160 +1,196 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // นำเข้า useParams เพื่อใช้สำหรับการดึง id จาก URL
 import "./selectHair.css";
 
 function HairStyleSelection() {
+  const { id } = useParams(); // ดึง id จาก URL
   const [services, setServices] = useState(null);
   const [selectedShampoo, setSelectedShampoo] = useState("");
   const [selectedHairCut, setSelectedHairCut] = useState(null);
-  const [selectedHairDye, setSelectedHairDye] = useState(null);
   const [selectedHairWash, setSelectedHairWash] = useState(null);
+  const [selectedHairDye, setSelectedHairDye] = useState(null);
   const [totalTime, setTotalTime] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  
-  // State for additional descriptions
-  const [hairCutDescription, setHairCutDescription] = useState("");
-  const [hairDyeDescription, setHairDyeDescription] = useState("");
-  const [hairWashDescription, setHairWashDescription] = useState("");
+  const [colorSelected , setColorSelected] = useState("");
+  const [cutDescription , setCutDescription] = useState("");
+  const [washDescription , setWashDescription] = useState("");
+  const [dyeDescription , setDyeDescription] = useState("");
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch("/hair.json");
+        const response = await fetch(`http://localhost:3000/shop/service/${id}`); // ดึงข้อมูลจาก API โดยใช้ id
         const data = await response.json();
-        setServices(data[0]); // Ensure this matches the structure of your JSON
+        setServices(data); // ตั้งค่า services ด้วยข้อมูลที่ดึงมา
       } catch (error) {
         console.error("Error fetching service data:", error);
       }
     };
     fetchServices();
-  }, []);
+  }, [id]);
 
-  // Calculate total time and price based on selected services
+  // คำนวณเวลารวมและราคาโดยอิงจากบริการที่เลือก
   useEffect(() => {
     let time = 0;
     let price = 0;
 
     if (selectedHairCut) {
-      time += selectedHairCut.time;
+      time += selectedHairCut.duration;
       price += selectedHairCut.price;
     }
     if (selectedHairDye) {
-      time += selectedHairDye.time;
+      time += selectedHairDye.duration;
       price += selectedHairDye.price;
-    }
-    if (selectedHairWash) {
-      time += selectedHairWash.time;
-      price += selectedHairWash.price;
     }
 
     setTotalTime(time);
     setTotalPrice(price);
 
-    // Store selected items in sessionStorage
+    // เก็บบริการที่เลือกใน sessionStorage
     sessionStorage.setItem(
       "selectedServices",
-      JSON.stringify({
-        selectedShampoo,
-        selectedHairCut,
-        selectedHairDye,
-        selectedHairWash,
-        totalTime,
-        totalPrice,
-        hairCutDescription,
-        hairDyeDescription,
-        hairWashDescription,
-      })
+      JSON.stringify({selectedShampoo,
+                      selectedHairWash,
+                      selectedHairCut,
+                      selectedHairDye,
+                      totalTime,
+                      totalPrice,
+                      washDescription,
+                      cutDescription,
+                      dyeDescription,
+                      colorSelected
+                    })
     );
-  }, [selectedHairCut, selectedHairDye, selectedHairWash, hairCutDescription, hairDyeDescription, hairWashDescription]);
+  }, [selectedShampoo,
+      selectedHairWash,
+      selectedHairCut,
+      selectedHairDye,
+      totalTime,
+      totalPrice,
+      washDescription,
+      cutDescription,
+      dyeDescription,
+      colorSelected
+    ]);
+    console.log(JSON.parse(sessionStorage.getItem("selectedServices")))
 
   if (!services) {
-    return <div>Loading services...</div>; // Handle the loading state
+    return <div>Loading services...</div>; // แสดงข้อความขณะโหลดข้อมูล
   }
-
-  console.log(JSON.parse(sessionStorage.getItem("selectedServices")))
 
   return (
     <div className="hairStyleSelection">
       <h1>Hairstyle Selection</h1>
-
+      
       <div className="serviceSelection">
-        <label>Shampoo</label>
-        <select onChange={(e) => setSelectedShampoo(e.target.value)}>
-          <option value="">Select Shampoo</option>
-          {services.shampoo &&
-            services.shampoo.map((shampoo, index) => (
+        {/* Shampoo */}
+        <div className = "selectedPart">
+          <label>Shampoo</label>
+          <select onChange={(e) => setSelectedShampoo(e.target.value)}>
+            <option value="">Select Shampoo</option>
+            {services.shampoos.map((shampoo, index) => (
               <option key={index} value={shampoo}>
                 {shampoo}
               </option>
             ))}
-        </select>
-
-        <label>Hair Cut</label>
-        <select
-          onChange={(e) =>
-            setSelectedHairCut(services.hairCut.find((hair) => hair.id === parseInt(e.target.value)))
-          }
-        >
-          <option value="">Select Hair Cut</option>
-          {services.hairCut &&
-            services.hairCut.map((cut) => (
-              <option key={cut.id} value={cut.id}>
-                {cut.name} - {cut.time} mins - {cut.price}
+          </select>
+        </div>
+  
+        {/* Hair wash */}
+        <div className = "selectedPart">
+          <label>Hair Wash</label>
+          <select
+            onChange={(e) =>
+              setSelectedHairWash(services.haircut.find((cut) => cut.serviceId === parseInt(e.target.value)))
+            }
+          >
+            <option value="">Select hair wash</option>
+            {services.hairwashing.map((wash) => (
+              <option key={wash.serviceId} value={wash.serviceId}>
+                {wash.serviceName} - {wash.duration} mins - {wash.price} baht
               </option>
             ))}
-        </select>
-        <textarea
-          placeholder="Additional description for Hair Cut"
-          value={hairCutDescription}
-          onChange={(e) => setHairCutDescription(e.target.value)}
-        />
-
-        <label>Hair Dye</label>
-        <select
-          onChange={(e) =>
-            setSelectedHairDye(services.hairDye.find((dye) => dye.id === parseInt(e.target.value)))
-          }
-        >
-          <option value="">Select Hair Dye</option>
-          {services.hairDye &&
-            services.hairDye.map((dye) => (
-              <option key={dye.id} value={dye.id}>
-                {dye.name} - {dye.time} mins - {dye.price} baht
+          </select>
+        </div>
+        <div className="textArea">
+          <label>Description for hair wash</label>
+          <textarea
+            value={washDescription}
+            onChange={(e) => setWashDescription(e.target.value)}
+            placeholder="Additional details about the hairwash..."
+          />
+        </div>
+  
+        {/* Hair Cut */}
+        <div className = "selectedPart">
+          <label>Hair Cut</label>
+          <select
+            onChange={(e) =>
+              setSelectedHairCut(services.haircut.find((cut) => cut.serviceId === parseInt(e.target.value)))
+            }
+          >
+            <option value="">Select hair cut</option>
+            {services.haircut.map((cut) => (
+              <option key={cut.serviceId} value={cut.serviceId}>
+                {cut.serviceName} - {cut.duration} mins - {cut.price} baht
               </option>
             ))}
-        </select>
-        <textarea
-          placeholder="Additional description for Hair Dye"
-          value={hairDyeDescription}
-          onChange={(e) => setHairDyeDescription(e.target.value)}
-        />
-
-        <label>Hair Wash</label>
-        <select
-          onChange={(e) =>
-            setSelectedHairWash(services.hairWash.find((wash) => wash.id === parseInt(e.target.value)))
-          }
-        >
-          <option value="">Select Hair Wash</option>
-          {services.hairWash &&
-            services.hairWash.map((wash) => (
-              <option key={wash.id} value={wash.id}>
-                {wash.name} - {wash.time} mins - {wash.price} baht
+          </select>
+        </div >
+        <div className="textArea">
+          <label>Description for hair cut</label>
+          <textarea
+            value={cutDescription}
+            onChange={(e) => setCutDescription(e.target.value)}
+            placeholder="Additional details about the haircut..."
+          />
+        </div>
+  
+        {/* Hair Dye */}
+        <div className = "selectedPart">
+          <label>Hair Dye</label>
+          <select
+            onChange={(e) =>
+              setSelectedHairDye(services.hairdyeing.find((dye) => dye.serviceId === parseInt(e.target.value)))
+            }
+          >
+            <option value="">Select Hair Dye</option>
+            {services.hairdyeing.map((dye) => (
+              <option key={dye.serviceId} value={dye.serviceId}>
+                {dye.serviceName} - {dye.duration} mins - {dye.price} baht
               </option>
             ))}
-        </select>
-        <textarea
-          placeholder="Additional description for Hair Wash"
-          value={hairWashDescription}
-          onChange={(e) => setHairWashDescription(e.target.value)}
-        />
+          </select>
+        </div>
+        <div className="textArea">
+          <label>Description for Hair Dye</label>
+          <textarea
+            value={dyeDescription}
+            onChange={(e) => setDyeDescription(e.target.value)}
+            placeholder="Additional details about the hair dye..."
+          />
+        </div>
+  
+        {/* Colors */}
+        <div className = "selectedPart">
+          <label>Colors</label>
+          <select onChange={(e) => setColorSelected(e.target.value)}>
+            <option value="">Select Color</option>
+            {services.colors.map((color, index) => (
+              <option key={index} value={color}>
+                {color}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-
+  
       <div className="summary">
         <h2>Total Time: {totalTime} mins</h2>
         <h2>Total Price: {totalPrice} baht</h2>
       </div>
     </div>
   );
-}
+}  
 
 export default HairStyleSelection;

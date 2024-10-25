@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import shopImg from "./assets/test.jpeg"
 import BarberBox from "./Barberbox.jsx"
 import './Shopinfo.css'
 
@@ -11,7 +10,7 @@ function ShopInfo(){
     useEffect(() =>{
         const fetchData = async () =>{
             try{
-                const response = await fetch('/test.json');
+                const response = await fetch('http://localhost:3000/shop/34942e32-7904-45cc-83a6-d4130ee0fe6e');
                 const data =  await response.json();
                 console.log(data)
                 setShopData(data)
@@ -25,21 +24,16 @@ function ShopInfo(){
 
     return (
         <div>
-            {shopData && shopData.map(shop => {
-                const barberList = shop.barber;
-                const shopName = shop.name;
-                const shopImg = shop.image;
-
-                return (
-                    <div className="shopContainer" key={shop.id}>
+            {shopData && (
+                    <div className="shopContainer" key={shopData.id}>
                         <div className="shopInfoContainer">
                             <div className="shopPic">
-                                <img src={shopImg} alt={shopName}></img>
+                                <img src={shopData.image} alt={shopData.name}></img>
                             </div>
                             <div className="shopInfo">
-                                <h1>{shopName}</h1>
+                                <h1>{shopData.name}</h1>
                                 <div className="shopDescription">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta delectus facilis culpa perspiciatis corporis sequi consequuntur ex eius! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta delectus facilis culpa perspiciatis corporis sequi consequuntur ex eius! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta delectus facilis culpa perspiciatis corporis sequi consequuntur ex eius! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta delectus facilis culpa perspiciatis corporis sequi consequuntur ex eius! 
+                                {shopData.description}
                                 </div>
                                 <div className="buttonContainer">
                                     <div className="reserveBut"><button>จองเลย</button></div>
@@ -49,13 +43,13 @@ function ShopInfo(){
                             </div>
                         </div>
                         <div className="barberContainer">
-                            {barberList.map((barber, index) => (
+                            {shopData.barbers.map((barber, index) => (
                                 <BarberBox key={index} name={barber.name} pic={barber.img} />
                             ))}
                         </div>
                     </div>
-                );
-            })}
+                )
+            }
         </div>
     );
 }

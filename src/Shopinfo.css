@@ -18,20 +18,23 @@
     flex-basis:100%;
 }
 
-.shopPic{
-    width: 600px;
-    height: 200px;
-    margin:2rem;
+.shopPic {
+    width: 100%; /* กำหนดให้ใช้ความกว้างเต็มของ container */
+    max-width: 600px; /* จำกัดขนาดสูงสุดของรูปภาพ */
+    height: 400px;
+    margin: 2rem;
     align-self: center;
     justify-content: center;
-
+    overflow: hidden; /* ซ่อนส่วนเกินของรูป */
 }
+
 .shopPic img {
     width: 100%;
-    height: auto;
+    height: 100%; /* กำหนดให้เต็ม container */
     object-fit: cover;
     border-radius: 20px;
-  }
+}
+
 .shopDescription{
     text-indent: 50px;
 }

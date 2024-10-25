@@ -13,8 +13,14 @@
   grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  padding:2rem;
 }
 
+/* .selectedPart{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+} */
 .serviceSelection label {
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -22,25 +28,27 @@
 }
 
 .serviceSelection select {
+  width: 100%; /* ทำให้ select ใช้ความกว้างเต็มที่ */
   padding: 0.5rem;
   border-radius: 5px;
-  border: 1px solid #000000; /* สีเขียวอ่อน */
+  border: 1px solid #000000;
   transition: border-color 0.3s;
+  font-size: 1rem; /* ปรับขนาดตัวอักษรให้เท่ากัน */
 }
 
 .serviceSelection select:focus {
-  border-color: #000000; /* เปลี่ยนสีกรอบเมื่อเลือก */
+  border-color: #000000;
   outline: none;
 }
 
 .summary {
   text-align: center;
-  margin-top: 2rem; /* เพิ่มระยะห่างบน */
+  margin-top: 2rem; 
 }
 
 .summary h2 {
   margin: 1rem 0;
-  color: #000000; /* สีเขียวเข้ม */
+  color: #000000;
 }
 
 .textArea {
@@ -53,7 +61,8 @@
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ffffff;
-  resize: none; /* ไม่ให้ขยายขนาด textarea */
+  resize: none;
+  box-sizing: border-box;
 }
 
 .textArea textarea:focus {
@@ -62,6 +71,6 @@
 
 @media (min-width: 768px) {
   .serviceSelection {
-      grid-template-columns:
+      grid-template-columns: 1fr;
   }
 }
