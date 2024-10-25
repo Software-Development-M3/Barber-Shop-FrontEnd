@@ -19,10 +19,10 @@ function Login() {
     }
 
     // ตรวจสอบรหัสผ่าน
-    if (password.length < 6) {
-      setError('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร');
-      return false;
-    }
+    // if (password.length < 6) {
+    //   setError('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร');
+    //   return false;
+    // }
 
     // ถ้าผ่านการตรวจสอบทั้งหมด
     setError('');

@@ -31,7 +31,7 @@ const Navbar = () => {
 
             <div className="navbar-links">
                 <Link to="/calendar">Calendar</Link>
-                <Link to="/history">History</Link>
+                <Link to="/upcoming">Upcoming</Link>
                 <Link to="/profile">Profile</Link>
             </div>
 
