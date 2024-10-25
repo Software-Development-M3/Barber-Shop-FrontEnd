@@ -47,7 +47,7 @@ function Login() {
         sessionStorage.setItem('token', response.data.access_token);
         
         // Redirect ไปยังหน้าที่ผู้ใช้เข้าถึงก่อนหน้า
-        navigate(from);
+        window.location = `${from}`;
       } else {
         setError('ข้อมูลอีเมลล์หรือรหัสผ่านไม่ถูกต้อง');
       }

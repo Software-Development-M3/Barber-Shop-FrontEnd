@@ -90,6 +90,22 @@
     background-color: #333333;     
 }
 
+.authbutton-logout {
+    padding: 10px 20px;             /* ขนาด padding */
+    border-radius: 5px;             /* มุมโค้งมน */
+    border: none;                   /* ไม่มี border */
+    color: #fff;                    /* สีตัวอักษรขาว */
+    background-color: #000000;      /* สีพื้นหลังแดง (Bootstrap danger color) */
+    font-size: 16px;                /* ขนาดตัวอักษร */
+    cursor: pointer;                /* เปลี่ยน cursor เป็น pointer เมื่อ hover */
+    text-decoration: none;          /* ไม่มีขีดเส้นใต้ */
+}
+
+.authbutton-logout:hover {
+    background-color: #c1c1c1;      /* สีแดงเข้มเมื่อ hover (สี danger hover ของ Bootstrap) */
+}
+
+
 
 
 
