@@ -1,0 +1,27 @@
+[{barberId: 1, barberName: 'ช่างแอม', startDate: '2024-10-11T09:30', endDate: '2024-10-11T10:30'},
+
+
+{barberId: 1, barberName: 'ช่างแอม', startDate: '2024-10-11T11:00', endDate: '2024-10-11T12:00'},
+
+
+{barberId: 1, barberName: 'ช่างแอม', startDate: '2024-10-11T13:00', endDate: '2024-10-11T14:00'},
+
+{barberId: 2, barberName: 'ช่างโก๋', startDate: '2024-10-11T09:30', endDate: '2024-10-11T10:30'},
+
+{barberId: 2, barberName: 'ช่างโก๋', startDate: '2024-10-11T11:00', endDate: '2024-10-11T12:00'},
+
+{barberId: 3, barberName: 'ช่างบอย', startDate: '2024-10-11T09:30', endDate: '2024-10-11T10:30'},
+
+{barberId: 3, barberName: 'ช่างบอย', startDate: '2024-10-11T11:00', endDate: '2024-10-11T12:00'},
+
+{barberId: 1, barberName: 'ช่างแอม', startDate: '2024-10-12T09:30', endDate: '2024-10-12T10:30'},
+
+{barberId: 1, barberName: 'ช่างแอม', startDate: '2024-10-12T11:00', endDate: '2024-10-12T12:00'},
+
+{barberId: 2, barberName: 'ช่างโก๋', startDate: '2024-10-12T09:30', endDate: '2024-10-12T10:30'},
+
+{barberId: 2, barberName: 'ช่างโก๋', startDate: '2024-10-12T11:00', endDate: '2024-10-12T12:00'},
+
+{barberId: 3, barberName: 'ช่างบอย', startDate: '2024-10-12T09:30', endDate: '2024-10-12T10:30'},
+
+{barberId: 3, barberName: 'ช่างบอย', startDate: '2024-10-12T11:00', endDate: '2024-10-12T12:00'}]

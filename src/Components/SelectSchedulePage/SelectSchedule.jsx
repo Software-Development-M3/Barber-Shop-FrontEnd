@@ -111,29 +111,76 @@ const SelectSchedule = () => {
         }
       ]
 
-      function convertDateFormat(dateString) {
-        const [datePart, timePart] = dateString.split("T");
-        const [day, month, year] = datePart.split("-");
-        return `${year}-${month}-${day}T${timePart}`;
-      }
 
-      const fix_format_rasponse = raw_response.flatMap(barber => {
-        return barber.appointments.map(appointment => {
-          return {
-            barberId: barber.barberId,
-            barberName: barber.barberName,
-            startDate: convertDateFormat(appointment.startTime),
-            endDate: convertDateFormat(appointment.endTime)
-          };
-        });
-      });
-      console.log("fix format: ", fix_format_rasponse);
-      
-      const barber_list = raw_response.map(each_date_barber => {
-        return {barberId : each_date_barber.barberId,
-                barberName: each_date_barber.barberName
+      const raw_response1 = {
+        "25-10-2024": {
+            "So Yern": [
+                {
+                    "bookid": "17d9bf48-cb8d-4336-bab7-4900fd4c8c3c",
+                    "startTime": "25-10-2024T9:00",
+                    "endTime": "25-10-2024T09:30",
+                    "totalDuration": 30,
+                    "serviceType": ["Hair washing"],
+                    "serviceName": ["สระธรรมดา"]
+                }
+            ],
+            "Racha Coco": [
+                {
+                    "bookid": "c2dd63c6-949b-4535-a570-d82d39cc3ea0",
+                    "startTime": "25-10-2024T9:00",
+                    "endTime": "25-10-2024T09:30",
+                    "totalDuration": 30,
+                    "serviceType": ["Hair washing"],
+                    "serviceName": ["สระธรรมดา"]
+                }
+            ]
+        },
+        "26-10-2024": {
+            "So Yern": [],
+            "Racha Coco": []
+        },
+    };
+
+    function transformData(data) {
+      const result = [];
+  
+      for (const [date, barbers] of Object.entries(data)) {
+          for (const [barberName, appointments] of Object.entries(barbers)) {
+              appointments.forEach(appt => {
+                  result.push({
+                      barberName: barberName,
+                      startDate: appt.startTime,
+                      endDate: appt.endTime
+                  });
+              });
+          }
+      }
+  
+      return result;
+  }
+
+  const transformedData = transformData(raw_response1);
+  console.log("transform ", transformedData);
+
+
+
+  const transformBarber = (data) => {
+    // Extract unique barber names
+    const barbers = new Set();
+    for (const date in data) {
+        for (const barber in data[date]) {
+            barbers.add(barber);
         }
-      })
+    }
+
+    // Format the data as required
+    return Array.from(barbers).map(barber => ({ barberId: barber, barberName: barber }));
+};
+
+    
+      
+      
+      const barber_list = transformBarber(raw_response1)
       console.log("barber list : ", barber_list)
 
 
@@ -148,7 +195,7 @@ const SelectSchedule = () => {
       console.log("unique_barber_list : ", unique_barber_list);
 
       
-      const [appointments, setAppointments] = useState(fix_format_rasponse)
+      const [appointments, setAppointments] = useState(transformedData)
 
   return (
     <div>
