@@ -4,9 +4,10 @@ import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 import ViewSchedule from './Components/ViewSchedulePage/ViewSchedule.jsx'
 import SelectSchedule from './Components/SelectSchedulePage/SelectSchedule';
+import Home from './Home.jsx';
+import Upcoming from './Upcoming.jsx';
 
 
-function App() {
 
 
 function App()  {
@@ -17,7 +18,7 @@ function App()  {
         <nav>This is Navbar</nav>
         <main> This is main section
         <Routes>
-          <Route path='/' />
+          <Route path='/' element={<Home />}/>
           <Route path='/login' />
           <Route path='/register' />
           <Route path='/profile' />
@@ -27,7 +28,7 @@ function App()  {
           <Route path='/view/service' />
           <Route path='/view/schedule' element={<ViewSchedule />}/>
           <Route path='/booking/confirm'/>
-          <Route path='/upcoming'/>
+          <Route path='/upcoming' element={<Upcoming />}/>
         </Routes>
         </main>
       </div>
