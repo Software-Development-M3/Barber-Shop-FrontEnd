@@ -1,36 +1,44 @@
 import React from 'react';
 import './BookingConfirmation.css';
 
+
 const BookingConfirmation = () => {
-  const booking = {
-    shopId: 1,
-    services: {
-      hairCut: {
-        serviceId: 1,
-        name: "ทรง two block",
-        additionalRequirement: "ไว้ผมหน้ายาว ไม่โกนหนวด",
-        price: 120
-      },
-      hairDry: {
-        serviceId: 4,
-        color: "ทำสีแดง",
-        additionalRequirement: null,
-        price: 150
-      },
-      hairWash: {
-        serviceId: 7,
-        champoo: "L'OREAL Paris",
-        additionalRequirement: "สระผมเบาๆ",
-        price: 150
-      },
-      barber: "ช่างชุ่ย",
-      price: 400,
-      timeTotal: 120,
-      date: "11-10-2024",
-      startTime: "09:30",
-      endTime: "11:30"
-    }
+  const selectHair = {
+    selectedHairCut: {
+      serviceId: 1,
+      serviceName:  "Two block",
+      duration: 30,
+      price: 120,
+    },
+    selectedHairDye: {
+      serviceId: 2,
+      serviceName:  "ทำสีผมแฟชั่น ชาย",
+      selectedHairColor: "สีแดง",
+      duration: 30,
+      price: 120,
+    },
+    selectedHairWash: {
+      serviceId: 3,
+      serviceName:  "สระพรีเมี่ยม",
+      selectedShampoo: "L'OREAL Paris",
+      duration: 95,
+      price: 300,
+    },
+    hairCutDescription: "ไว้ผมหน้ายาว",
+    hairDyeDescription: "",
+    hairWashDescription: "สระผมเบาๆ",
+    totalTime: 180,
+    totalPrice: 500,
   };
+
+  const selecttime = {
+    barberId: 1234,
+    barberName: "ช่างชุ้ย",
+    startDate: "28-10-2024T09:30",
+    endDate: "28-10-2024T12:30",
+    duration: "9:30-12:30",
+  };
+
   
   return (
     <div className="bookingconfirm">
@@ -39,48 +47,52 @@ const BookingConfirmation = () => {
         <table>
           <tbody>
             {/* ตรวจสอบและแสดงข้อมูล hairCut */}
-            {booking.services.hairCut && (
+            {selectHair.selectedHairCut && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>ตัดผม</td>
                 <td style={{ verticalAlign: 'top' }}>
-                  {booking.services.hairCut.name}
+                  {selectHair.selectedHairCut.serviceName}
                   <br /> 
-                  <small>{booking.services.hairCut.additionalRequirement}</small>
+                  <small>{selectHair.hairCutDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{booking.services.hairCut.price}.-</td>
+                <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairCut.price}.-</td>
               </tr>
             )}
 
             {/* ตรวจสอบและแสดงข้อมูล hairDry */}
-            {booking.services.hairDry && (
+            {selectHair.selectedHairDye && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>ทำสีผม</td>
                 <td style={{ verticalAlign: 'top' }}>
-                  {booking.services.hairDry.color}
+                  {selectHair.selectedHairDye.serviceName}
                   <br />
-                  <small>{booking.services.hairDry.additionalRequirement}</small>
+                  <small>{selectHair.selectedHairDye.selectedHairColor}</small>
+                  <br />
+                  <small>{selectHair.hairDyeDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{booking.services.hairDry.price}.-</td>
+                <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairDye.price}.-</td>
               </tr>
             )}
 
             {/* ตรวจสอบและแสดงข้อมูล hairWash */}
-            {booking.services.hairWash && (
+            {selectHair.selectedHairWash && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>สระผม</td>
                 <td style={{ verticalAlign: 'top' }}>
-                  {booking.services.hairWash.champoo}
+                  {selectHair.selectedHairWash.serviceName}
                   <br />
-                  <small>{booking.services.hairWash.additionalRequirement}</small>
+                  <small>{selectHair.selectedHairWash.selectedShampoo}</small>
+                  <br />
+                  <small>{selectHair.hairWashDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{booking.services.hairWash.price}.-</td>
+                <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairWash.price}.-</td>
               </tr>
             )}
 
             <tr>
               <td></td>
               <td style={{ fontWeight: 'bold' ,fontSize:''}}>ราคารวม</td>
-              <td>{booking.services.price}.-</td>
+              <td>{selectHair.totalPrice}.-</td>
             </tr>
             
           </tbody>
@@ -88,8 +100,8 @@ const BookingConfirmation = () => {
 
         <div className="summary">
           <div className="booking-info">
-            <p>วันที่จอง: {booking.services.date}</p>
-            <p>เวลา: {booking.services.startTime} - {booking.services.endTime}</p>
+            <p>วันที่จอง: {selecttime.startDate.split("T")[0]}</p>
+            <p>เวลา: {selecttime.duration}</p>
           </div>
         </div>
 
