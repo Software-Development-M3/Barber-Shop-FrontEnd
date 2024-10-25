@@ -7,8 +7,8 @@ function App() {
   return (
     <>
     <Navbar/>
-    {/* <HairStyleSelection/> */}
-    <ShopInfo/>
+    <HairStyleSelection/>
+    {/* <ShopInfo/> */}
     </>
 
   );

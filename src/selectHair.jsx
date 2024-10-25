@@ -55,6 +55,8 @@ function HairStyleSelection() {
     return <div>Loading services...</div>; // Handle the loading state
   }
 
+  console.log(JSON.parse(sessionStorage.getItem("selectedServices")))
+
   return (
     <div className="hairStyleSelection">
       <h1>Hairstyle Selection</h1>
