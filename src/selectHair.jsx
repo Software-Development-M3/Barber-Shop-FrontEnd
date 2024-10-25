@@ -9,6 +9,11 @@ function HairStyleSelection() {
   const [selectedHairWash, setSelectedHairWash] = useState(null);
   const [totalTime, setTotalTime] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  
+  // State for additional descriptions
+  const [hairCutDescription, setHairCutDescription] = useState("");
+  const [hairDyeDescription, setHairDyeDescription] = useState("");
+  const [hairWashDescription, setHairWashDescription] = useState("");
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -47,9 +52,19 @@ function HairStyleSelection() {
     // Store selected items in sessionStorage
     sessionStorage.setItem(
       "selectedServices",
-      JSON.stringify({ selectedShampoo, selectedHairCut, selectedHairDye, selectedHairWash, totalTime, totalPrice })
+      JSON.stringify({
+        selectedShampoo,
+        selectedHairCut,
+        selectedHairDye,
+        selectedHairWash,
+        totalTime,
+        totalPrice,
+        hairCutDescription,
+        hairDyeDescription,
+        hairWashDescription,
+      })
     );
-  }, [selectedHairCut, selectedHairDye, selectedHairWash]);
+  }, [selectedHairCut, selectedHairDye, selectedHairWash, hairCutDescription, hairDyeDescription, hairWashDescription]);
 
   if (!services) {
     return <div>Loading services...</div>; // Handle the loading state
@@ -87,6 +102,11 @@ function HairStyleSelection() {
               </option>
             ))}
         </select>
+        <textarea
+          placeholder="Additional description for Hair Cut"
+          value={hairCutDescription}
+          onChange={(e) => setHairCutDescription(e.target.value)}
+        />
 
         <label>Hair Dye</label>
         <select
@@ -102,6 +122,11 @@ function HairStyleSelection() {
               </option>
             ))}
         </select>
+        <textarea
+          placeholder="Additional description for Hair Dye"
+          value={hairDyeDescription}
+          onChange={(e) => setHairDyeDescription(e.target.value)}
+        />
 
         <label>Hair Wash</label>
         <select
@@ -117,6 +142,11 @@ function HairStyleSelection() {
               </option>
             ))}
         </select>
+        <textarea
+          placeholder="Additional description for Hair Wash"
+          value={hairWashDescription}
+          onChange={(e) => setHairWashDescription(e.target.value)}
+        />
       </div>
 
       <div className="summary">
