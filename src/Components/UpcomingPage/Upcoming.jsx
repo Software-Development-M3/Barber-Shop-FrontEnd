@@ -1,25 +1,25 @@
 import './Upcoming.css'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import React, { useState,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 
 function Upcoming() {
     const navigate = useNavigate();
 
-    const [bookingData, setBookings] = useState([]);
+    //const [bookingData, setBooking] = useState([]);
 
     useEffect(() => {
       const token = localStorage.getItem('token'); // Assuming the JWT token is stored in localStorage
 
-      if (!token) {
-        console.log('Token not found');
-        navigate('/'); 
-        return;
-      }
+      //if (!token) {
+      //  console.log('Token not found');
+      //  navigate('/'); 
+      //  return;
+      //}
   
       // Fetch bookings with token
-      axios.get('http://localhost:3000/booking', {
+      axios.get('/booking', {
         headers: {
           Authorization: `Bearer ${token}`, // Include token in request
         },
@@ -37,13 +37,8 @@ function Upcoming() {
     }, [navigate]);
   
     const handleCancelBooking = (bookingId) => {
-      const token = localStorage.getItem('token'); // Assuming the JWT token is stored in localStorage
       if (window.confirm("Are you sure you want to cancel this booking?")) {
-        axios.delete(`http://localhost:3000/booking/${bookingId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          },
-        })
+        axios.delete(`/booking/${bookingId}`)
           .then((response) => {
             // Remove the canceled booking from the state
             setBookings(prevBookings => prevBookings.filter(item => item.bookingId !== bookingId));
@@ -55,55 +50,56 @@ function Upcoming() {
       }
     };
 
-    // const bookingData = [
-    //   {
-    //     "bookingId": 90,
-    //     "shopId": 3,
-    //     "shopName": "สุดหล่อ shop",
-    //     "services": {
-    //       "haircut": {
-    //         "serviceName": "COMMA",
-    //         "additionalRequirement": "ไว้ผมหน้ายาว ไม่โกนหนวด"
-    //       },
-    //       "hairDry": null,
-    //       "hairWash": null
-    //     },
-    //     "barberName": "ช่างเจมส์",
-    //     "price": 400,
-    //     "date": "11-8-2024",
-    //     "startTime": "11-8-2024T09:30",
-    //     "endTime": "11-8-2024T11:30"
-    //   },
-    //   {
-    //     "bookingId": 12,
-    //     "shopId": 2,
-    //     "shopName": "แสนสวน shop",
-    //     "services": {
-    //       "haircut": {
-    //         "serviceName": "TWO BLOCK",
-    //         "additionalRequirement": "ไว้ผมหน้ายาว ไม่โกนหนวด"
-    //       },
-    //       "hairDry": {
-    //         "serviceName": "ย้อมสีผมชาย",
-    //         "color": "ทอง",
-    //         "additionalRequirement": null
-    //       },
-    //       "hairWash": {
-    //         "serviceName": "สระธรรมดา",
-    //         "champoo": "L'OREAL Paris",
-    //         "additionalRequirement": "สระเบาๆ"
-    //       }
-    //     },
-    //     "barberName": "ช่างแอม",
-    //     "price": 400,
-    //     "date": "11-10-2024",
-    //     "startTime": "11-10-2024T09:30",
-    //     "endTime": "11-10-2024T11:30"
-    //   }
-    // ];
+    const bookingData = [
+      {
+        "bookingId": 90,
+        "shopId": 3,
+        "shopName": "สุดหล่อ shop",
+        "services": {
+          "haircut": {
+            "serviceName": "COMMA",
+            "additionalRequirement": "ไว้ผมหน้ายาว ไม่โกนหนวด"
+          },
+          "hairDry": null,
+          "hairWash": null
+        },
+        "barberName": "ช่างเจมส์",
+        "price": 400,
+        "date": "11-8-2024",
+        "startTime": "11-8-2024T09:30",
+        "endTime": "11-8-2024T11:30"
+      },
+      {
+        "bookingId": 12,
+        "shopId": 2,
+        "shopName": "แสนสวน shop",
+        "services": {
+          "haircut": {
+            "serviceName": "TWO BLOCK",
+            "additionalRequirement": "ไว้ผมหน้ายาว ไม่โกนหนวด"
+          },
+          "hairDry": {
+            "serviceName": "ย้อมสีผมชาย",
+            "color": "ทอง",
+            "additionalRequirement": null
+          },
+          "hairWash": {
+            "serviceName": "สระธรรมดา",
+            "champoo": "L'OREAL Paris",
+            "additionalRequirement": "สระเบาๆ"
+          }
+        },
+        "barberName": "ช่างแอม",
+        "price": 400,
+        "date": "11-10-2024",
+        "startTime": "11-10-2024T09:30",
+        "endTime": "11-10-2024T11:30"
+      }
+    ];
 
-    const formatDate = (dateString) => {
-      return dateString.replace(/-/g, '/');
+    const formatDate = (dateStr) => {
+      const dateObj = new Date(dateStr);
+      return dateObj.toLocaleDateString('th-TH', { day: 'numeric', month: 'numeric', year: 'numeric' });
     };
   
     const formatTimeRange = (startTime, endTime) => {
@@ -116,7 +112,7 @@ function Upcoming() {
     };
   
     return (
-    <div className='upcoming-container'>
+    <>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/upcoming">Upcoming</Link>
@@ -128,10 +124,10 @@ function Upcoming() {
           // Concatenate the service names from haircut, hairDry, and hairWash
           const serviceNames = [
             item.services?.haircut?.serviceName,
-            item.services?.hairdyeing?.serviceName,
-            item.services?.hairwashing?.serviceName
+            item.services?.hairDry?.serviceName,
+            item.services?.hairWash?.serviceName
           ].filter(Boolean).join(' + ');
-         
+          
           const formattedDate = formatDate(item.date);
           const formattedTimeRange = formatTimeRange(item.startTime, item.endTime);
 
@@ -154,7 +150,7 @@ function Upcoming() {
           );
         })}
       </div>
-      </div>
+      </>
     );
   };
 
