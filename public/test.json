@@ -1,0 +1,21 @@
+[
+    {
+        "id":1,
+        "name":"Kuy shop",
+        "image":"https://as1.ftcdn.net/v2/jpg/08/03/29/28/1000_F_803292807_NIawGsUGpE5ymBP4a3Pw0aSsdR6qKVhK.jpg",
+        "barber":[{
+            "name":"koon hee",
+            "img" :"https://e7.pngegg.com/pngimages/7/618/png-clipart-man-illustration-avatar-icon-fashion-men-avatar-face-fashion-girl-thumbnail.png"
+        },
+        {
+            "name":"koon kuy",
+            "img" :"https://e7.pngegg.com/pngimages/7/618/png-clipart-man-illustration-avatar-icon-fashion-men-avatar-face-fashion-girl-thumbnail.png"
+        },
+        {
+            "name":"koon tad",
+            "img":"https://e7.pngegg.com/pngimages/7/618/png-clipart-man-illustration-avatar-icon-fashion-men-avatar-face-fashion-girl-thumbnail.png"
+
+        }
+        ]
+    }
+]
