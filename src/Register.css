@@ -3,9 +3,7 @@ body, html {
   padding: 0;
   height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 /* การจัดการพื้นหลัง */
@@ -89,7 +87,4 @@ button:hover {
   align-items: center;
   color: black;
 }
-
-
-
 
