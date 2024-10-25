@@ -1,0 +1,119 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.bookingconfirm {
+  background-image: url('https://bestiebrand.com/wp-content/uploads/2023/08/nathon-oski-EW_rqoSdDes-unsplash-1355x900-1.webp');
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+
+.box-container {
+  background-color: rgba(236, 236, 236, 0.9); 
+  padding: 20px 25px 15px 25px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
+  width: 350px;
+  margin-top: 20px;
+  color: black;
+}
+
+
+.box-container-button {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.confirm-button {
+  background-color: #2D6A4F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+
+.cancel-button {
+  background-color: #D9534F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.cancel-button, .confirm-button {
+  width:35%;
+}
+
+.confirm-button:hover {
+  background-color: #1B4332;
+}
+
+.cancel-button:hover {
+  background-color: #C9302C;
+}
+
+table {
+  width: 100%;
+}
+
+table td {
+  padding: 10px 5px;
+  font-size: 16px;
+  vertical-align: top; 
+}
+
+table td small {
+  color: #666; 
+  font-size: 14px;
+}
+
+.summary {
+  font-size: 16px;
+  color: #333;
+}
+
+.booking-info {
+  padding: 0px 0px 0px 5px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.booking-info p {
+  margin: 0;
+  padding: 0 10px; 
+  font-size: 16px;
+  color: #333;
+}
