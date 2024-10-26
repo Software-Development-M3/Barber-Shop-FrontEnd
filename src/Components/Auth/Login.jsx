@@ -21,10 +21,11 @@ function Login() {
       return false;
     }
 
-    if (password.length < 6) {
-      setError('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร');
-      return false;
-    }
+    // ตรวจสอบรหัสผ่าน
+    // if (password.length < 6) {
+    //   setError('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร');
+    //   return false;
+    // }
 
     setError('');
     return true;
