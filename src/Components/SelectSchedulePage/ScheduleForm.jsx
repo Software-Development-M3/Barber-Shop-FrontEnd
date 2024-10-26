@@ -3,6 +3,7 @@ import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
 const ScheduleForm = (props) => {
   
@@ -16,6 +17,9 @@ const ScheduleForm = (props) => {
     console.log("barber_list:: ", barber_list);
     console.log("duration:: ", duration);
     console.log("userSelectDate:: ", userSelectDate);
+
+
+    const navigate = useNavigate();
 
     
     const [currentBarber, setCurrentBarber] = useState(1);
@@ -98,11 +102,11 @@ const ScheduleForm = (props) => {
 
       if(hasOverlap == false) {
         alert("choose another time slot!");
-        sessionStorage.setItem('selectTime', JSON.stringify(newAppointment));
-        window.location = `/booking/confirm/${shppid}`
       }
       else{
-        alert("good luck");
+        navigate(`/booking/confirm/${shppid}`);
+        sessionStorage.setItem('selectTime', JSON.stringify(newAppointment));
+
       }
       //
 

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './BookingConfirmation.css';
 
 
 const BookingConfirmation = () => {
+
+  useEffect(() => {
+    const selectedServices = sessionStorage.getItem("selectedServices");
+    
+  })
+
   const selectHair = {
     selectedHairCut: {
       serviceId: 1,

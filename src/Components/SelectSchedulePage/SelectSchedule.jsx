@@ -12,9 +12,8 @@ const SelectSchedule = () => {
   const { shopid } = useParams();
   console.log("current sipId", shopid);
 
-  // const services = sessionStorage.getItem("selectedService");
-  // let duration = services.totalTime;
-  let duration = 60;
+  const services = sessionStorage.getItem("selectedServices");
+  let duration = services.totalTime;
 
 
   const [availabelSchedule, setAvailabelSchedule] = useState({
@@ -451,7 +450,7 @@ console.log("format barber list ",formatBarber)
 
 
   return (
-    <div>
+    <div className='secheduleTable'>
         <ScheduleTable appointment={appointment} barber_list={formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate}></ScheduleTable>
         <ScheduleForm setAppointments={setUserAppointment} option_barber={barber_list} duration={duration} userSelectDate={userSelectDate} availabelSchedule={availabelSchedule}></ScheduleForm>
     </div>

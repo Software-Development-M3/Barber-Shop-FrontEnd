@@ -8,19 +8,21 @@ function Home() {
   const [shopData, setShops] = useState([]);
   const navigate = useNavigate();
   const { search } = useParams();
+  const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3000/shop')
+    const url = `http://localhost:3000/shop`;
+    const params = search ? { search } : {}; 
+
+    axios
+      .get(url, { params })
       .then((response) => {
         setShops(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching bookings:', error);
-        if (error.response && error.response.status === 401) {
-        
-        }
-    });
-  }, []);
+        console.error('Error fetching shops:', error);
+      });
+  }, [search]);
        
 
   // const shopData = [
@@ -61,7 +63,7 @@ function Home() {
   //   },
   // ];
 
-  const [selectedTag, setSelectedTag] = useState('');
+  
 
   // ฟังก์ชันสำหรับการกรองร้านค้า
   const filterShopsByTag = (tag) => {

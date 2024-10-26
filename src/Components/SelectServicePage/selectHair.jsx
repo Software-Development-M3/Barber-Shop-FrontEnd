@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./selectHair.css";
 
 function HairStyleSelection() {
   const {shopid} = useParams();
+  const navigate = useNavigate();
   const [services, setServices] = useState(null);
   const [selectedShampoo, setSelectedShampoo] = useState("");
   const [selectedHairCut, setSelectedHairCut] = useState(null);
@@ -30,7 +32,9 @@ function HairStyleSelection() {
     fetchServices();
   }, [shopid]);
 
-
+  const handleNavigate = (path) => {
+    navigate(path);
+};
   useEffect(() => {
     let time = 0;
     let price = 0;
@@ -42,6 +46,11 @@ function HairStyleSelection() {
     if (selectedHairDye) {
       time += selectedHairDye.duration;
       price += selectedHairDye.price;
+    }
+
+    if (selectedHairWash) {
+      time += selectedHairWash.duration;
+      price += selectedHairWash.price;
     }
 
     setTotalTime(time);
@@ -77,7 +86,7 @@ function HairStyleSelection() {
   if (!services) {
     return <div>Loading services...</div>;
   }
-
+  console.log(JSON.parse(sessionStorage.getItem("selectedServices")))
   return (
     <div className="hairStyleSelection">
       <h1>Hairstyle Selection</h1>
@@ -88,7 +97,7 @@ function HairStyleSelection() {
           <label>Shampoo</label>
           <select onChange={(e) => setSelectedShampoo(e.target.value)}>
             <option value="">Select Shampoo</option>
-            {services.shampoos.map((shampoo, index) => (
+            {services.shampoos && services.shampoos.map((shampoo, index) => (
               <option key={index} value={shampoo}>
                 {shampoo}
               </option>
@@ -101,11 +110,11 @@ function HairStyleSelection() {
           <label>Hair Wash</label>
           <select
             onChange={(e) =>
-              setSelectedHairWash(services.haircut.find((cut) => cut.serviceId === parseInt(e.target.value)))
+              setSelectedHairWash(services.hairwashing.find((cut) => cut.serviceId === parseInt(e.target.value)))
             }
           >
             <option value="">Select hair wash</option>
-            {services.hairwashing.map((wash) => (
+            {services.hairwashing && services.hairwashing.map((wash) => (
               <option key={wash.serviceId} value={wash.serviceId}>
                 {wash.serviceName} - {wash.duration} mins - {wash.price} baht
               </option>
@@ -130,7 +139,7 @@ function HairStyleSelection() {
             }
           >
             <option value="">Select hair cut</option>
-            {services.haircut.map((cut) => (
+            {services.haircut && services.haircut.map((cut) => (
               <option key={cut.serviceId} value={cut.serviceId}>
                 {cut.serviceName} - {cut.duration} mins - {cut.price} baht
               </option>
@@ -155,7 +164,7 @@ function HairStyleSelection() {
             }
           >
             <option value="">Select Hair Dye</option>
-            {services.hairdyeing.map((dye) => (
+            {services.hairdyeing && services.hairdyeing.map((dye) => (
               <option key={dye.serviceId} value={dye.serviceId}>
                 {dye.serviceName} - {dye.duration} mins - {dye.price} baht
               </option>
@@ -176,18 +185,22 @@ function HairStyleSelection() {
           <label>Colors</label>
           <select onChange={(e) => setColorSelected(e.target.value)}>
             <option value="">Select Color</option>
-            {services.colors.map((color, index) => (
+            {services.colors && services.colors.map((color, index) => (
               <option key={index} value={color}>
-                {color}
+                {color}c
               </option>
             ))}
           </select>
         </div>
       </div>
-  
+      
       <div className="summary">
         <h2>Total Time: {totalTime} mins</h2>
         <h2>Total Price: {totalPrice} baht</h2>
+        <div className="sumButtonContainer">
+          <div className="selectSchedBut"><button onClick={() => handleNavigate(`/booking/schedule/${shopid}`)}>จองเวลา</button></div>
+          <div className="backBut"><button onClick={() => handleNavigate(`/shop/${shopid}`)}>กลับหน้าร้านค้า</button></div>
+        </div>
       </div>
     </div>
   );
