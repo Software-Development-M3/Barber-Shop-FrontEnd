@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from './logo.png';
 
-
+const handleSearch = (e) => {
+    e.preventDefault();
+    const query = e.target.search.value;
+    console.log(query);
+};
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
-    
-    const navigate = useNavigate();
-    
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const query = e.target.search.value.trim(); 
-        navigate(`/${query ? query : ''}`); 
-    };
-    
-
     const handleLogout = () => {
-        sessionStorage.removeItem('token'); 
-        setIsLoggedIn(false); 
+        sessionStorage.removeItem('token'); // ลบ token เมื่อทำการล็อกเอาท์
+        setIsLoggedIn(false); // อัปเดตสถานะล็อกอิน
     };
 
     return (
@@ -37,7 +31,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
             </div>
 
             <div className="navbar-links">
-                <Link to="/calendar">Calendar</Link>
                 <Link to="/upcoming">Upcoming</Link>
                 <Link to="/profile">Profile</Link>
             </div>
@@ -47,14 +40,18 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
                     <button className="authbutton-logout" onClick={handleLogout}>Logout</button>
                 </div>
             ) : (
-                <div className="navbar-auth">
-                    <Link to='/login'>
-                        <button className='authbutton-signin'>Login</button>
-                    </Link>
-                    <Link to='/register'>
-                        <button className="authbutton-signup">Register</button>
-                    </Link>
-                </div>
+                    <>
+                    <div className="navbar-login">
+                        <Link to='/login'>
+                            <button className='authbutton-signin'>Login</button>
+                        </Link>
+                    </div>
+                    <div className="navbar-register">
+                        <Link to='/register'>
+                            <button className="authbutton-signup">Register</button>
+                        </Link>
+                    </div>
+                </>
             )}
         </nav>
     );

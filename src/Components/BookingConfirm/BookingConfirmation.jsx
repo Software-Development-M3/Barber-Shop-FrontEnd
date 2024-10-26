@@ -1,32 +1,74 @@
 import React, { useEffect, useState } from 'react';
 import './BookingConfirmation.css';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const BookingConfirmation = () => {
   const [selectTime, setSelectTime] = useState(null);
   const [selectedServices, setSelectedServices] = useState(null);
+  const navigate = useNavigate();
+  const { shopid } = useParams(); // รับ shopId จาก URL
 
   useEffect(() => {
-    // ดึงข้อมูลจาก sessionStorage และแปลงข้อมูลเป็น JSON
     const storedTime = JSON.parse(sessionStorage.getItem("selectTime"));
     const storedServices = JSON.parse(sessionStorage.getItem("selectedServices"));
 
-    // ตั้งค่า state ถ้ามีข้อมูล
     if (storedTime) setSelectTime(storedTime);
     if (storedServices) setSelectedServices(storedServices);
   }, []);
 
-  // ตรวจสอบว่าข้อมูลพร้อมหรือไม่ ถ้าไม่พร้อมให้แสดง "Loading..."
   if (!selectTime || !selectedServices) {
     return <div>Loading...</div>;
   }
 
-  const handlerConfirm = () => {
-    axios.post(`http://localhost:3000/booking`, {{
-      firstName: 'Finn',
-      lastName: 'Williams'
-    }})
-  }
+  const handlerConfirm = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+
+      const payload = {
+        shopId: shopid, // ใช้ shopId จาก useParams
+        services: {
+          hairCut: selectedServices.selectedHairCut
+            ? {
+                serviceId: selectedServices.selectedHairCut.serviceId,
+                additionalRequirement: selectedServices.cutDescription || "",
+              }
+            : null,
+          hairWash: selectedServices.selectedHairWash
+            ? {
+                serviceId: selectedServices.selectedHairWash.serviceId,
+                brand: selectedServices.selectedHairWash.selectedShampoo,
+                additionalRequirement: "Add scalp massage",
+              }
+            : null,
+          hairDye: selectedServices.selectedHairDye
+            ? {
+                serviceId: selectedServices.selectedHairDye.serviceId,
+                color: selectedServices.selectedHairDye.colorSelected,
+              }
+            : null,
+        },
+        barberId: selectTime.barberId,
+        startTime: selectTime.startDate,
+      };
+
+      await axios.post(`http://localhost:3000/booking`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      alert("การจองสำเร็จ!");
+      navigate(`/shop/${shopid}`);
+    } catch (error) {
+      console.error("Error in booking:", error);
+      alert("การจองล้มเหลว กรุณาลองอีกครั้ง");
+    }
+  };
+
+  const handlerCancel = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="bookingconfirm">
@@ -34,7 +76,6 @@ const BookingConfirmation = () => {
         <div className="title">ยืนยันการจอง</div>
         <table>
           <tbody>
-            {/* แสดงข้อมูลการตัดผม */}
             {selectedServices.selectedHairCut && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>ตัดผม</td>
@@ -47,7 +88,6 @@ const BookingConfirmation = () => {
               </tr>
             )}
 
-            {/* แสดงข้อมูลการทำสีผม */}
             {selectedServices.selectedHairDye && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>ทำสีผม</td>
@@ -62,7 +102,6 @@ const BookingConfirmation = () => {
               </tr>
             )}
 
-            {/* แสดงข้อมูลการสระผม */}
             {selectedServices.selectedHairWash && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>สระผม</td>
@@ -77,7 +116,6 @@ const BookingConfirmation = () => {
               </tr>
             )}
 
-            {/* แสดงราคารวม */}
             <tr>
               <td></td>
               <td style={{ fontWeight: 'bold' }}>ราคารวม</td>
@@ -95,7 +133,7 @@ const BookingConfirmation = () => {
         </div>
 
         <div className="actions">
-          <button className="cancel-button">ยกเลิก</button>
+          <button className="cancel-button" onClick={handlerCancel}>ยกเลิก</button>
           <button className="confirm-button" onClick={handlerConfirm}>ยืนยัน</button>
         </div>
       </div>

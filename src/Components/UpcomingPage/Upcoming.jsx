@@ -14,7 +14,7 @@ function Upcoming() {
 
       if (!token) {
         console.log('Token not found');
-        navigate('/'); 
+        navigate('/login'); 
         return;
       }
   

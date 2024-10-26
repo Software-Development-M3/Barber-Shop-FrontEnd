@@ -70,8 +70,6 @@ function Home() {
     navigate(`/shop/${shopid}`);
   };
 
-  
-
   return (
     <>
       
@@ -109,7 +107,7 @@ function Home() {
               <div className="shop-name">
                 <h3>{item.name}</h3>              
               
-                {item.tags.map((tag) => (
+                {item.tags?.map((tag) => (
                   <span key={tag} className="tag">#{tag}</span>
                 ))}
               </div>

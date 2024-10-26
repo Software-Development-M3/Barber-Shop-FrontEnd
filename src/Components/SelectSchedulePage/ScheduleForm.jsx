@@ -104,9 +104,9 @@ const ScheduleForm = (props) => {
         alert("choose another time slot!");
       }
       else{
-        navigate(`/booking/confirm/${shppid}`);
+        alert("good luck");
         sessionStorage.setItem('selectTime', JSON.stringify(newAppointment));
-
+        navigate(`/booking/confirm/${shopid}`);
       }
       //
 
