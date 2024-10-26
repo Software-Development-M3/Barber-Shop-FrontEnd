@@ -21,9 +21,15 @@ const BookingConfirmation = () => {
     return <div>Loading...</div>;
   }
 
+  function toDDMMYYYY(dateString) {
+    const [date, time] = dateString.split('T');
+    const [year, month, day] = date.split('-');
+    return `${day}-${month}-${year}T${time}`;
+  }
+
   const handlerConfirm = async () => {
     try {
-      const token = localStorage.getItem("authToken");
+      const token = sessionStorage.getItem("token");
 
       const payload = {
         shopId: shopid, // ใช้ shopId จาก useParams
@@ -31,30 +37,32 @@ const BookingConfirmation = () => {
           hairCut: selectedServices.selectedHairCut
             ? {
                 serviceId: selectedServices.selectedHairCut.serviceId,
+                style: '',
+                hairLength: "",
                 additionalRequirement: selectedServices.cutDescription || "",
-              }
-            : null,
-          hairWash: selectedServices.selectedHairWash
-            ? {
-                serviceId: selectedServices.selectedHairWash.serviceId,
-                brand: selectedServices.selectedHairWash.selectedShampoo,
-                additionalRequirement: "Add scalp massage",
               }
             : null,
           hairDye: selectedServices.selectedHairDye
             ? {
                 serviceId: selectedServices.selectedHairDye.serviceId,
-                color: selectedServices.selectedHairDye.colorSelected,
+                color: selectedServices.colorSelected,
+                brand: "",
+                additionalRequirement: selectedServices.dyeDescription
               }
             : null,
+            hairWash: {
+              "serviceId": 6,
+              "brand": "L'OREAL",
+              "additionalRequirement": "Add scalp massage"
+            },
         },
         barberId: selectTime.barberId,
-        startTime: selectTime.startDate,
+        startTime: toDDMMYYYY(selectTime.startDate),
       };
 
       await axios.post(`http://localhost:3000/booking`, payload, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       });
 
@@ -94,7 +102,7 @@ const BookingConfirmation = () => {
                 <td style={{ verticalAlign: 'top' }}>
                   {selectedServices.selectedHairDye.serviceName}
                   <br />
-                  <small>{selectedServices.selectedHairDye.colorSelected}</small>
+                  <small>{selectedServices.colorSelected}</small>
                   <br />
                   <small>{selectedServices.dyeDescription}</small>
                 </td>
