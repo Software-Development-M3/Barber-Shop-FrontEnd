@@ -1,51 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import './BookingConfirmation.css';
 
 
 const BookingConfirmation = () => {
+  // const selectHair = {
+  //   selectedHairCut: {
+  //     serviceId: 1,
+  //     serviceName:  "Two block",
+  //     duration: 30,
+  //     price: 120,
+  //   },
+  //   selectedHairDye: {
+  //     serviceId: 2,
+  //     serviceName:  "ทำสีผมแฟชั่น ชาย",
+  //     colorSelected: "สีแดง",
+  //     duration: 30,
+  //     price: 120,
+  //   },
+  //   selectedHairWash: {
+  //     serviceId: 3,
+  //     serviceName:  "สระพรีเมี่ยม",
+  //     selectedShampoo: "L'OREAL Paris",
+  //     duration: 95,
+  //     price: 300,
+  //   },
+  //   cutDescription: "ไว้ผมหน้ายาว",
+  //   dyeDescription: "",
+  //   washDescription: "สระผมเบาๆ",
+  //   totalTime: 180,
+  //   totalPrice: 500,
+  // };
+
+  // const selecttime = {
+  //   barberId: 1234,
+  //   barberName: "ช่างชุ้ย",
+  //   startDate: "28-10-2024T09:30",
+  //   endDate: "28-10-2024T12:30",
+  //   duration: "9:30-12:30",
+  // };
+
+  const [selectTime, setSelectTime] = useState(null);
+  const [selectHair, setSelectedServices] = useState(null);
 
   useEffect(() => {
-    const selectedServices = sessionStorage.getItem("selectedServices");
     
-  })
+    const storedTime = JSON.parse(sessionStorage.getItem("selectTime"));
+    const selectHair = JSON.parse(sessionStorage.getItem("selectedServices"));
 
-  const selectHair = {
-    selectedHairCut: {
-      serviceId: 1,
-      serviceName:  "Two block",
-      duration: 30,
-      price: 120,
-    },
-    selectedHairDye: {
-      serviceId: 2,
-      serviceName:  "ทำสีผมแฟชั่น ชาย",
-      selectedHairColor: "สีแดง",
-      duration: 30,
-      price: 120,
-    },
-    selectedHairWash: {
-      serviceId: 3,
-      serviceName:  "สระพรีเมี่ยม",
-      selectedShampoo: "L'OREAL Paris",
-      duration: 95,
-      price: 300,
-    },
-    hairCutDescription: "ไว้ผมหน้ายาว",
-    hairDyeDescription: "",
-    hairWashDescription: "สระผมเบาๆ",
-    totalTime: 180,
-    totalPrice: 500,
-  };
+    if (storedTime) setSelectTime(storedTime);
+    if (selectHair) setSelectedServices(selectHair);
 
-  const selecttime = {
-    barberId: 1234,
-    barberName: "ช่างชุ้ย",
-    startDate: "28-10-2024T09:30",
-    endDate: "28-10-2024T12:30",
-    duration: "9:30-12:30",
-  };
+    console.log(selectHair, selectTime);
+  }, []);
 
-  
   return (
     <div className="bookingconfirm">
       <div className='box-container'>
@@ -59,7 +66,7 @@ const BookingConfirmation = () => {
                 <td style={{ verticalAlign: 'top' }}>
                   {selectHair.selectedHairCut.serviceName}
                   <br /> 
-                  <small>{selectHair.hairCutDescription}</small>
+                  <small>{selectHair.cutDescription}</small>
                 </td>
                 <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairCut.price}.-</td>
               </tr>
@@ -74,7 +81,7 @@ const BookingConfirmation = () => {
                   <br />
                   <small>{selectHair.selectedHairDye.selectedHairColor}</small>
                   <br />
-                  <small>{selectHair.hairDyeDescription}</small>
+                  <small>{selectHair.dyeDescription}</small>
                 </td>
                 <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairDye.price}.-</td>
               </tr>
@@ -89,7 +96,7 @@ const BookingConfirmation = () => {
                   <br />
                   <small>{selectHair.selectedHairWash.selectedShampoo}</small>
                   <br />
-                  <small>{selectHair.hairWashDescription}</small>
+                  <small>{selectHair.washDescription}</small>
                 </td>
                 <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairWash.price}.-</td>
               </tr>

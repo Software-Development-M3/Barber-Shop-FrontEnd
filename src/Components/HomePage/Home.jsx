@@ -11,11 +11,12 @@ function Home() {
   const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
-    const url = `http://localhost:3000/shop`;
-    const params = search ? { search } : {}; 
+    const url = search 
+      ? `http://localhost:3000/shop/search/name/${search}` 
+      : `http://localhost:3000/shop`; 
 
     axios
-      .get(url, { params })
+      .get(url)
       .then((response) => {
         setShops(response.data);
       })
@@ -25,44 +26,7 @@ function Home() {
   }, [search]);
        
 
-  // const shopData = [
-  //   {
-  //     id: 4,
-  //     image:
-  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
-  //     name: "Sansuay Shop",
-  //     description: "ร้านแสนสวยช็อป บริการตัดผมชายหญิง บริการทุกระดับประทีบใจ ร้านทำผมที่มีคุณภาพในเรื่องยืด ดัด ทำสีและทรีทเม้นท์ รักษาผมร่วง ผมเสียให้มีสุขภาพแข็งแรง ทำสีผมสวย ดัดเพิ่มวอลลุ่มเพิ่มวอลุ่มโคนผม แก้ปัญหาผมเสียให้สุขภาพผมแข็งแรง ช่างผมที่คุณไว้วางใจ แก้ผมพังให้ปังสวย" ,             
-  //     open: 1,
-  //     timeOpen : "10.00",
-  //     timeClose :"19.00",
-  //     tags: ['korean', 'modern'],
-  //     location: "ถนนฉลองกรุง เขตลาดกระบัง กรุงเทพฯ 10520, ประเทศไทย"
-  //   },
-  //   {
-  //     id: 2,
-  //     image:
-  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
-  //     name: "Sansuay Shop",
-  //     description: "สระผม",
-  //     open: 0,
-  //     timeOpen : "10.00",
-  //     timeClose :"19.00",
-  //     tags: ['classic'],
-  //     location: "ถนนฉลองกรุง เขตลาดกระบัง กรุงเทพฯ 10520, ประเทศไทย"
-
-  //   },
-
-  //   {
-  //     id: 3,
-  //     image:
-  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
-  //     name: "Fighter Shop",
-  //     description: "ร้านแสนสวยช็อป บริการตัดผมชายหญิง บริการทุกระดับประทีบใจ ร้านทำผมที่มีคุณภาพในเรื่องยืด ดัดทำสีและทรีทเม้นท์ รักษาผมร่วง ผมเสียให้มีสุขภาพแข็งแรง ทำสีผมสวย ดัดเพิ่มวอลลุ่มเพิ่มวอลุ่มโคนผมแก้ปัญหาผมเสียให้สุขภาพผมแข็งแรง ช่างผมที่คุณไว้วางใจ แก้ผมพังให้ปังสวย",
-  //     tags: ['korean']
-
-  //   },
-  // ];
-
+  
   
 
   // ฟังก์ชันสำหรับการกรองร้านค้า
