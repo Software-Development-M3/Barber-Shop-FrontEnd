@@ -31,7 +31,7 @@ function App() {
           <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<div>Profile Page</div>} />
-          <Route path='/shop/:shopid' element={<ShopInfo />} />
+          <Route path='/shop/' element={<ShopInfo />} />
           <Route path='/booking/service/:shopid' element={<selectHair />} />
           <Route path='/booking/schedule/:shopid' element={<SelectSchedule />} />
           <Route path='/view/service/:shopid' element={<div>View Service Page</div>} />

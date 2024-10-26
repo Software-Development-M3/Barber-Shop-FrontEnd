@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-import BarberBox from "./Barberbox.js"
+import BarberBox from "./Barberbox.jsx"
 import './Shopinfo.css'
 
 function ShopInfo(){
     
     const [shopData, setShopData] = useState(null);
 
+
+
+
     //fetching
     useEffect(() =>{
         const fetchData = async () =>{
             try{
-                const response = await fetch('http://localhost:3000/shop/34942e32-7904-45cc-83a6-d4130ee0fe6e');
+                const response = await fetch('http://localhost:3000/shop/8d2969c9-d56f-4f61-8c65-ae13accf559c');
                 const data =  await response.json();
                 console.log(data)
                 setShopData(data)
