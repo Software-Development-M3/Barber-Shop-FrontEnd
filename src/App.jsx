@@ -11,6 +11,7 @@ import Register from './Components/Auth/Register.jsx';
 import BookingConfirmation from './Components/BookingConfirm/BookingConfirmation.jsx';
 import ShopInfo from './Components/ShopInfoPage/Shopinfo.jsx';
 import selectHair from './Components/SelectServicePage/selectHair.jsx';
+import Profile from './Components/ProfilePage/Profile.jsx';
 
 
 
@@ -30,7 +31,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/profile' element={<div>Profile Page</div>} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/shop/' element={<ShopInfo />} />
           <Route path='/booking/service/:shopid' element={<selectHair />} />
           <Route path='/booking/schedule/:shopid' element={<SelectSchedule />} />
