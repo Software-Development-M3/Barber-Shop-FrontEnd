@@ -1,0 +1,76 @@
+.hairStyleSelection {
+  width: 80%;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial', sans-serif;
+}
+
+.serviceSelection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding:2rem;
+}
+
+/* .selectedPart{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+} */
+.serviceSelection label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #000000;
+}
+
+.serviceSelection select {
+  width: 100%; /* ทำให้ select ใช้ความกว้างเต็มที่ */
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  transition: border-color 0.3s;
+  font-size: 1rem; /* ปรับขนาดตัวอักษรให้เท่ากัน */
+}
+
+.serviceSelection select:focus {
+  border-color: #000000;
+  outline: none;
+}
+
+.summary {
+  text-align: center;
+  margin-top: 2rem; 
+}
+
+.summary h2 {
+  margin: 1rem 0;
+  color: #000000;
+}
+
+.textArea {
+  margin-top: 1rem;
+}
+
+.textArea textarea {
+  width: 100%;
+  height: 100px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.textArea textarea:focus {
+  border-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .serviceSelection {
+      grid-template-columns: 1fr;
+  }
+}
