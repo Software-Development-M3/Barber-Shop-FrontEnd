@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // นำเข้า useParams เพื่อใช้สำหรับการดึง id จาก URL
+import { useParams } from "react-router-dom";
 import "./selectHair.css";
 
 function HairStyleSelection() {
-  const { id } = useParams(); // ดึง id จาก URL
+  const {shopid} = useParams();
   const [services, setServices] = useState(null);
   const [selectedShampoo, setSelectedShampoo] = useState("");
   const [selectedHairCut, setSelectedHairCut] = useState(null);
@@ -19,17 +19,18 @@ function HairStyleSelection() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/shop/service/${id}`); // ดึงข้อมูลจาก API โดยใช้ id
+        const response = await fetch(`http://localhost:3000/shop/service/${shopid}`);
         const data = await response.json();
-        setServices(data); // ตั้งค่า services ด้วยข้อมูลที่ดึงมา
+        console.log(data);
+        setServices(data);
       } catch (error) {
         console.error("Error fetching service data:", error);
       }
     };
     fetchServices();
-  }, [id]);
+  }, [shopid]);
 
-  // คำนวณเวลารวมและราคาโดยอิงจากบริการที่เลือก
+
   useEffect(() => {
     let time = 0;
     let price = 0;
@@ -46,7 +47,7 @@ function HairStyleSelection() {
     setTotalTime(time);
     setTotalPrice(price);
 
-    // เก็บบริการที่เลือกใน sessionStorage
+
     sessionStorage.setItem(
       "selectedServices",
       JSON.stringify({selectedShampoo,
@@ -72,10 +73,9 @@ function HairStyleSelection() {
       dyeDescription,
       colorSelected
     ]);
-    console.log(JSON.parse(sessionStorage.getItem("selectedServices")))
 
   if (!services) {
-    return <div>Loading services...</div>; // แสดงข้อความขณะโหลดข้อมูล
+    return <div>Loading services...</div>;
   }
 
   return (

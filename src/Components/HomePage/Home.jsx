@@ -1,12 +1,14 @@
 import "./Home.css";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 
 
 function Home() {
   const [shopData, setShops] = useState([]);
-  
+  const navigate = useNavigate();
+  const { search } = useParams();
+
   useEffect(() => {
     axios.get('http://localhost:3000/shop')
       .then((response) => {
@@ -98,8 +100,8 @@ function Home() {
   };
   //เช็คว่าเปิดหรือปิด
   
-  const goToShopProfile = (id) => {
-    navigate(`/shop/${id}`);
+  const goToShopProfile = (shopid) => {
+    navigate(`/shop/${shopid}`);
   };
 
   const convertToArray = (input) => {

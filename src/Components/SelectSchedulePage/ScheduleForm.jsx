@@ -76,12 +76,6 @@ const ScheduleForm = (props) => {
     }
     
 
-
-
-
-
-
-
     const handleSubmit = (e) => {
       e.preventDefault();
       const start_date_time = `${userSelectDate.getFullYear()}-${userSelectDate.getMonth() + 1}-${userSelectDate.getDate()}`+'T'+startTime;
@@ -104,16 +98,14 @@ const ScheduleForm = (props) => {
 
       if(hasOverlap == false) {
         alert("choose another time slot!");
+        sessionStorage.setItem('selectTime', JSON.stringify(newAppointment));
+        window.location = `/booking/confirm/${shppid}`
       }
       else{
         alert("good luck");
       }
       //
-      localStorage.setItem('newAppointment', JSON.stringify(newAppointment));
-      // setAppointments(prev => {
-      //   return [...prev, newAppointment];
 
-      // })
     }
 
   return (

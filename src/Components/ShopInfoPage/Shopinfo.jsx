@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import BarberBox from "./Barberbox.jsx"
 import './Shopinfo.css'
+import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 
 function ShopInfo(){
-    
+    const { shopid } = useParams();
     const [shopData, setShopData] = useState(null);
-
-
-
+    const navigate = useNavigate();
 
     //fetching
     useEffect(() =>{
         const fetchData = async () =>{
             try{
-                const response = await fetch('http://localhost:3000/shop/8d2969c9-d56f-4f61-8c65-ae13accf559c');
+                const response = await fetch(`http://localhost:3000/shop/${shopid}`);
                 const data =  await response.json();
                 console.log(data)
                 setShopData(data)
@@ -24,6 +25,10 @@ function ShopInfo(){
         };
         fetchData();
     },[]);
+
+    const handleNavigate = (path) => {
+        navigate(path);
+    };
 
     return (
         <div>
@@ -39,9 +44,9 @@ function ShopInfo(){
                                 {shopData.description}
                                 </div>
                                 <div className="buttonContainer">
-                                    <div className="reserveBut"><button>จองเลย</button></div>
-                                    <div className="barberScdBut"><button>ดูตารางงานช่าง</button></div>
-                                    <div className="allServcBut"><button>ดูบริการทั้งหมด</button></div>
+                                    <div className="reserveBut"><button onClick={() => handleNavigate(`/booking/service/${shopData.id}`)}>จองเลย</button></div>
+                                    <div className="barberScdBut"><button onClick={() => handleNavigate(`/view/schedule/${shopData.id}`)}>ดูตารางงานช่าง</button></div>
+                                    <div className="allServcBut"><button onClick={() => handleNavigate(`/view/service/${shopData.id}`)}>ดูบริการทั้งหมด</button></div>
                                 </div>
                             </div>
                         </div>
