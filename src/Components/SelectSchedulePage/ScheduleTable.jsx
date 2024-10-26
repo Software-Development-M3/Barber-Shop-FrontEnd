@@ -38,26 +38,43 @@ export default class ScheduleTable extends React.PureComponent {
           resourceName: "barberId",
         },
       ],
+      currentDate : this.props.date_available[0]
     };
 
+
+
+
+
+    this.currentDateChange = (e) => {
+      this.setState({ e });
+      this.props.setUserSelectDate(e);
+      console.log("Date change to ", e);
+    }
+
   }
+
+
 
   render() {
     const {resources, grouping } = this.state;
     const appointment = this.props.appointment;
     const date_available = this.props.date_available;
+    const barber_list = this.props.barber_list;
+
     console.log("date_available: ", date_available);
     console.log("appointment: ", appointment);
-   
+    console.log("date_available: ",date_available);
+    console.log("barber_list: ",barber_list);
+
 
 
     return (
       <div>
         <Paper>
           <Scheduler data={appointment}>
-            <ViewState defaultCurrentDate={date_available[0]} />
+            <ViewState defaultCurrentDate= {this.state.currentDate} onCurrentDateChange={(e) => this.currentDateChange(e)}/>
             <GroupingState grouping={grouping} />
-            <DayView startDayHour={9} endDayHour={17} />
+            <DayView startDayHour={8} endDayHour={20} />
             <Appointments />
             <Resources data={resources} mainResourceName="barberId" />
             <IntegratedGrouping />
