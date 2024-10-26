@@ -28,11 +28,11 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<div>Profile Page</div>} />
           <Route path='/shop/:shopid' element={<div>Shop Page</div>} />
-          <Route path='/booking/service' element={<div>Booking Service Page</div>} />
-          <Route path='/booking/schedule' element={<SelectSchedule />} />
-          <Route path='/view/service' element={<div>View Service Page</div>} />
-          <Route path='/view/schedule' element={<ViewSchedule />} />
-          <Route path='/booking/confirm' element={<BookingConfirmation />} />
+          <Route path='/booking/service/:shopid' element={<div>Booking Service Page</div>} />
+          <Route path='/booking/schedule/:shopid' element={<SelectSchedule />} />
+          <Route path='/view/service/:shopid' element={<div>View Service Page</div>} />
+          <Route path='/view/schedule/:shopid' element={<ViewSchedule />} />
+          <Route path='/booking/confirm/:shopid' element={<BookingConfirmation />} />
           <Route path='/upcoming' element={<Upcoming />} />
         </Routes>
       </main>
