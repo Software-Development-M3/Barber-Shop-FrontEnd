@@ -70,14 +70,7 @@ function Home() {
     navigate(`/shop/${shopid}`);
   };
 
-  const convertToArray = (input) => {
-    if (typeof input !== 'string') {
-      return []; // Return an empty array if input is not a string
-    }
-    
-    const trimmed = input.replace(/^{|}$/g, '').replace(/"/g, '');
-    return trimmed.split(',').map((tag) => tag.trim());
-  };
+  
 
   return (
     <>
@@ -116,7 +109,7 @@ function Home() {
               <div className="shop-name">
                 <h3>{item.name}</h3>              
               
-                {convertToArray(item.tags).map((tag) => (
+                {item.tags.map((tag) => (
                   <span key={tag} className="tag">#{tag}</span>
                 ))}
               </div>

@@ -55,53 +55,7 @@ function Upcoming() {
       }
     };
 
-    // const bookingData = [
-    //   {
-    //     "bookingId": 90,
-    //     "shopId": 3,
-    //     "shopName": "สุดหล่อ shop",
-    //     "services": {
-    //       "haircut": {
-    //         "serviceName": "COMMA",
-    //         "additionalRequirement": "ไว้ผมหน้ายาว ไม่โกนหนวด"
-    //       },
-    //       "hairDry": null,
-    //       "hairWash": null
-    //     },
-    //     "barberName": "ช่างเจมส์",
-    //     "price": 400,
-    //     "date": "11-8-2024",
-    //     "startTime": "11-8-2024T09:30",
-    //     "endTime": "11-8-2024T11:30"
-    //   },
-    //   {
-    //     "bookingId": 12,
-    //     "shopId": 2,
-    //     "shopName": "แสนสวน shop",
-    //     "services": {
-    //       "haircut": {
-    //         "serviceName": "TWO BLOCK",
-    //         "additionalRequirement": "ไว้ผมหน้ายาว ไม่โกนหนวด"
-    //       },
-    //       "hairDry": {
-    //         "serviceName": "ย้อมสีผมชาย",
-    //         "color": "ทอง",
-    //         "additionalRequirement": null
-    //       },
-    //       "hairWash": {
-    //         "serviceName": "สระธรรมดา",
-    //         "champoo": "L'OREAL Paris",
-    //         "additionalRequirement": "สระเบาๆ"
-    //       }
-    //     },
-    //     "barberName": "ช่างแอม",
-    //     "price": 400,
-    //     "date": "11-10-2024",
-    //     "startTime": "11-10-2024T09:30",
-    //     "endTime": "11-10-2024T11:30"
-    //   }
-    // ];
-
+    
     const formatDate = (dateString) => {
       return dateString.replace(/-/g, '/');
     };
@@ -117,10 +71,7 @@ function Upcoming() {
   
     return (
     <div className='upcoming-container'>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/upcoming">Upcoming</Link>
-      </nav>
+      
 
       <div className="main-section">
         <h2>Upcoming</h2>
