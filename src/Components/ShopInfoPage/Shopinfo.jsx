@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import BarberBox from "./Barberbox.jsx"
+import BarberBox from "./Barberbox.js"
 import './Shopinfo.css'
 
 function ShopInfo(){
