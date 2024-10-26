@@ -10,7 +10,7 @@ function Upcoming() {
     const [bookingData, setBookings] = useState([]);
 
     useEffect(() => {
-      const token = localStorage.getItem('token'); // Assuming the JWT token is stored in localStorage
+      const token = sessionStorage.getItem('token'); // Assuming the JWT token is stored in localStorage
 
       if (!token) {
         console.log('Token not found');
@@ -37,7 +37,7 @@ function Upcoming() {
     }, [navigate]);
   
     const handleCancelBooking = (bookingId) => {
-      const token = localStorage.getItem('token'); // Assuming the JWT token is stored in localStorage
+      const token = sessionStorage.getItem('token'); // Assuming the JWT token is stored in localStorage
       if (window.confirm("Are you sure you want to cancel this booking?")) {
         axios.delete(`http://localhost:3000/booking/${bookingId}`, {
           headers: {
