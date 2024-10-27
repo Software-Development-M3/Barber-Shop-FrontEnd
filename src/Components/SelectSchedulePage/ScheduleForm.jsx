@@ -3,9 +3,11 @@ import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import moment from 'moment';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ScheduleForm = (props) => {
+
+    const {shopid} = useParams();
   
     const duration = props.duration;
     const barber_list = props.option_barber;
@@ -79,6 +81,10 @@ const ScheduleForm = (props) => {
       return `${year}-${month}-${day}T${time}`;
     }
     
+    const handleGoback = () => {
+      console.log("GO BACK");
+      navigate(`/booking/service/${shopid}`);
+    }
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -93,6 +99,7 @@ const ScheduleForm = (props) => {
         duration: duration,
       }
 
+
       console.log("new appointment: ", newAppointment);
 
       // verify appointment   
@@ -104,8 +111,9 @@ const ScheduleForm = (props) => {
         alert("choose another time slot!");
       }
       else{
-        alert("good luck");
+        // alert("good luck");
         sessionStorage.setItem('selectTime', JSON.stringify(newAppointment));
+        console.log(`NAVIGATE : /booking/confirm/${shopid}`)
         navigate(`/booking/confirm/${shopid}`);
       }
       //
@@ -123,7 +131,7 @@ const ScheduleForm = (props) => {
           <button>Create Appointment</button>
         </form>
         <h2>Date : {userSelectDate.getDate()} / {userSelectDate.getMonth() + 1}</h2>
-        <button>GO BACK</button>
+        <button onClick={handleGoback}>GO BACK</button>
     </div>
   )
 }

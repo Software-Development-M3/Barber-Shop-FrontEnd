@@ -8,12 +8,13 @@ import axios from 'axios';
 
 const SelectSchedule = () => {
 
-
   const { shopid } = useParams();
   console.log("current sipId", shopid);
 
-  const services = sessionStorage.getItem("selectedServices");
-  let duration = services.totalTime;
+  const selectedServices = JSON.parse(sessionStorage.getItem("selectedServices"));
+  let duration = selectedServices.totalTime;
+  console.log("selectedServices ", selectedServices)
+  console.log("total time ", duration)
 
 
   const [availabelSchedule, setAvailabelSchedule] = useState({
