@@ -1,113 +1,148 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './BookingConfirmation.css';
-
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const BookingConfirmation = () => {
-  const selectHair = {
-    selectedHairCut: {
-      serviceId: 1,
-      serviceName:  "Two block",
-      duration: 30,
-      price: 120,
-    },
-    selectedHairDye: {
-      serviceId: 2,
-      serviceName:  "ทำสีผมแฟชั่น ชาย",
-      selectedHairColor: "สีแดง",
-      duration: 30,
-      price: 120,
-    },
-    selectedHairWash: {
-      serviceId: 3,
-      serviceName:  "สระพรีเมี่ยม",
-      selectedShampoo: "L'OREAL Paris",
-      duration: 95,
-      price: 300,
-    },
-    hairCutDescription: "ไว้ผมหน้ายาว",
-    hairDyeDescription: "",
-    hairWashDescription: "สระผมเบาๆ",
-    totalTime: 180,
-    totalPrice: 500,
+  const [selectTime, setSelectTime] = useState(null);
+  const [selectedServices, setSelectedServices] = useState(null);
+  const navigate = useNavigate();
+  const { shopid } = useParams(); // รับ shopId จาก URL
+
+  useEffect(() => {
+    const storedTime = JSON.parse(sessionStorage.getItem("selectTime"));
+    const storedServices = JSON.parse(sessionStorage.getItem("selectedServices"));
+
+    if (storedTime) setSelectTime(storedTime);
+    if (storedServices) setSelectedServices(storedServices);
+  }, []);
+
+  if (!selectTime || !selectedServices) {
+    return <div>Loading...</div>;
+  }
+
+  function toDDMMYYYY(dateString) {
+    const [date, time] = dateString.split('T');
+    const [year, month, day] = date.split('-');
+    return `${day}-${month}-${year}T${time}`;
+  }
+
+  const handlerConfirm = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+
+      const payload = {
+        shopId: shopid, // ใช้ shopId จาก useParams
+        services: {
+          hairCut: selectedServices.selectedHairCut
+            ? {
+                serviceId: selectedServices.selectedHairCut.serviceId,
+                style: '',
+                hairLength: "",
+                additionalRequirement: selectedServices.cutDescription || "",
+              }
+            : null,
+          hairDye: selectedServices.selectedHairDye
+            ? {
+                serviceId: selectedServices.selectedHairDye.serviceId,
+                color: selectedServices.colorSelected,
+                brand: "",
+                additionalRequirement: selectedServices.dyeDescription
+              }
+            : null,
+            hairWash: {
+              "serviceId": 6,
+              "brand": "L'OREAL",
+              "additionalRequirement": "Add scalp massage"
+            },
+        },
+        barberId: selectTime.barberId,
+        startTime: toDDMMYYYY(selectTime.startDate),
+      };
+
+      await axios.post(`http://localhost:3000/booking`, payload, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+
+      alert("การจองสำเร็จ!");
+      navigate(`/shop/${shopid}`);
+    } catch (error) {
+      console.error("Error in booking:", error);
+      alert("การจองล้มเหลว กรุณาลองอีกครั้ง");
+    }
   };
 
-  const selecttime = {
-    barberId: 1234,
-    barberName: "ช่างชุ้ย",
-    startDate: "28-10-2024T09:30",
-    endDate: "28-10-2024T12:30",
-    duration: "9:30-12:30",
+  const handlerCancel = () => {
+    navigate(-1);
   };
 
-  
   return (
     <div className="bookingconfirm">
-      <div className='box-container'>
-        <div className='title'>ยืนยันการจอง</div>
+      <div className="box-container">
+        <div className="title">ยืนยันการจอง</div>
         <table>
           <tbody>
-            {/* ตรวจสอบและแสดงข้อมูล hairCut */}
-            {selectHair.selectedHairCut && (
+            {selectedServices.selectedHairCut && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>ตัดผม</td>
                 <td style={{ verticalAlign: 'top' }}>
-                  {selectHair.selectedHairCut.serviceName}
-                  <br /> 
-                  <small>{selectHair.hairCutDescription}</small>
+                  {selectedServices.selectedHairCut.serviceName}
+                  <br />
+                  <small>{selectedServices.cutDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairCut.price}.-</td>
+                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairCut.price}.-</td>
               </tr>
             )}
 
-            {/* ตรวจสอบและแสดงข้อมูล hairDry */}
-            {selectHair.selectedHairDye && (
+            {selectedServices.selectedHairDye && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>ทำสีผม</td>
                 <td style={{ verticalAlign: 'top' }}>
-                  {selectHair.selectedHairDye.serviceName}
+                  {selectedServices.selectedHairDye.serviceName}
                   <br />
-                  <small>{selectHair.selectedHairDye.selectedHairColor}</small>
+                  <small>{selectedServices.colorSelected}</small>
                   <br />
-                  <small>{selectHair.hairDyeDescription}</small>
+                  <small>{selectedServices.dyeDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairDye.price}.-</td>
+                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairDye.price}.-</td>
               </tr>
             )}
 
-            {/* ตรวจสอบและแสดงข้อมูล hairWash */}
-            {selectHair.selectedHairWash && (
+            {selectedServices.selectedHairWash && (
               <tr>
                 <td style={{ verticalAlign: 'top' }}>สระผม</td>
                 <td style={{ verticalAlign: 'top' }}>
-                  {selectHair.selectedHairWash.serviceName}
+                  {selectedServices.selectedHairWash.serviceName}
                   <br />
-                  <small>{selectHair.selectedHairWash.selectedShampoo}</small>
+                  <small>{selectedServices.selectedHairWash.selectedShampoo}</small>
                   <br />
-                  <small>{selectHair.hairWashDescription}</small>
+                  <small>{selectedServices.washDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectHair.selectedHairWash.price}.-</td>
+                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairWash.price}.-</td>
               </tr>
             )}
 
             <tr>
               <td></td>
-              <td style={{ fontWeight: 'bold' ,fontSize:''}}>ราคารวม</td>
-              <td>{selectHair.totalPrice}.-</td>
+              <td style={{ fontWeight: 'bold' }}>ราคารวม</td>
+              <td>{selectedServices.totalPrice}.-</td>
             </tr>
-            
           </tbody>
         </table>
 
         <div className="summary">
           <div className="booking-info">
-            <p>วันที่จอง: {selecttime.startDate.split("T")[0]}</p>
-            <p>เวลา: {selecttime.duration}</p>
+            <p>วันที่จอง: {selectTime.startDate.split("T")[0]}</p>
+            <p>เวลา: {selectTime.startDate.split("T")[1]} - {selectTime.endDate.split("T")[1]}</p>
+            <p>ช่าง: {selectTime.barberName}</p>
           </div>
         </div>
 
         <div className="actions">
-          <button className="cancel-button">ยกเลิก</button>
-          <button className="confirm-button">ยืนยัน</button>
+          <button className="cancel-button" onClick={handlerCancel}>ยกเลิก</button>
+          <button className="confirm-button" onClick={handlerConfirm}>ยืนยัน</button>
         </div>
       </div>
     </div>

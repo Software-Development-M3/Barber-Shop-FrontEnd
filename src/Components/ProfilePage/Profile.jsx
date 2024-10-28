@@ -16,8 +16,6 @@ const Profile = () => {
     "password": "111111",
     "telephone": "0000000000"
 })
-
-  
   useEffect(() => {
     const current_token = sessionStorage.getItem("token");
     const decode_token = jwtDecode(current_token);

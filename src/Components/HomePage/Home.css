@@ -24,7 +24,7 @@ body {
   
   .main-section {
     padding: 20px;
-    
+    margin: 0;
   }
   
   .tag-div {
@@ -33,7 +33,7 @@ body {
     column-gap: 20px;
     padding-left: 20px;
     padding-bottom: 10px;
-    padding-top: 70px;
+    margin-top: 80px;
   }
   
   .tag-div > button{

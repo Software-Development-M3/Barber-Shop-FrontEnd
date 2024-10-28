@@ -31,7 +31,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
             </div>
 
             <div className="navbar-links">
-                <Link to="/calendar">Calendar</Link>
                 <Link to="/upcoming">Upcoming</Link>
                 <Link to="/profile">Profile</Link>
             </div>
@@ -41,14 +40,18 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
                     <button className="authbutton-logout" onClick={handleLogout}>Logout</button>
                 </div>
             ) : (
-                <div className="navbar-auth">
-                    <Link to='/login'>
-                        <button className='authbutton-signin'>Login</button>
-                    </Link>
-                    <Link to='/register'>
-                        <button className="authbutton-signup">Register</button>
-                    </Link>
-                </div>
+                    <>
+                    <div className="navbar-login">
+                        <Link to='/login'>
+                            <button className='authbutton-signin'>Login</button>
+                        </Link>
+                    </div>
+                    <div className="navbar-register">
+                        <Link to='/register'>
+                            <button className="authbutton-signup">Register</button>
+                        </Link>
+                    </div>
+                </>
             )}
         </nav>
     );

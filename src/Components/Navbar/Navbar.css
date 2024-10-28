@@ -37,7 +37,6 @@
 
 .search-input {
     padding: 10px;
-    width: 980px;
     border-radius: 15px;
     border: none;
     border: 1px solid #ced4da;    
@@ -56,13 +55,7 @@
     font-size: 18px;
 }
 
-.navbar-auth{
-    display: flex;
-    gap: 10px;
-    margin-right: 30px;
-
-}
-.authbotton-signup {
+.authbutton-signin {
     padding: 10px 20px;           
     border-radius: 5px;           
     border: none;                 
@@ -70,9 +63,13 @@
     background-color: #6c757d;   
     font-size: 16px;
     text-decoration: none;               
+    display: inline-block; 
+    width: 100px; 
+    height: 40px;
+    text-align: center;
 }
 
-.authbotton-signup:hover {
+.authbutton-signin:hover {
     background-color: #5a6268;     
 }
 
@@ -84,6 +81,10 @@
     background-color: #000000;     
     font-size: 16px;
     text-decoration: none;               
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    text-align: center;
 }
 
 .authbutton-signup:hover {
@@ -91,20 +92,34 @@
 }
 
 .authbutton-logout {
-    padding: 10px 20px;             /* ขนาด padding */
-    border-radius: 5px;             /* มุมโค้งมน */
-    border: none;                   /* ไม่มี border */
-    color: #fff;                    /* สีตัวอักษรขาว */
-    background-color: #000000;      /* สีพื้นหลังแดง (Bootstrap danger color) */
-    font-size: 16px;                /* ขนาดตัวอักษร */
-    cursor: pointer;                /* เปลี่ยน cursor เป็น pointer เมื่อ hover */
-    text-decoration: none;          /* ไม่มีขีดเส้นใต้ */
+    padding: 10px 20px;     
+    border-radius: 5px;            
+    border: none;         
+    color: #fff;
+    background-color: #000000;
+    font-size: 16px;    
+    cursor: pointer;         
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    text-align: center;
 }
 
 .authbutton-logout:hover {
-    background-color: #c1c1c1;      /* สีแดงเข้มเมื่อ hover (สี danger hover ของ Bootstrap) */
+    background-color: #c1c1c1;      
 }
 
+.navbar-login,
+.navbar-register,
+.navbar-logout {
+    margin-left: 10px; 
+}
+
+.navbar-register,
+.navbar-logout {
+    margin-right: 30px; 
+}
 
 
 

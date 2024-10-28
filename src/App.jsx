@@ -10,7 +10,7 @@ import Login from './Components/Auth/Login.jsx';
 import Register from './Components/Auth/Register.jsx';
 import BookingConfirmation from './Components/BookingConfirm/BookingConfirmation.jsx';
 import ShopInfo from './Components/ShopInfoPage/Shopinfo.jsx';
-import selectHair from './Components/SelectServicePage/selectHair.jsx';
+import HairStyleSelection from './Components/SelectServicePage/selectHair.jsx'
 import Profile from './Components/ProfilePage/Profile.jsx';
 
 
@@ -28,12 +28,12 @@ function App() {
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <main>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/:search?' element={<Home />} />
           <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/shop/' element={<ShopInfo />} />
-          <Route path='/booking/service/:shopid' element={<selectHair />} />
+          <Route path='/shop/:shopid' element={<ShopInfo />} />
+          <Route path='/booking/service/:shopid' element={<HairStyleSelection />} />
           <Route path='/booking/schedule/:shopid' element={<SelectSchedule />} />
           <Route path='/view/service/:shopid' element={<div>View Service Page</div>} />
           <Route path='/view/schedule/:shopid' element={<ViewSchedule />} />
