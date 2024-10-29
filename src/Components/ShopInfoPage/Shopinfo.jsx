@@ -31,7 +31,7 @@ function ShopInfo(){
     };
 
     return (
-        <div>
+        <div className="shopInfoBody">
             {shopData && (
                     <div className="shopContainer" key={shopData.id}>
                         <div className="shopInfoContainer">
@@ -45,14 +45,14 @@ function ShopInfo(){
                                 </div>
                                 <div className="buttonContainer">
                                     <div className="reserveBut"><button onClick={() => handleNavigate(`/booking/service/${shopData.id}`)}>จองเลย</button></div>
-                                    <div className="barberScdBut"><button onClick={() => handleNavigate(`/view/schedule/${shopData.id}`)}>ดูตารางงานช่าง</button></div>
-                                    <div className="allServcBut"><button onClick={() => handleNavigate(`/view/service/${shopData.id}`)}>ดูบริการทั้งหมด</button></div>
+                                    <div className="barberScdBut"><button onClick={() => handleNavigate(`/view/schedule/${shopData.id}`)}>ตารางงานช่าง</button></div>
+                                    <div className="allServcBut"><button onClick={() => handleNavigate(`/view/service/${shopData.id}`)}>บริการทั้งหมด</button></div>
                                 </div>
                             </div>
                         </div>
                         <div className="barberContainer">
                             {shopData.barbers.map((barber, index) => (
-                                <BarberBox key={index} name={barber.name} pic={barber.img} />
+                                <BarberBox key={index} name={barber.name} pic={barber.img} exp={barber.experience} spec={barber.specialization}/>
                             ))}
                         </div>
                     </div>
