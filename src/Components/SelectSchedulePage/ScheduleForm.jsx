@@ -5,6 +5,9 @@ import 'react-clock/dist/Clock.css';
 import moment from 'moment';
 import { useNavigate, useParams } from 'react-router-dom';
 
+
+import './ScheduleForm.css'
+
 const ScheduleForm = (props) => {
 
     const {shopid} = useParams();
@@ -121,17 +124,21 @@ const ScheduleForm = (props) => {
     }
 
   return (
-    <div>
-        <h1> you time is {duration} min.</h1>
-        <form onSubmit={handleSubmit}>
+    <div className="schedule_form_page">
+      <div className='schedule_form_page_data'> 
+        <h2 className='schedule_form_page_duration'>Durations {duration}  min.</h2>
+        <h2 className='schedule_form_page_bookDate'>Book Date : {userSelectDate.getDate()} / {userSelectDate.getMonth() + 1}</h2>
+      </div>
+
+      <form onSubmit={handleSubmit} >
           <select className='select_barber' onChange={handleSelectBarber}>
             {barber_list.map((item , index) => generate_option_element(item, index))}
           </select>
           <TimePicker onChange={handleSelectStartTime} value={startTime} ></TimePicker>
-          <button>Create Appointment</button>
-        </form>
-        <h2>Date : {userSelectDate.getDate()} / {userSelectDate.getMonth() + 1}</h2>
-        <button onClick={handleGoback}>GO BACK</button>
+          <button className='create_btn_createAppointment'>Create Appointment</button>
+      </form>
+
+        <button onClick={handleGoback} className='goback_btn'>GO BACK</button>
     </div>
   )
 }
