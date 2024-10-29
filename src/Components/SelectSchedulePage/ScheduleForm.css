@@ -15,7 +15,7 @@
     gap: 100px;
 }
 
-form {
+.form_schedule {
     display: flex;
     gap: 30px;
     justify-content: center;
@@ -23,8 +23,6 @@ form {
 	font-size: 18px;
 
 }
-
-
 
 .react-time-picker__clear-button.react-time-picker__button {
 	margin-top: 0px;
