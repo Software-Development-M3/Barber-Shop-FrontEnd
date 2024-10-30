@@ -40,7 +40,7 @@ body, html {
 
 
 /* ช่องว่างระหว่าง input และ label */
-.text_area, div {
+.text_area, .register, .register div {
   margin-bottom: 10px; /* ช่องว่างระหว่างแต่ละส่วน */
 }
 

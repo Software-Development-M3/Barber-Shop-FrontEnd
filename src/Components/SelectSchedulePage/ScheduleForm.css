@@ -15,7 +15,7 @@
     gap: 100px;
 }
 
-form {
+.form_schedule {
     display: flex;
     gap: 30px;
     justify-content: center;
@@ -23,8 +23,6 @@ form {
 	font-size: 18px;
 
 }
-
-
 
 .react-time-picker__clear-button.react-time-picker__button {
 	margin-top: 0px;
@@ -87,4 +85,15 @@ input.react-time-picker__inputGroup__input:nth-child(2) {
     font-size: 18px;
     width: 200px;
 	height: 40px;
+}
+
+.Root-root{
+	padding-top: 80px;
+	display: flex;
+	flex-direction: row;
+	width: 100px;
+}
+
+.Root-root > button {
+	width: 100%;
 }

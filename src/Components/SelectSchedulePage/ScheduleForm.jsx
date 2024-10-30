@@ -130,7 +130,7 @@ const ScheduleForm = (props) => {
         <h2 className='schedule_form_page_bookDate'>Book Date : {userSelectDate.getDate()} / {userSelectDate.getMonth() + 1}</h2>
       </div>
 
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit} className='form_schedule' >
           <select className='select_barber' onChange={handleSelectBarber}>
             {barber_list.map((item , index) => generate_option_element(item, index))}
           </select>
