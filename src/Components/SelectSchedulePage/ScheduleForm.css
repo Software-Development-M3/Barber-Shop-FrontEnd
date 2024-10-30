@@ -86,3 +86,14 @@ input.react-time-picker__inputGroup__input:nth-child(2) {
     width: 200px;
 	height: 40px;
 }
+
+.Root-root{
+	padding-top: 80px;
+	display: flex;
+	flex-direction: row;
+	width: 100px;
+}
+
+.Root-root > button {
+	width: 100%;
+}
