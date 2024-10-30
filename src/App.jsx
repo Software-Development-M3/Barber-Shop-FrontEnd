@@ -12,6 +12,7 @@ import BookingConfirmation from './Components/BookingConfirm/BookingConfirmation
 import ShopInfo from './Components/ShopInfoPage/Shopinfo.jsx';
 import HairStyleSelection from './Components/SelectServicePage/selectHair.jsx'
 import Profile from './Components/ProfilePage/Profile.jsx';
+import Allservices from './Components/Allservice/Allservice.jsx';
 
 
 
@@ -35,7 +36,7 @@ function App() {
           <Route path='/shop/:shopid' element={<ShopInfo />} />
           <Route path='/booking/service/:shopid' element={<HairStyleSelection />} />
           <Route path='/booking/schedule/:shopid' element={<SelectSchedule />} />
-          <Route path='/view/service/:shopid' element={<div>View Service Page</div>} />
+          <Route path='/view/service/:shopid' element={<Allservices/>} />
           <Route path='/view/schedule/:shopid' element={<ViewSchedule />} />
           <Route path='/booking/confirm/:shopid' element={<BookingConfirmation />} />
           <Route path='/upcoming' element={<Upcoming />} />
