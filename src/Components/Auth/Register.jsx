@@ -126,7 +126,7 @@ function Register() {
               required
             />
           </div>
-          <button type="submit">สมัครสมาชิก</button>
+          <button type="submit" className='btn_btn'>สมัครสมาชิก</button>
 
           {/* แสดง error message ถ้ามี */}
           {error && <p className="error-message">{error}</p>}
