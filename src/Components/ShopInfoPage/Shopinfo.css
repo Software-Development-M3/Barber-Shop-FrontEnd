@@ -1,3 +1,7 @@
+.shopInfoBody{
+    padding-top: 2rem;
+}
+
 .shopContainer{
     margin:4rem;
     background-color: white;
@@ -43,46 +47,22 @@
     align-self: flex-end;
     justify-content: flex-end;
     gap:10px;
+    
 }
-.reserveBut {
-    button{
-        padding: 10px 20px;
-        background-color: rgb(0, 90, 0);
-        color:white;
-        border: none;
-        cursor: pointer;
-        border-radius: 20px;
-    }
+button{
+    padding: 10px 20px;
+    background-color: rgb(0, 90, 0);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    box-sizing: border-box;
+    width:150px;
+    height: 50px;
+    text-align: center;
+    text-justify: center;
 }
-.barberScdBut {
-    button{
-        padding: 10px 20px;
-        background-color: rgb(0, 90, 0);
-        color:white;
-        border: none;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-}
-.allServcBut {
-    button{
-        padding: 10px 20px;
-        background-color: rgb(0, 90, 0);
-        color:white;
-        border: none;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-}
-.reserveBut:hover{
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-}
-.barberScdBut:hover{
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-}
-.allServcBut:hover{
+button:hover{
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
 }
@@ -98,12 +78,18 @@
     flex-direction: column;
     align-items: center;
     margin:1rem;
+    background-color: gainsboro;
+    padding: 2rem;
+    border-radius: 50px;
+    box-sizing: border-box; /* รวม padding กับขนาด container */
+    width: 100%; /* ขนาดเต็มของ container */
+    max-width: 300px; /* จำกัดขนาดให้เท่าๆ กัน */
 }
 .barberPic{
     width: 150px;
     height: 150px;
-    margin: 2rem auto; /* Centers the image horizontally */
-    border-radius: 50%; /* Makes the image circular */
+    margin: 2rem auto; 
+    border-radius: 50%;
     overflow: hidden;
     
 }
@@ -112,3 +98,24 @@
     height: auto;
     object-fit: cover;
   }
+.barberTextContainer{
+    text-align: center;
+    background-color: gray;
+    border-radius: 50px;
+    padding:2rem;
+}
+.barberTextContainer p{
+    color:white
+}
+
+@media (max-width: 768px) {
+    .shopPic {
+        display: none;
+    }
+
+    .buttonContainer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+}
