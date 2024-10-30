@@ -21,7 +21,6 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 
-
 export default class ScheduleTable extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -41,8 +40,6 @@ export default class ScheduleTable extends React.PureComponent {
       currentDate : this.props.date_available[0]
     };
 
-
-
     this.currentDateChange = (e) => {
       this.setState({ e });
       this.props.setUserSelectDate(e);
@@ -54,6 +51,7 @@ export default class ScheduleTable extends React.PureComponent {
 
 
   render() {
+
     const {resources, grouping } = this.state;
     const appointment = this.props.appointment;
     const date_available = this.props.date_available;
@@ -64,12 +62,13 @@ export default class ScheduleTable extends React.PureComponent {
     console.log("appointment: ", appointment);
     console.log("barber_list: ",barber_list);
     console.log("availabelSchedule: ", availabelSchedule_format);
+    console.log("current date: ", this.props.date_available[0]);
 
     return (
       <div>
         <Paper>
           <Scheduler data={availabelSchedule_format}>
-            <ViewState defaultCurrentDate= {this.state.currentDate} onCurrentDateChange={(e) => this.currentDateChange(e)}/>
+            <ViewState defaultCurrentDate="2024-10-31" onCurrentDateChange={(e) => this.currentDateChange(e)}/>
             <GroupingState grouping={grouping} />
             <DayView startDayHour={8} endDayHour={20} />
             <Appointments />

@@ -92,6 +92,7 @@ const ScheduleForm = (props) => {
     const handleSubmit = (e) => {
       e.preventDefault();
       const start_date_time = `${userSelectDate.getFullYear()}-${userSelectDate.getMonth() + 1}-${userSelectDate.getDate()}`+'T'+startTime;
+      console.log("start_datetime ", start_date_time);
       const start_datetime = moment(start_date_time).format('YYYY-MM-DDTHH:mm');
       const end_datetime = moment(start_date_time).add(duration, 'minute').format('YYYY-MM-DDTHH:mm');    //28-10-2024T09:30
       const newAppointment = {
