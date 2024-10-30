@@ -441,18 +441,53 @@ function getFormatBarberList(data) {
   const result = data.map(barber => ({text: barber.name, id: barber.id}))
   return result;
 }
-const appointment = transformData(busySchedule)
-console.log("trnaform dta ", appointment);
-const dateAvailable = getDateAvailbale(availabelSchedule);
-console.log("dateAvailabel ", dateAvailable);
-const formatBarber = getFormatBarberList(barber_list);
-console.log("format barber list ",formatBarber)
 
 
 
+
+function transformAvailability(availabilityData, barberData) {
+    const result = [];
+  
+    for (const date in availabilityData) {
+      for (const barberName in availabilityData[date]) {
+        // Find barber details in barberData array
+        const barber = barberData.find(b => b.name === barberName);
+        if (!barber) continue; // skip if barber not found
+  
+        const barberId = barber.id;
+  
+        // Loop through freeSlot entries and create new format
+        availabilityData[date][barberName].forEach(entry => {
+          entry.freeSlot.forEach(slot => {
+            // Convert date to YYYY-MM-DD format
+            const formattedDate = date.split("-").reverse().join("-");
+  
+            result.push({
+              startDate: `${formattedDate}T${slot.start.split("T")[1]}`,
+              endDate: `${formattedDate}T${slot.end.split("T")[1]}`,
+              barberName,
+              barberId
+            });
+          });
+        });
+      }
+    }
+    return result;
+  }
+
+  const appointment = transformData(busySchedule)
+  console.log("trnaform dta ", appointment);
+  const dateAvailable = getDateAvailbale(availabelSchedule);
+  console.log("dateAvailabel ", dateAvailable);
+  const formatBarber = getFormatBarberList(barber_list);
+  console.log("format barber list ",formatBarber)
+  const availabelSchedule_format = transformAvailability(availabelSchedule, barber_list);
+  console.log("availabelSchedule_format: ", availabelSchedule_format);
+  
+  
   return (
     <div className='secheduleTable'>
-        <ScheduleTable appointment={appointment} barber_list={formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate}></ScheduleTable>
+        <ScheduleTable appointment={appointment} barber_list={formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate} availabelSchedule_format={availabelSchedule_format}></ScheduleTable>
         <ScheduleForm setAppointments={setUserAppointment} option_barber={barber_list} duration={duration} userSelectDate={userSelectDate} availabelSchedule={availabelSchedule}></ScheduleForm>
     </div>
   )
