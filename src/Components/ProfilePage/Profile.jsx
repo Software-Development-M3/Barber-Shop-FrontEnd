@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import "./Profile.css"
 import axios from 'axios'
-import { jwtDecode } from "jwt-decode"
+// import { jwtDecode } from "jwt-decode"
 import profile_img from '../../assets/components/ndet.jpg'
 import background_img from '../../assets/components/ShopBackground.jpg'
 import { useNavigate } from 'react-router-dom'
