@@ -13,6 +13,7 @@ function Login() {
 
   // เก็บ state ของที่มาหน้าก่อนหน้า
   const from = location.state?.from?.pathname || '/'; 
+  console.log(location);
 
   const validateForm = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;

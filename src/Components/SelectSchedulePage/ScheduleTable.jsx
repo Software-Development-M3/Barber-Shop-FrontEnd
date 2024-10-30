@@ -43,8 +43,6 @@ export default class ScheduleTable extends React.PureComponent {
 
 
 
-
-
     this.currentDateChange = (e) => {
       this.setState({ e });
       this.props.setUserSelectDate(e);
@@ -60,18 +58,17 @@ export default class ScheduleTable extends React.PureComponent {
     const appointment = this.props.appointment;
     const date_available = this.props.date_available;
     const barber_list = this.props.barber_list;
+    const availabelSchedule_format = this.props.availabelSchedule_format;
 
     console.log("date_available: ", date_available);
     console.log("appointment: ", appointment);
-    console.log("date_available: ",date_available);
     console.log("barber_list: ",barber_list);
-
-
+    console.log("availabelSchedule: ", availabelSchedule_format);
 
     return (
       <div>
         <Paper>
-          <Scheduler data={appointment}>
+          <Scheduler data={availabelSchedule_format}>
             <ViewState defaultCurrentDate= {this.state.currentDate} onCurrentDateChange={(e) => this.currentDateChange(e)}/>
             <GroupingState grouping={grouping} />
             <DayView startDayHour={8} endDayHour={20} />
