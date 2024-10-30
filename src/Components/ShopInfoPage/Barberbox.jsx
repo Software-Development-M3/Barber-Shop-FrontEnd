@@ -4,7 +4,7 @@ const BarberBox = ({name,pic,exp,spec}) =>{
     return(
         <div className="barberBox">
             <img 
-            src = {pic || "https://via.placeholder.com/100"} 
+            src = {pic || "src/assets/barberImage.png"} 
             className="barberPic"
             />
             <div className="barberTextContainer">
