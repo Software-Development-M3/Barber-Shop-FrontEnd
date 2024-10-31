@@ -21,10 +21,10 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <Link to="/">
+                <Link to="/" className='navnew'>
                     <img src={logo} alt="Barber Shop Logo" className="logo-img" />
+                    <span className="logo-text">Barber Shop</span>
                 </Link>
-                <span className="logo-text">Barber Shop</span>
             </div>
 
             <div className="navbar-search">
