@@ -8,7 +8,7 @@ function Home() {
   const [shopData, setShops] = useState([]);
   const navigate = useNavigate();
   const { search } = useParams();
-  const [selectedTag, setSelectedTag] = useState('');
+  const [selectedTag, setSelectedTags] = useState([]);
 
   useEffect(() => {
     const url = search 
@@ -31,16 +31,19 @@ function Home() {
 
   // ฟังก์ชันสำหรับการกรองร้านค้า
   const filterShopsByTag = (tag) => {
-    // ถ้าแท็กที่เลือกอยู่เท่ากับแท็กที่ถูกกดซ้ำ จะยกเลิกการเลือก
-    if (selectedTag === tag) {
-      setSelectedTag(''); // ยกเลิกการเลือกแท็ก
+    if (selectedTag.includes(tag)) {
+      // If the tag is already selected, remove it
+      setSelectedTags(selectedTag.filter((t) => t !== tag));
     } else {
-      setSelectedTag(tag); // เลือกแท็กใหม่
+      // Otherwise, add the new tag
+      setSelectedTags([...selectedTag, tag]);
     }
   };
-  const filteredShops = selectedTag
-    ? shopData.filter((shop) => shop.tags && shop.tags.includes(selectedTag))
-    : shopData;
+  const filteredShops = selectedTag.length > 0 
+  ? shopData.filter((shop) => 
+      shop.tags && selectedTag.every(tag => shop.tags.includes(tag))
+    ) 
+  : shopData;
     
   
 
@@ -78,19 +81,19 @@ function Home() {
           style={{
             background: 'linear-gradient(45deg, #ff9a9e, #fad0c4)',
             color: 'white',
-            opacity: selectedTag === '' || selectedTag === 'korean' ? 1 : 0.3,
+            opacity: selectedTag.length === 0 || selectedTag.includes('korean') ? 1 : 0.3,
           }}>korean</button>
         <button onClick={() => filterShopsByTag('modern')}
           style={{
             background: 'linear-gradient(45deg, #a1c4fd, #c2e9fb)' ,
             color: 'white',
-            opacity: selectedTag === '' || selectedTag === 'modern' ? 1 : 0.3,
+            opacity: selectedTag.length === 0 || selectedTag.includes('modern') ? 1 : 0.3,
           }}>modern</button>
         <button onClick={() => filterShopsByTag('vintage')}
           style={{
             background: 'linear-gradient(45deg, #fceabb, #f8b500)',
             color: 'white',
-            opacity: selectedTag === '' || selectedTag === 'vintage' ? 1 : 0.3,
+            opacity: selectedTag.length === 0 || selectedTag.includes('vintage') ? 1 : 0.3,
           }}>vintage</button>
       </div>
       <div className="main-section">
@@ -137,10 +140,9 @@ function Home() {
             </div>
             <div className="shop-meta">
               { isOpen(item.timeOpen, item.timeClose) ? 
-              <div style={{backgroundColor : "#72D572" }}>เปิดอยู่</div> 
-              : <div style={{backgroundColor : "#d66767" }} >ปิด</div>}
+              <div style={{background: 'linear-gradient(to right, #72D572, #A8D9A1)' }}>เปิดอยู่</div> 
+              : <div style={{background : 'linear-gradient(to right, #d66767, #e4a4a4)'}} >ปิด</div>}
               <p>{item.timeOpen} - {item.timeClose}</p>
-              
             </div>
           </div>
         ))}
