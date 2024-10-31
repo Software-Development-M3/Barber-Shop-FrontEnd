@@ -69,10 +69,13 @@ button{
     text-align: center;
     text-justify: center;
 }
+
+
 button:hover{
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
 }
+
 
 .barberContainer{
     display:flex;
@@ -113,6 +116,26 @@ button:hover{
 }
 .barberTextContainer p{
     color:white
+}
+.btn-hover:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover.booking-now {
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #6edda7, #4be99d);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+.btn-hover.barberScd{
+    background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+.btn-hover.allServc {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }
 
 @media (max-width: 768px) {

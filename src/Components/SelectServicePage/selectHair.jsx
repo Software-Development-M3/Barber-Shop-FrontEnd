@@ -209,8 +209,9 @@ function HairStyleSelection() {
           <h2>Total Time: {totalTime} นาที</h2>
           <h2>Total Price: {totalPrice} บาท</h2>
           <div className="sumButtonContainer">
-            <div className="selectSchedBut"><button onClick={() => handleNavigate(`/booking/schedule/${shopid}`)}>จองเวลา</button></div>
-            <div className="backBut"><button onClick={() => handleNavigate(`/shop/${shopid}`)}>กลับหน้าร้านค้า</button></div>
+            <div className="backBut"><button className="btn-hover goBack" onClick={() => handleNavigate(`/shop/${shopid}`)}>กลับหน้าร้านค้า</button></div>
+            <div className="selectSchedBut"><button className="btn-hover bookNow" onClick={() => handleNavigate(`/booking/schedule/${shopid}`)}>จองเวลา</button></div>
+            
           </div>
         </div>
       </div>

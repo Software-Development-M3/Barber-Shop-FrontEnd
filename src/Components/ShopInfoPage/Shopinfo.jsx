@@ -44,9 +44,9 @@ function ShopInfo(){
                                 {shopData.description}
                                 </div>
                                 <div className="buttonContainer">
-                                    <div className="reserveBut"><button onClick={() => handleNavigate(`/booking/service/${shopData.id}`)}>จองเลย</button></div>
-                                    <div className="barberScdBut"><button onClick={() => handleNavigate(`/view/schedule/${shopData.id}`)}>ตารางงานช่าง</button></div>
-                                    <div className="allServcBut"><button onClick={() => handleNavigate(`/view/service/${shopData.id}`)}>บริการทั้งหมด</button></div>
+                                    <div className="reserveBut"><button className="btn-hover booking-now"  onClick={() => handleNavigate(`/booking/service/${shopData.id}`)}>จองเลย</button></div>
+                                    <div className="barberScdBut"><button className="btn-hover barberScd" onClick={() => handleNavigate(`/view/schedule/${shopData.id}`)}>ตารางงานช่าง</button></div>
+                                    <div className="allServcBut"><button className="btn-hover allServc" onClick={() => handleNavigate(`/view/service/${shopData.id}`)}>บริการทั้งหมด</button></div>
                                 </div>
                             </div>
                         </div>
