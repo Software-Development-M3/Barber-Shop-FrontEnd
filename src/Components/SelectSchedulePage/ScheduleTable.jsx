@@ -60,7 +60,7 @@ export default class ScheduleTable extends React.PureComponent {
 
     console.log("date_available: ", date_available);
     console.log("appointment: ", appointment);
-    console.log("barber_list: ",barber_list);
+    console.log("barber_list: ", barber_list);
     console.log("availabelSchedule: ", availabelSchedule_format);
     console.log("current date: ", this.props.date_available[0]);
 
@@ -69,16 +69,23 @@ export default class ScheduleTable extends React.PureComponent {
     return (
       <div>
         <Paper>
-          <Scheduler data={availabelSchedule_format}>
+          <Scheduler 
+          data={availabelSchedule_format}
+          >
             <ViewState defaultCurrentDate={this.state.currentDate} onCurrentDateChange={(e) => this.currentDateChange(e)}/>
             <GroupingState grouping={grouping} />
-            <DayView startDayHour={8} endDayHour={20} />
+            <DayView 
+            startDayHour={8} 
+            endDayHour={21} 
+            isShaded={true}
+            />
             <Appointments />
             <Resources data={resources} mainResourceName="barberId" />
             <IntegratedGrouping />
             <GroupingPanel />
             <Toolbar />
             <DateNavigator />
+            {/* <TodayButton /> */}
           </Scheduler>
         </Paper>
       </div>
