@@ -111,7 +111,7 @@ function Upcoming() {
               <img src={item.image} alt={item.name} className="shop-image" />
               <div className="shop-details">
                 <h3>{item.shopName}</h3>
-                
+                <h2>{item.barberName}</h2>
                 {serviceDetails.map((detail, index) => (
                   <p key={index}>{detail} </p>
                 ))}
