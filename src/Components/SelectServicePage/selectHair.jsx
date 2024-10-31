@@ -94,104 +94,110 @@ function HairStyleSelection() {
       <div className="serviceSelection">
   
         {/* Hair wash */}
-        <div className = "selectedPart">
-          <label>Hair Wash</label>
-          <select
-            onChange={(e) =>
-              setSelectedHairWash(services.hairwashing.find((cut) => cut.serviceId === parseInt(e.target.value)))
-            }
-          >
-            <option value="">Select hair wash</option>
-            {services.hairwashing && services.hairwashing.map((wash) => (
-              <option key={wash.serviceId} value={wash.serviceId}>
-                {wash.serviceName} - {wash.duration} mins - {wash.price} baht
-              </option>
-            ))}
-          </select>
-        </div>
-        {/* Shampoo */}
-        <div className = "selectedPart">
-          <label>Shampoo</label>
-          <select onChange={(e) => setSelectedShampoo(e.target.value)}>
-            <option value="">Select Shampoo</option>
-            {services.shampoos && services.shampoos.map((shampoo, index) => (
-              <option key={index} value={shampoo}>
-                {shampoo}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="textArea">
-          <label>Description for hair wash</label>
-          <textarea
-            value={washDescription}
-            onChange={(e) => setWashDescription(e.target.value)}
-            placeholder="Additional details about the hairwash..."
-          />
+        <div className="servicesContainer">
+          <div className = "selectedPart">
+            <label>Hair Wash</label>
+            <select
+              onChange={(e) =>
+                setSelectedHairWash(services.hairwashing.find((cut) => cut.serviceId === parseInt(e.target.value)))
+              }
+            >
+              <option value="">Select hair wash</option>
+              {services.hairwashing && services.hairwashing.map((wash) => (
+                <option key={wash.serviceId} value={wash.serviceId}>
+                  {wash.serviceName} - {wash.duration} mins - {wash.price} baht
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* Shampoo */}
+          <div className = "selectedPart">
+            <label>Shampoo</label>
+            <select onChange={(e) => setSelectedShampoo(e.target.value)}>
+              <option value="">Select Shampoo</option>
+              {services.shampoos && services.shampoos.map((shampoo, index) => (
+                <option key={index} value={shampoo}>
+                  {shampoo}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="textArea">
+            <label>Description for hair wash</label>
+            <textarea
+              value={washDescription}
+              onChange={(e) => setWashDescription(e.target.value)}
+              placeholder="Additional details about the hairwash..."
+            />
+          </div>
         </div>
   
         {/* Hair Cut */}
-        <div className = "selectedPart">
-          <label>Hair Cut</label>
-          <select
-            onChange={(e) =>
-              setSelectedHairCut(services.haircut.find((cut) => cut.serviceId === parseInt(e.target.value)))
-            }
-          >
-            <option value="">Select hair cut</option>
-            {services.haircut && services.haircut.map((cut) => (
-              <option key={cut.serviceId} value={cut.serviceId}>
-                {cut.serviceName} - {cut.duration} mins - {cut.price} baht
-              </option>
-            ))}
-          </select>
-        </div >
-        <div className="textArea">
-          <label>Description for hair cut</label>
-          <textarea
-            value={cutDescription}
-            onChange={(e) => setCutDescription(e.target.value)}
-            placeholder="Additional details about the haircut..."
-          />
+        <div className="servicesContainer">
+          <div className = "selectedPart">
+            <label>Hair Cut</label>
+            <select
+              onChange={(e) =>
+                setSelectedHairCut(services.haircut.find((cut) => cut.serviceId === parseInt(e.target.value)))
+              }
+            >
+              <option value="">Select hair cut</option>
+              {services.haircut && services.haircut.map((cut) => (
+                <option key={cut.serviceId} value={cut.serviceId}>
+                  {cut.serviceName} - {cut.duration} mins - {cut.price} baht
+                </option>
+              ))}
+            </select>
+          </div >
+          <div className="textArea">
+            <label>Description for hair cut</label>
+            <textarea
+              value={cutDescription}
+              onChange={(e) => setCutDescription(e.target.value)}
+              placeholder="Additional details about the haircut..."
+            />
+          </div>
         </div>
   
         {/* Hair Dye */}
-        <div className = "selectedPart">
-          <label>Hair Dye</label>
-          <select
-            onChange={(e) =>
-              setSelectedHairDye(services.hairdyeing.find((dye) => dye.serviceId === parseInt(e.target.value)))
-            }
-          >
-            <option value="">Select Hair Dye</option>
-            {services.hairdyeing && services.hairdyeing.map((dye) => (
-              <option key={dye.serviceId} value={dye.serviceId}>
-                {dye.serviceName} - {dye.duration} mins - {dye.price} baht
-              </option>
-            ))}
-          </select>
+        <div className="servicesContainer">
+          <div className = "selectedPart">
+            <label>Hair Dye</label>
+            <select
+              onChange={(e) =>
+                setSelectedHairDye(services.hairdyeing.find((dye) => dye.serviceId === parseInt(e.target.value)))
+              }
+            >
+              <option value="">Select Hair Dye</option>
+              {services.hairdyeing && services.hairdyeing.map((dye) => (
+                <option key={dye.serviceId} value={dye.serviceId}>
+                  {dye.serviceName} - {dye.duration} mins - {dye.price} baht
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* Colors */}
+          <div className = "selectedPart">
+            <label>Colors</label>
+            <select onChange={(e) => setColorSelected(e.target.value)}>
+              <option value="">Select Color</option>
+              {services.colors && services.colors.map((color, index) => (
+                <option key={index} value={color}>
+                  {color}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="textArea">
+            <label>Description for Hair Dye</label>
+            <textarea
+              value={dyeDescription}
+              onChange={(e) => setDyeDescription(e.target.value)}
+              placeholder="Additional details about the hair dye..."
+            />
+          </div>
         </div>
-        {/* Colors */}
-        <div className = "selectedPart">
-          <label>Colors</label>
-          <select onChange={(e) => setColorSelected(e.target.value)}>
-            <option value="">Select Color</option>
-            {services.colors && services.colors.map((color, index) => (
-              <option key={index} value={color}>
-                {color}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="textArea">
-          <label>Description for Hair Dye</label>
-          <textarea
-            value={dyeDescription}
-            onChange={(e) => setDyeDescription(e.target.value)}
-            placeholder="Additional details about the hair dye..."
-          />
-        </div>
-  
+
       </div>
       
       <div className="summary">
