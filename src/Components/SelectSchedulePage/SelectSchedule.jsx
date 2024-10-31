@@ -216,6 +216,8 @@ function transformAvailability(availabilityData, barberData) {
     return result;
   }
 
+  
+  
   const appointment = transformData(busySchedule)
   console.log("trnaform dta ", appointment);
   const dateAvailable = getDateAvailbale(availabelSchedule);
@@ -225,10 +227,12 @@ function transformAvailability(availabilityData, barberData) {
   const availabelSchedule_format = transformAvailability(availabelSchedule, barber_list);
   console.log("availabelSchedule_format: ", availabelSchedule_format);
   
+  const colors_list = ['#34cf5a', "#34cf5a"]
+  const update_formatBarber = formatBarber.map((barber, index) => ({...barber, color: colors_list[index]}))
   
   return (
     <div className='secheduleTable'>
-        <ScheduleTable appointment={appointment} barber_list={formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate} availabelSchedule_format={availabelSchedule_format}></ScheduleTable>
+        <ScheduleTable appointment={appointment} barber_list={update_formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate} availabelSchedule_format={availabelSchedule_format}></ScheduleTable>
         <ScheduleForm setAppointments={setUserAppointment} option_barber={barber_list} duration={duration} userSelectDate={userSelectDate} availabelSchedule={availabelSchedule}></ScheduleForm>
     </div>
   )

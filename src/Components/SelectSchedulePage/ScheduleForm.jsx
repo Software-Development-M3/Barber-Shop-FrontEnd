@@ -135,6 +135,7 @@ const ScheduleForm = (props) => {
     }
 
   return (
+  <div className='background_schedule_form_page'>
     <div className="schedule_form_page">
       <div className='schedule_form_page_data'> 
         <h2 className='schedule_form_page_duration'>Durations {duration}  min.</h2>
@@ -146,11 +147,13 @@ const ScheduleForm = (props) => {
             {barber_list.map((item , index) => generate_option_element(item, index))}
           </select>
           <TimePicker onChange={handleSelectStartTime} value={startTime} ></TimePicker>
-          <button className='create_btn_createAppointment'>Create Appointment</button>
+          <div className='button-appointment-container'>
+            <button type='submit' className='btn-hover create_btn_createAppointment'>Create Appointment</button>
+            <button onClick={handleGoback} className='btn-hover goback_btn'>GO BACK</button>
+          </div>
       </form>
-
-        <button onClick={handleGoback} className='goback_btn'>GO BACK</button>
     </div>
+  </div>
   )
 }
 
