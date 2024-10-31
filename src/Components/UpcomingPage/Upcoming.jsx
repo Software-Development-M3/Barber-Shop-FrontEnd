@@ -73,7 +73,7 @@ function Upcoming() {
     <div className='upcoming-container'>
       
 
-      <div className="main-section">
+      
         <h2>Upcoming</h2>
         {bookingData.map((item) => {
           // Concatenate the service names from haircut, hairDry, and hairWash
@@ -105,7 +105,7 @@ function Upcoming() {
           );
         })}
       </div>
-      </div>
+      
     );
   };
 
