@@ -16,8 +16,8 @@ const BookingConfirmation = () => {
     const storedServices = JSON.parse(sessionStorage.getItem("selectedServices"));
 
     axios.get(`http://localhost:3000/shop/${shopid}`)
-    .then(resp => resp.data)
-    .then(data => setSetshopName(data.name))
+      .then(resp => resp.data)
+      .then(data => setSetshopName(data.name));
 
     if (storedTime) setSelectTime(storedTime);
     if (storedServices) setSelectedServices(storedServices);
@@ -105,41 +105,41 @@ const BookingConfirmation = () => {
           <tbody>
             {selectedServices.selectedHairCut && (
               <tr>
-                <td style={{ verticalAlign: 'top' }}>ตัดผม</td>
-                <td style={{ verticalAlign: 'top' }}>
+                <td style={{ width: '30%', verticalAlign: 'top' }}>ตัดผม</td>
+                <td style={{ width: '50%', verticalAlign: 'top' }}>
                   {selectedServices.selectedHairCut.serviceName}
                   <br />
                   <small>{selectedServices.cutDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairCut.price}.-</td>
+                <td style={{ width: '20%', verticalAlign: 'top' }}>{selectedServices.selectedHairCut.price}.-</td>
               </tr>
             )}
 
             {selectedServices.selectedHairDye && (
               <tr>
-                <td style={{ verticalAlign: 'top' }}>ทำสีผม</td>
-                <td style={{ verticalAlign: 'top' }}>
+                <td style={{ width: '30%', verticalAlign: 'top' }}>ทำสีผม</td>
+                <td style={{ width: '50%', verticalAlign: 'top' }}>
                   {selectedServices.selectedHairDye.serviceName}
                   <br />
                   <small>{selectedServices.colorSelected}</small>
                   <br />
                   <small>{selectedServices.dyeDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairDye.price}.-</td>
+                <td style={{ width: '20%', verticalAlign: 'top' }}>{selectedServices.selectedHairDye.price}.-</td>
               </tr>
             )}
 
             {selectedServices.selectedHairWash && (
               <tr>
-                <td style={{ verticalAlign: 'top' }}>สระผม</td>
-                <td style={{ verticalAlign: 'top' }}>
+                <td style={{ width: '30%', verticalAlign: 'top' }}>สระผม</td>
+                <td style={{ width: '50%', verticalAlign: 'top' }}>
                   {selectedServices.selectedHairWash.serviceName}
                   <br />
                   <small>{selectedServices.selectedShampoo}</small>
                   <br />
                   <small>{selectedServices.washDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairWash.price}.-</td>
+                <td style={{ width: '20%', verticalAlign: 'top' }}>{selectedServices.selectedHairWash.price}.-</td>
               </tr>
             )}
 
@@ -149,9 +149,9 @@ const BookingConfirmation = () => {
               <td>{selectedServices.totalPrice}.-</td>
             </tr>
             <tr>
-              <td style={{width: 30}}>วันที่จอง <br /> {selectTime.startDate.split("T")[0]}</td>
-              <td>เวลา <br /> {selectTime.startDate.split("T")[1]} - {selectTime.endDate.split("T")[1]}</td>
-              <td>ช่าง<br /> {selectTime.barberName}</td>
+              <td style={{ width: '30%' }}>วันที่จอง <br /> {selectTime.startDate.split("T")[0]}</td>
+              <td style={{ width: '50%' }}>เวลา <br /> {selectTime.startDate.split("T")[1]} - {selectTime.endDate.split("T")[1]}</td>
+              <td style={{ width: '20%' }}>ช่าง<br /> {selectTime.barberName}</td>
             </tr>
           </tbody>
         </table>
