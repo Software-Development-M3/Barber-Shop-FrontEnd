@@ -3,9 +3,7 @@ body, html {
     padding: 0;
     height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
   }
   
   /* การจัดการพื้นหลัง */
@@ -41,7 +39,7 @@ body, html {
   }
   
   /* ช่องว่างระหว่าง input และ label */
-  .text_area, div {
+  .text_area, .register, .register div {
     margin-bottom: 10px; /* ช่องว่างระหว่างแต่ละส่วน */
   }
   
@@ -57,10 +55,10 @@ body, html {
   }
   
   
-  button {
+  .btn_btn {
     width: 50%;
     padding: 12px;
-    background-color: #1d1d1d;
+    background-color: #c7c7c7;
     color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;

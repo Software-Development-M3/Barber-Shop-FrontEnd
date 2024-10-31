@@ -1,6 +1,6 @@
 /* App.css */
 
-body {
+/* body,html {
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
@@ -8,7 +8,14 @@ body {
     padding: 0;
     background-color: #D9D9D9;
   }
-  
+   */
+
+  body, html {
+    display: block; /* Resets flex layout */
+    justify-content: unset;
+    align-items: unset;
+}
+
   .App {
     width: 100%;
     height: 100%;
@@ -20,7 +27,7 @@ body {
   
   .main-section {
     padding: 20px;
-    
+    margin-top: 50px;
   }
   
   .tag-div {
@@ -89,10 +96,7 @@ body {
     font-weight: 500;
   }
   
-  .shop-meta > div {
-    padding: 10px 0;
-    border-radius: 25px;
-  }
+ 
   
   .shop-meta > button {
     padding: 10px;
@@ -101,7 +105,7 @@ body {
     background-color: rgb(216, 52, 52);
     color: aliceblue;
     border-radius: 15px;
-    border: none;
+    min-width: 130px;
 }
   
   

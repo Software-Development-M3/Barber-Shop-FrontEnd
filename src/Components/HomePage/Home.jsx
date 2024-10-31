@@ -1,65 +1,33 @@
 import "./Home.css";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 
 
 function Home() {
-  //const [shopData, setShops] = useState([]);
-  
+  const [shopData, setShops] = useState([]);
+  const navigate = useNavigate();
+  const { search } = useParams();
+  const [selectedTag, setSelectedTag] = useState('');
+
   useEffect(() => {
-    axios.get('/shop')
+    const url = search 
+      ? `http://localhost:3000/shop/search/name/${search}` 
+      : `http://localhost:3000/shop`; 
+
+    axios
+      .get(url)
       .then((response) => {
         setShops(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching bookings:', error);
-        if (error.response && error.response.status === 401) {
-        
-        }
-    });
-  }, []);
+        console.error('Error fetching shops:', error);
+      });
+  }, [search]);
        
 
-  const shopData = [
-    {
-      id: 4,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
-      name: "Sansuay Shop",
-      description: "ร้านแสนสวยช็อป บริการตัดผมชายหญิง บริการทุกระดับประทีบใจ ร้านทำผมที่มีคุณภาพในเรื่องยืด ดัด ทำสีและทรีทเม้นท์ รักษาผมร่วง ผมเสียให้มีสุขภาพแข็งแรง ทำสีผมสวย ดัดเพิ่มวอลลุ่มเพิ่มวอลุ่มโคนผม แก้ปัญหาผมเสียให้สุขภาพผมแข็งแรง ช่างผมที่คุณไว้วางใจ แก้ผมพังให้ปังสวย" ,             
-      open: 1,
-      timeOpen : "10.00",
-      timeClose :"19.00",
-      tags: ['korean', 'modern'],
-      location: "ถนนฉลองกรุง เขตลาดกระบัง กรุงเทพฯ 10520, ประเทศไทย"
-    },
-    {
-      id: 2,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
-      name: "Sansuay Shop",
-      description: "สระผม",
-      open: 0,
-      timeOpen : "10.00",
-      timeClose :"19.00",
-      tags: ['classic'],
-      location: "ถนนฉลองกรุง เขตลาดกระบัง กรุงเทพฯ 10520, ประเทศไทย"
-
-    },
-
-    {
-      id: 3,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1RIDBpopQWp6W-9iYyd_Dey4ol4GjTxZwA&s",
-      name: "Fighter Shop",
-      description: "ร้านแสนสวยช็อป บริการตัดผมชายหญิง บริการทุกระดับประทีบใจ ร้านทำผมที่มีคุณภาพในเรื่องยืด ดัดทำสีและทรีทเม้นท์ รักษาผมร่วง ผมเสียให้มีสุขภาพแข็งแรง ทำสีผมสวย ดัดเพิ่มวอลลุ่มเพิ่มวอลุ่มโคนผมแก้ปัญหาผมเสียให้สุขภาพผมแข็งแรง ช่างผมที่คุณไว้วางใจ แก้ผมพังให้ปังสวย",
-      tags: ['korean']
-
-    },
-  ];
-
-  const [selectedTag, setSelectedTag] = useState('');
+  
+  
 
   // ฟังก์ชันสำหรับการกรองร้านค้า
   const filterShopsByTag = (tag) => {
@@ -79,7 +47,7 @@ function Home() {
   //เช็คว่าเปิดหรือปิด
   const parseTime = (timeString) => {
     if (!timeString) return null;
-    const [hours, minutes] = timeString.split(".");
+    const [hours, minutes] = timeString.split(":");
     const date = new Date();
     date.setHours(parseInt(hours, 10));
     date.setMinutes(parseInt(minutes, 10));
@@ -98,32 +66,34 @@ function Home() {
   };
   //เช็คว่าเปิดหรือปิด
   
-  const goToShopProfile = (id) => {
-    navigate(`/shop/${id}`);
+  const goToShopProfile = (shopid) => {
+    navigate(`/shop/${shopid}`);
   };
 
   return (
     <>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/upcoming">Upcoming</Link>
-      </nav>
+      
       <div className="tag-div">
-        <button onClick={() => filterShopsByTag('classic')}
+      <button onClick={() => filterShopsByTag('korean')}
           style={{
-            backgroundColor: selectedTag === 'classic' ? '#72D572' : 'white',
-            color: selectedTag === 'classic' ? 'white' : 'black',
-          }}>classic</button>
+            backgroundColor: selectedTag === 'korean' ? '#72D572' : 'white',
+            color: selectedTag === 'korean' ? 'white' : 'black',
+          }}>korean</button>
+        <button onClick={() => filterShopsByTag('cool')}
+          style={{
+            backgroundColor: selectedTag === 'cool' ? '#72D572' : 'white',
+            color: selectedTag === 'cool' ? 'white' : 'black',
+          }}>cool</button>
         <button onClick={() => filterShopsByTag('modern')}
           style={{
             backgroundColor: selectedTag === 'modern' ? '#72D572' : 'white',
             color: selectedTag === 'modern' ? 'white' : 'black',
           }}>modern</button>
-        <button onClick={() => filterShopsByTag('korean')}
+        <button onClick={() => filterShopsByTag('vintage')}
           style={{
-            backgroundColor: selectedTag === 'korean' ? '#72D572' : 'white',
-            color: selectedTag === 'korean' ? 'white' : 'black',
-          }}>korean</button>
+            backgroundColor: selectedTag === 'vintage' ? '#72D572' : 'white',
+            color: selectedTag === 'vintage' ? 'white' : 'black',
+          }}>vintage</button>
       </div>
       <div className="main-section">
         {filteredShops.map((item) => (
@@ -137,7 +107,7 @@ function Home() {
               <div className="shop-name">
                 <h3>{item.name}</h3>              
               
-                {item.tags.map((tag) => (
+                {item.tags?.map((tag) => (
                   <span key={tag} className="tag">#{tag}</span>
                 ))}
               </div>
