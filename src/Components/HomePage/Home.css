@@ -7,7 +7,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #D9D9D9;
+    background-color: #ffffff;
     display: block;
     justify-content: start;
     align-items: start;
@@ -46,6 +46,7 @@ body {
     font-size: 24px;
     padding: 5px 0;
     cursor: pointer;
+    font-weight: 600;
   }
   
   .shop-item {
@@ -55,9 +56,10 @@ body {
     margin-bottom: 10px;
     border: 1px solid #000000;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #f3fbff;
     cursor: pointer;
     min-height: 237px;
+    /* background: linear-gradient(45deg, #c2e9fb, #c2e9fb); */
   }
   
   .shop-image {
@@ -74,8 +76,12 @@ body {
     align-items: center;
   }
   .tag {
-    color: gray;
+    border-radius: 5px;
+    padding: 4px 8px;
+    background-color: red;
+    color: rgb(255, 253, 253);
     font-size: 20px;
+    font-weight: 600;
   }
   
   h3 {

@@ -76,23 +76,21 @@ function Home() {
       <div className="tag-div">
       <button onClick={() => filterShopsByTag('korean')}
           style={{
-            backgroundColor: selectedTag === 'korean' ? '#72D572' : 'white',
-            color: selectedTag === 'korean' ? 'white' : 'black',
+            background: 'linear-gradient(45deg, #ff9a9e, #fad0c4)',
+            color: 'white',
+            opacity: selectedTag === '' || selectedTag === 'korean' ? 1 : 0.3,
           }}>korean</button>
-        <button onClick={() => filterShopsByTag('cool')}
-          style={{
-            backgroundColor: selectedTag === 'cool' ? '#72D572' : 'white',
-            color: selectedTag === 'cool' ? 'white' : 'black',
-          }}>cool</button>
         <button onClick={() => filterShopsByTag('modern')}
           style={{
-            backgroundColor: selectedTag === 'modern' ? '#72D572' : 'white',
-            color: selectedTag === 'modern' ? 'white' : 'black',
+            background: 'linear-gradient(45deg, #a1c4fd, #c2e9fb)' ,
+            color: 'white',
+            opacity: selectedTag === '' || selectedTag === 'modern' ? 1 : 0.3,
           }}>modern</button>
         <button onClick={() => filterShopsByTag('vintage')}
           style={{
-            backgroundColor: selectedTag === 'vintage' ? '#72D572' : 'white',
-            color: selectedTag === 'vintage' ? 'white' : 'black',
+            background: 'linear-gradient(45deg, #fceabb, #f8b500)',
+            color: 'white',
+            opacity: selectedTag === '' || selectedTag === 'vintage' ? 1 : 0.3,
           }}>vintage</button>
       </div>
       <div className="main-section">
@@ -107,9 +105,31 @@ function Home() {
               <div className="shop-name">
                 <h3>{item.name}</h3>              
               
-                {item.tags?.map((tag) => (
-                  <span key={tag} className="tag">#{tag}</span>
-                ))}
+                {item.tags?.map((tag) => {
+                  let tagStyle = {};
+                                
+                  switch (tag) {
+                    case 'korean':
+                      tagStyle = { background: 'linear-gradient(45deg, #ff9a9e, #fad0c4)' }; // Pink gradient for Korean
+                      break;
+                    case 'modern':
+                      tagStyle = { background: 'linear-gradient(45deg, #a1c4fd, #c2e9fb)' }; // Blue gradient for Modern
+                      break;
+                    case 'vintage':
+                      tagStyle = { background: 'linear-gradient(45deg, #fceabb, #f8b500)' }; // Purple gradient for Vintage
+                      break;
+                    default:
+                      tagStyle = { background: 'linear-gradient(45deg, #ddd, #eee)' }; // Default gray gradient
+                      break;
+                  }
+                
+                  return (
+                    <span key={tag} className="tag" style={{ ...tagStyle }}>
+                      #{tag}
+                    </span>
+                  );
+                })}
+
               </div>
               <p>{item.description}</p>
               <p>ที่อยู่ {item.location}</p>
