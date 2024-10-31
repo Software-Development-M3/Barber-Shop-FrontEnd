@@ -237,7 +237,7 @@ const ViewSchedule = () => {
   return (
     <div className='viewschedule_page'>
         <ScheduleTable appointment={appointment} barber_list={update_formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate} availabelSchedule_format={availabelSchedule_format}></ScheduleTable>
-        <button className="btn-hover goback_btn" onClick={handleGoBack}>Go Back</button> 
+        <button className="btn-hover goback_btn" onClick={handleGoBack}>กลับหน้าร้านค้า</button> 
     </div>
   )
 }

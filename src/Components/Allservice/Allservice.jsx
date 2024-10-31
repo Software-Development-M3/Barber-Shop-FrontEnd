@@ -33,9 +33,9 @@ function Allservices() {
                     <table className="serviceTable">
                         <thead>
                             <tr>
-                                <th>Hair Style</th>
-                                <th>Duration (mins)</th>
-                                <th>Price (THB)</th>
+                                <th>ตัดผม</th>
+                                <th>เวลาที่ใช้ (นาที)</th>
+                                <th>ราคา (บาท)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,9 +53,9 @@ function Allservices() {
                     <table className="serviceTable">
                         <thead>
                             <tr>
-                                <th>Hair Dyeing</th>
-                                <th>Duration (mins)</th>
-                                <th>Price (THB)</th>
+                                <th>ย้อมสีผม</th>
+                                <th>เวลาที่ใช้ (นาที)</th>
+                                <th>ราคา (บาท)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,9 +73,9 @@ function Allservices() {
                     <table className="serviceTable">
                         <thead>
                             <tr>
-                                <th>Hair Washing</th>
-                                <th>Duration (mins)</th>
-                                <th>Price (THB)</th>
+                                <th>สระผม</th>
+                                <th>เวลาที่ใช้ (นาที)</th>
+                                <th>ราคา (บาท)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,7 +93,7 @@ function Allservices() {
                     <table className="serviceTable">
                         <thead>
                             <tr>
-                                <th>Shampoo</th>
+                                <th>แชมพู</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,7 +109,7 @@ function Allservices() {
                     <table className="serviceTable">
                         <thead>
                             <tr>
-                                <th>Colors</th>
+                                <th>สีย้อมผม</th>
                             </tr>
                         </thead>
                         <tbody>

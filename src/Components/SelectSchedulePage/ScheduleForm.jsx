@@ -118,7 +118,7 @@ const ScheduleForm = (props) => {
       console.log(`new appointment Check with existing free slots? ${hasOverlap ? 'OK' : 'NOT OK'}`);
 
       if(hasOverlap == false) {
-        alert("choose another time slot!");
+        alert("ช่างไม่พร้อมให้บริการในช่วงเวลาดังกล่าว กรุณาเลือกช่วงเวลาอื่น");
       }
       else{
         // alert("good luck");
