@@ -64,11 +64,13 @@ export default class ScheduleTable extends React.PureComponent {
     console.log("availabelSchedule: ", availabelSchedule_format);
     console.log("current date: ", this.props.date_available[0]);
 
+
+
     return (
       <div>
         <Paper>
           <Scheduler data={availabelSchedule_format}>
-            <ViewState defaultCurrentDate="2024-10-31" onCurrentDateChange={(e) => this.currentDateChange(e)}/>
+            <ViewState defaultCurrentDate={this.state.currentDate} onCurrentDateChange={(e) => this.currentDateChange(e)}/>
             <GroupingState grouping={grouping} />
             <DayView startDayHour={8} endDayHour={20} />
             <Appointments />
