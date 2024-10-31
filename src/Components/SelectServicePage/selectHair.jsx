@@ -92,18 +92,6 @@ function HairStyleSelection() {
       <h1>Hairstyle Selection</h1>
       
       <div className="serviceSelection">
-        {/* Shampoo */}
-        <div className = "selectedPart">
-          <label>Shampoo</label>
-          <select onChange={(e) => setSelectedShampoo(e.target.value)}>
-            <option value="">Select Shampoo</option>
-            {services.shampoos && services.shampoos.map((shampoo, index) => (
-              <option key={index} value={shampoo}>
-                {shampoo}
-              </option>
-            ))}
-          </select>
-        </div>
   
         {/* Hair wash */}
         <div className = "selectedPart">
@@ -117,6 +105,18 @@ function HairStyleSelection() {
             {services.hairwashing && services.hairwashing.map((wash) => (
               <option key={wash.serviceId} value={wash.serviceId}>
                 {wash.serviceName} - {wash.duration} mins - {wash.price} baht
+              </option>
+            ))}
+          </select>
+        </div>
+        {/* Shampoo */}
+        <div className = "selectedPart">
+          <label>Shampoo</label>
+          <select onChange={(e) => setSelectedShampoo(e.target.value)}>
+            <option value="">Select Shampoo</option>
+            {services.shampoos && services.shampoos.map((shampoo, index) => (
+              <option key={index} value={shampoo}>
+                {shampoo}
               </option>
             ))}
           </select>
@@ -171,15 +171,6 @@ function HairStyleSelection() {
             ))}
           </select>
         </div>
-        <div className="textArea">
-          <label>Description for Hair Dye</label>
-          <textarea
-            value={dyeDescription}
-            onChange={(e) => setDyeDescription(e.target.value)}
-            placeholder="Additional details about the hair dye..."
-          />
-        </div>
-  
         {/* Colors */}
         <div className = "selectedPart">
           <label>Colors</label>
@@ -192,6 +183,15 @@ function HairStyleSelection() {
             ))}
           </select>
         </div>
+        <div className="textArea">
+          <label>Description for Hair Dye</label>
+          <textarea
+            value={dyeDescription}
+            onChange={(e) => setDyeDescription(e.target.value)}
+            placeholder="Additional details about the hair dye..."
+          />
+        </div>
+  
       </div>
       
       <div className="summary">
