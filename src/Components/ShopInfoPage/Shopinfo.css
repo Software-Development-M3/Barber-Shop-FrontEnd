@@ -48,6 +48,7 @@
 
 .shopDescription{
     text-indent: 50px;
+    font-size: 18px;
 }
 .buttonContainer{
     display:flex;

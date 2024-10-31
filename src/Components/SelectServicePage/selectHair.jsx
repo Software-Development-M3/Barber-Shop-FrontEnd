@@ -130,7 +130,7 @@ function HairStyleSelection() {
               <textarea
                 value={washDescription}
                 onChange={(e) => setWashDescription(e.target.value)}
-                placeholder="Additional details about the hairwash..."
+                placeholder="อยากบอกอะไรช่างเพิ่มเติมไหม? ..."
               />
             </div>
           </div>
@@ -170,7 +170,7 @@ function HairStyleSelection() {
               <textarea
                 value={dyeDescription}
                 onChange={(e) => setDyeDescription(e.target.value)}
-                placeholder="Description for hair wash...."
+                placeholder="อยากบอกอะไรช่างเพิ่มเติมไหม? ..."
               />
             </div>
           </div>
@@ -199,7 +199,7 @@ function HairStyleSelection() {
               <textarea
                 value={cutDescription}
                 onChange={(e) => setCutDescription(e.target.value)}
-                placeholder="Description for hair cut...."
+                placeholder="อยากบอกอะไรช่างเพิ่มเติมไหม? ..."
                 />
             </div>
           </div>
