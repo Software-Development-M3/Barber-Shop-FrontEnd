@@ -30,42 +30,51 @@ const BookingConfirmation = () => {
   const handlerConfirm = async () => {
     try {
       const token = sessionStorage.getItem("token");
-
+  
+      const services = {
+        hairCut: selectedServices.selectedHairCut
+          ? {
+              serviceId: selectedServices.selectedHairCut.serviceId,
+              style: '',
+              hairLength: "",
+              additionalRequirement: selectedServices.cutDescription || "",
+            }
+          : null,
+        hairDye: selectedServices.selectedHairDye
+          ? {
+              serviceId: selectedServices.selectedHairDye.serviceId,
+              color: selectedServices.colorSelected,
+              brand: "",
+              additionalRequirement: selectedServices.dyeDescription
+            }
+          : null,
+        hairWash: selectedServices.selectedHairWash
+          ? {
+              serviceId: selectedServices.selectedHairWash.serviceId,
+              brand: selectedServices.selectedHairWash.selectedShampoo,
+              additionalRequirement: selectedServices.washDescription
+            }
+          : null,
+      };
+  
+      // กรองเฉพาะ services ที่ไม่เป็น null
+      const filteredServices = Object.fromEntries(
+        Object.entries(services).filter(([key, value]) => value !== null)
+      );
+  
       const payload = {
         shopId: shopid, // ใช้ shopId จาก useParams
-        services: {
-          hairCut: selectedServices.selectedHairCut
-            ? {
-                serviceId: selectedServices.selectedHairCut.serviceId,
-                style: '',
-                hairLength: "",
-                additionalRequirement: selectedServices.cutDescription || "",
-              }
-            : null,
-          hairDye: selectedServices.selectedHairDye
-            ? {
-                serviceId: selectedServices.selectedHairDye.serviceId,
-                color: selectedServices.colorSelected,
-                brand: "",
-                additionalRequirement: selectedServices.dyeDescription
-              }
-            : null,
-            hairWash: {
-              "serviceId": 6,
-              "brand": "L'OREAL",
-              "additionalRequirement": "Add scalp massage"
-            },
-        },
+        services: filteredServices,
         barberId: selectTime.barberId,
         startTime: toDDMMYYYY(selectTime.startDate),
       };
-
+  
       await axios.post(`http://localhost:3000/booking`, payload, {
         headers: {
           "Authorization": `Bearer ${token}`,
         },
       });
-
+  
       alert("การจองสำเร็จ!");
       navigate(`/shop/${shopid}`);
     } catch (error) {
