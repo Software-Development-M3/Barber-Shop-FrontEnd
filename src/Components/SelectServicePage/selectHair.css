@@ -98,7 +98,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-
+  align-self: center;
+  justify-content: center;
 }
 
 .textArea textarea {
