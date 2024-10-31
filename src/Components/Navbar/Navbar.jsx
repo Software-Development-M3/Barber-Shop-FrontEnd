@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import logo from './logo.png';
 
-const handleSearch = (e) => {
-    e.preventDefault();
-    const query = e.target.search.value;
-    console.log(query);
-};
+
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
+    const navigate = useNavigate();
     const handleLogout = () => {
         sessionStorage.removeItem('token'); // ลบ token เมื่อทำการล็อกเอาท์
         setIsLoggedIn(false); // อัปเดตสถานะล็อกอิน
     };
-
+    const handleSearch = (e) => {
+    
+        e.preventDefault();
+        const query = e.target.search.value;
+        console.log(query);
+        navigate(`/${query ? query : ''}`);
+    };
     return (
         <nav className="navbar">
             <div className="navbar-logo">
