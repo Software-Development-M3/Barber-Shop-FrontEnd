@@ -1,13 +1,20 @@
 .shopInfoBody{
     padding-top: 2rem;
+    background-image: url('https://s.isanook.com/me/0/ud/14/71633/barber.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .shopContainer{
     margin:4rem;
-    background-color: white;
+    background-color: #f3fbff;
     border-radius: 25px;
     display:flex;
     flex-direction: column;
+    border: 1px solid #ccc; /* Subtle border for the frame */
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .shopInfoContainer{
     display:flex;
