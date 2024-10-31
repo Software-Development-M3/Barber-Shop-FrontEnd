@@ -127,29 +127,28 @@ const ScheduleForm = (props) => {
         navigate(`/booking/confirm/${shopid}`);
       }
       //
-
-    
-
-
-
     }
+
+
 
   return (
   <div className='background_schedule_form_page'>
     <div className="schedule_form_page">
       <div className='schedule_form_page_data'> 
-        <h2 className='schedule_form_page_duration'>Durations {duration}  min.</h2>
-        <h2 className='schedule_form_page_bookDate'>Book Date : {userSelectDate.getDate()} / {userSelectDate.getMonth() + 1}</h2>
+        <h2 className='schedule_form_page_duration'>เวลาที่ใช้ทั้งหมด {duration} นาที</h2>
+        <h2 className='schedule_form_page_startTimee'>เวลาเริ่ม {startTime} น.</h2>
+        <h2 className='schedule_form_page_endTime'>เวลาจบ {moment(startTime, 'HH:mm').add(duration, 'minute').format('HH:mm')} น.</h2>
+        <h2 className='schedule_form_page_bookDate'>จองวันที่ {userSelectDate.getDate()} เดือน {userSelectDate.getMonth() + 1}</h2>
       </div>
 
       <form onSubmit={handleSubmit} className='form_schedule' >
           <select className='select_barber' onChange={handleSelectBarber}>
             {barber_list.map((item , index) => generate_option_element(item, index))}
           </select>
-          <TimePicker onChange={handleSelectStartTime} value={startTime} ></TimePicker>
+          <TimePicker onChange={handleSelectStartTime} value={startTime} format="HH:mm" disableClock></TimePicker>
           <div className='button-appointment-container'>
-            <button type='submit' className='btn-hover create_btn_createAppointment'>Create Appointment</button>
-            <button onClick={handleGoback} className='btn-hover goback_btn'>GO BACK</button>
+            <button type='submit' className='btn-hover create_btn_createAppointment'>ยืนยันเวลาจอง</button>
+            <button onClick={handleGoback} className='btn-hover goback_btn'>ย้อนกลับ</button>
           </div>
       </form>
     </div>

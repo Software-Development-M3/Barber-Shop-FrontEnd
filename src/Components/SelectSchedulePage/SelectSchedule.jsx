@@ -227,7 +227,7 @@ function transformAvailability(availabilityData, barberData) {
   const availabelSchedule_format = transformAvailability(availabelSchedule, barber_list);
   console.log("availabelSchedule_format: ", availabelSchedule_format);
   
-  const colors_list = ['#34cf5a', "#34cf5a"]
+  const colors_list = ['#34cf5a', "#34cf5a", "#34cf5a", "#34cf5a"]
   const update_formatBarber = formatBarber.map((barber, index) => ({...barber, color: colors_list[index]}))
   
   return (
