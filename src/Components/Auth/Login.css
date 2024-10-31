@@ -43,6 +43,9 @@ body, html {
     margin-bottom: 10px; /* ช่องว่างระหว่างแต่ละส่วน */
   }
   
+  .emailbox{
+    margin-bottom: 10px;
+  }
   input {
     width: 100%;
     padding: 12px;

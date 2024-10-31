@@ -68,7 +68,7 @@ function Login() {
       <div className='form-container'>
         <div className='title'>เข้าสู่ระบบ</div>      
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className='emailbox'>
             <label>อีเมลล์:</label>
             <input 
               type="email" 
