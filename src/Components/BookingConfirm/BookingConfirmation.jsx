@@ -6,12 +6,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 const BookingConfirmation = () => {
   const [selectTime, setSelectTime] = useState(null);
   const [selectedServices, setSelectedServices] = useState(null);
+  const [shopName, setSetshopName] = useState(null);
+
   const navigate = useNavigate();
   const { shopid } = useParams(); // รับ shopId จาก URL
 
   useEffect(() => {
     const storedTime = JSON.parse(sessionStorage.getItem("selectTime"));
     const storedServices = JSON.parse(sessionStorage.getItem("selectedServices"));
+
+    axios.get(`http://localhost:3000/shop/${shopid}`)
+      .then(resp => resp.data)
+      .then(data => setSetshopName(data.name));
 
     if (storedTime) setSelectTime(storedTime);
     if (storedServices) setSelectedServices(storedServices);
@@ -51,7 +57,7 @@ const BookingConfirmation = () => {
         hairWash: selectedServices.selectedHairWash
           ? {
               serviceId: selectedServices.selectedHairWash.serviceId,
-              brand: selectedServices.selectedHairWash.selectedShampoo,
+              brand: selectedServices.selectedShampoo,
               additionalRequirement: selectedServices.washDescription
             }
           : null,
@@ -91,45 +97,49 @@ const BookingConfirmation = () => {
     <div className="bookingconfirm">
       <div className="box-container">
         <div className="title">ยืนยันการจอง</div>
+        <div className='shopname'>
+          {shopName}
+        </div>
+ 
         <table>
           <tbody>
             {selectedServices.selectedHairCut && (
               <tr>
-                <td style={{ verticalAlign: 'top' }}>ตัดผม</td>
-                <td style={{ verticalAlign: 'top' }}>
+                <td style={{ width: '30%', verticalAlign: 'top' }}>ตัดผม</td>
+                <td style={{ width: '50%', verticalAlign: 'top' }}>
                   {selectedServices.selectedHairCut.serviceName}
                   <br />
                   <small>{selectedServices.cutDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairCut.price}.-</td>
+                <td style={{ width: '20%', verticalAlign: 'top' }}>{selectedServices.selectedHairCut.price}.-</td>
               </tr>
             )}
 
             {selectedServices.selectedHairDye && (
               <tr>
-                <td style={{ verticalAlign: 'top' }}>ทำสีผม</td>
-                <td style={{ verticalAlign: 'top' }}>
+                <td style={{ width: '30%', verticalAlign: 'top' }}>ทำสีผม</td>
+                <td style={{ width: '50%', verticalAlign: 'top' }}>
                   {selectedServices.selectedHairDye.serviceName}
                   <br />
                   <small>{selectedServices.colorSelected}</small>
                   <br />
                   <small>{selectedServices.dyeDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairDye.price}.-</td>
+                <td style={{ width: '20%', verticalAlign: 'top' }}>{selectedServices.selectedHairDye.price}.-</td>
               </tr>
             )}
 
             {selectedServices.selectedHairWash && (
               <tr>
-                <td style={{ verticalAlign: 'top' }}>สระผม</td>
-                <td style={{ verticalAlign: 'top' }}>
+                <td style={{ width: '30%', verticalAlign: 'top' }}>สระผม</td>
+                <td style={{ width: '50%', verticalAlign: 'top' }}>
                   {selectedServices.selectedHairWash.serviceName}
                   <br />
-                  <small>{selectedServices.selectedHairWash.selectedShampoo}</small>
+                  <small>{selectedServices.selectedShampoo}</small>
                   <br />
                   <small>{selectedServices.washDescription}</small>
                 </td>
-                <td style={{ verticalAlign: 'top' }}>{selectedServices.selectedHairWash.price}.-</td>
+                <td style={{ width: '20%', verticalAlign: 'top' }}>{selectedServices.selectedHairWash.price}.-</td>
               </tr>
             )}
 
@@ -138,17 +148,13 @@ const BookingConfirmation = () => {
               <td style={{ fontWeight: 'bold' }}>ราคารวม</td>
               <td>{selectedServices.totalPrice}.-</td>
             </tr>
+            <tr>
+              <td style={{ width: '30%' }}>วันที่จอง <br /> {selectTime.startDate.split("T")[0]}</td>
+              <td style={{ width: '50%' }}>เวลา <br /> {selectTime.startDate.split("T")[1]} - {selectTime.endDate.split("T")[1]}</td>
+              <td style={{ width: '20%' }}>ช่าง<br /> {selectTime.barberName}</td>
+            </tr>
           </tbody>
         </table>
-
-        <div className="summary">
-          <div className="booking-info">
-            <p>วันที่จอง: {selectTime.startDate.split("T")[0]}</p>
-            <p>เวลา: {selectTime.startDate.split("T")[1]} - {selectTime.endDate.split("T")[1]}</p>
-            <p>ช่าง: {selectTime.barberName}</p>
-          </div>
-        </div>
-
         <div className="actions">
           <button className="cancel-button" onClick={handlerCancel}>ยกเลิก</button>
           <button className="confirm-button" onClick={handlerConfirm}>ยืนยัน</button>
