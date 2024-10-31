@@ -53,6 +53,7 @@
 
 .textArea {
   margin-top: 1rem;
+
 }
 
 .textArea textarea {
@@ -63,6 +64,8 @@
   border: 1px solid #ffffff;
   resize: none;
   box-sizing: border-box;
+  border-color: black;
+  margin-bottom: 5rem;
 }
 
 .textArea textarea:focus {
