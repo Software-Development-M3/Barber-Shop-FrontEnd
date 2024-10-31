@@ -187,7 +187,7 @@ function HairStyleSelection() {
             <option value="">Select Color</option>
             {services.colors && services.colors.map((color, index) => (
               <option key={index} value={color}>
-                {color}c
+                {color}
               </option>
             ))}
           </select>

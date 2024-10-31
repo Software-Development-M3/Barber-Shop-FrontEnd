@@ -13,6 +13,7 @@ function Login() {
 
   // เก็บ state ของที่มาหน้าก่อนหน้า
   const from = location.state?.from?.pathname || '/'; 
+  console.log(location);
 
   const validateForm = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -87,7 +88,7 @@ function Login() {
               required
             />
           </div>
-          <button type="submit">เข้าสู่ระบบ</button>
+          <button type="submit" >เข้าสู่ระบบ</button>
           <div className ='movetoregister' onClick={handleNavigateToRegister}>หากยังไม่มีบัญชี สมัครสมาชิกที่นี่</div>
         </form>
         {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>} {/* แสดง error message */}

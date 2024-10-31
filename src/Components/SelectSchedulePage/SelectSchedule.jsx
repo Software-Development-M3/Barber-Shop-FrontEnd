@@ -17,265 +17,7 @@ const SelectSchedule = () => {
   console.log("total time ", duration)
 
 
-  const [availabelSchedule, setAvailabelSchedule] = useState({
-    "26-10-2024": {
-        "So Yern": [
-            {
-                "longestFreeDuration": 330,
-                "freeSlot": [
-                    {
-                        "start": "26-10-2024T09:30",
-                        "end": "26-10-2024T12:00",
-                        "duration": 150
-                    },
-                    {
-                        "start": "26-10-2024T13:30",
-                        "end": "26-10-2024T14:00",
-                        "duration": 30
-                    },
-                    {
-                        "start": "26-10-2024T14:30",
-                        "end": "26-10-2024T20:00",
-                        "duration": 330
-                    }
-                ]
-            }
-        ],
-        "Racha Coco": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "26-10-2024T09:30",
-                        "end": "26-10-2024T12:00",
-                        "duration": 150
-                    },
-                    {
-                        "start": "26-10-2024T13:00",
-                        "end": "26-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ]
-    },
-    "27-10-2024": {
-        "So Yern": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "27-10-2024T09:00",
-                        "end": "27-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "27-10-2024T13:00",
-                        "end": "27-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ],
-        "Racha Coco": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "27-10-2024T09:00",
-                        "end": "27-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "27-10-2024T13:00",
-                        "end": "27-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ]
-    },
-    "28-10-2024": {
-        "So Yern": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "28-10-2024T09:00",
-                        "end": "28-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "28-10-2024T13:00",
-                        "end": "28-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ],
-        "Racha Coco": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "28-10-2024T09:00",
-                        "end": "28-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "28-10-2024T13:00",
-                        "end": "28-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ]
-    },
-    "29-10-2024": {
-        "So Yern": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "29-10-2024T09:00",
-                        "end": "29-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "29-10-2024T13:00",
-                        "end": "29-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ],
-        "Racha Coco": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "29-10-2024T09:00",
-                        "end": "29-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "29-10-2024T13:00",
-                        "end": "29-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ]
-    },
-    "30-10-2024": {
-        "So Yern": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "30-10-2024T09:00",
-                        "end": "30-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "30-10-2024T13:00",
-                        "end": "30-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ],
-        "Racha Coco": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "30-10-2024T09:00",
-                        "end": "30-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "30-10-2024T13:00",
-                        "end": "30-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ]
-    },
-    "31-10-2024": {
-        "So Yern": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "31-10-2024T09:00",
-                        "end": "31-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "31-10-2024T13:00",
-                        "end": "31-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ],
-        "Racha Coco": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "31-10-2024T09:00",
-                        "end": "31-10-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "31-10-2024T13:00",
-                        "end": "31-10-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ]
-    },
-    "01-11-2024": {
-        "So Yern": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "01-11-2024T09:00",
-                        "end": "01-11-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "01-11-2024T13:00",
-                        "end": "01-11-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ],
-        "Racha Coco": [
-            {
-                "longestFreeDuration": 420,
-                "freeSlot": [
-                    {
-                        "start": "01-11-2024T09:00",
-                        "end": "01-11-2024T12:00",
-                        "duration": 180
-                    },
-                    {
-                        "start": "01-11-2024T13:00",
-                        "end": "01-11-2024T20:00",
-                        "duration": 420
-                    }
-                ]
-            }
-        ]
-    }
-});
+  const [availabelSchedule, setAvailabelSchedule] = useState(null);
   const [busySchedule, setBusySchedule] = useState({
     "26-10-2024": {
         "So Yern": [
@@ -358,20 +100,7 @@ const SelectSchedule = () => {
 }
 
   );
-  const [barber_list, setBarber_list] = useState([
-    {
-        "id": "38f921dc-9757-4055-bb14-fb26221774ec",
-        "name": "So Yern",
-        "experience": 50,
-        "specialization": "Hair Styling No.1"
-    },
-    {
-        "id": "b0f3d2cc-39ba-483a-b86a-a2a6ab81597f",
-        "name": "Racha Coco",
-        "experience": 10,
-        "specialization": "Beard Trimming No.2"
-    }
-]);
+  const [barber_list, setBarber_list] = useState(null);
   const [userAppointment, setUserAppointment] = useState({});
   const [userSelectDate, setUserSelectDate] = useState(new Date());
 
@@ -397,6 +126,18 @@ const SelectSchedule = () => {
   console.log("barber_list ", barber_list);
   console.log("available ", availabelSchedule);
   console.log("busy ", busySchedule);
+
+
+  const get_barber_list = async () => {
+    axios.get(`http://localhost:3000/shop/barber/${shopid}`)
+    .then(resp => resp.data)
+    .then(data => setBarber_list(data))
+    .then(() => console.log("barber_list ", barber_list))
+  }
+
+  if(barber_list == null || availabelSchedule == null) {
+    return <h1>LOADING</h1>
+  }
 
 
   const barberIdMap = barber_list.reduce((map, barber) => {
@@ -441,18 +182,53 @@ function getFormatBarberList(data) {
   const result = data.map(barber => ({text: barber.name, id: barber.id}))
   return result;
 }
-const appointment = transformData(busySchedule)
-console.log("trnaform dta ", appointment);
-const dateAvailable = getDateAvailbale(availabelSchedule);
-console.log("dateAvailabel ", dateAvailable);
-const formatBarber = getFormatBarberList(barber_list);
-console.log("format barber list ",formatBarber)
 
 
 
+
+function transformAvailability(availabilityData, barberData) {
+    const result = [];
+  
+    for (const date in availabilityData) {
+      for (const barberName in availabilityData[date]) {
+        // Find barber details in barberData array
+        const barber = barberData.find(b => b.name === barberName);
+        if (!barber) continue; // skip if barber not found
+  
+        const barberId = barber.id;
+  
+        // Loop through freeSlot entries and create new format
+        availabilityData[date][barberName].forEach(entry => {
+          entry.freeSlot.forEach(slot => {
+            // Convert date to YYYY-MM-DD format
+            const formattedDate = date.split("-").reverse().join("-");
+  
+            result.push({
+              startDate: `${formattedDate}T${slot.start.split("T")[1]}`,
+              endDate: `${formattedDate}T${slot.end.split("T")[1]}`,
+              barberName,
+              barberId
+            });
+          });
+        });
+      }
+    }
+    return result;
+  }
+
+  const appointment = transformData(busySchedule)
+  console.log("trnaform dta ", appointment);
+  const dateAvailable = getDateAvailbale(availabelSchedule);
+  console.log("dateAvailabel ", dateAvailable);
+  const formatBarber = getFormatBarberList(barber_list);
+  console.log("format barber list ",formatBarber)
+  const availabelSchedule_format = transformAvailability(availabelSchedule, barber_list);
+  console.log("availabelSchedule_format: ", availabelSchedule_format);
+  
+  
   return (
     <div className='secheduleTable'>
-        <ScheduleTable appointment={appointment} barber_list={formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate}></ScheduleTable>
+        <ScheduleTable appointment={appointment} barber_list={formatBarber} date_available={dateAvailable} setUserSelectDate={setUserSelectDate} availabelSchedule_format={availabelSchedule_format}></ScheduleTable>
         <ScheduleForm setAppointments={setUserAppointment} option_barber={barber_list} duration={duration} userSelectDate={userSelectDate} availabelSchedule={availabelSchedule}></ScheduleForm>
     </div>
   )
