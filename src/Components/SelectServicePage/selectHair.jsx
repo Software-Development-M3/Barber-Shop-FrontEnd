@@ -91,12 +91,13 @@ function HairStyleSelection() {
     <div className="selectionPageContainer">
 
     <div className="hairStyleSelection">
+
       <h1>เลือกบริการที่ต้องการ</h1>
       
       <div className="serviceSelection">
         {/* Hair wash */}
         <div className="servicesContainer">
-          <div className="servicePic"><img src="\src\assets\hair-washing.png"/></div>
+          <div className="servicePic"><img src="https://cdn1.iconfinder.com/data/icons/barber-services-in-line-style/32/man-hair-washing-512.png"/></div>
           <div className = "selectedPart">
             <label className="hairCatagories">บริการสระผม</label>
             <select
@@ -135,7 +136,7 @@ function HairStyleSelection() {
           </div>
           {/* Hair Dye */}
           <div className="servicesContainer">
-          <div className="servicePic"><img src="\src\assets\hair-dye.png"/></div>
+          <div className="servicePic"><img src="https://cdn1.iconfinder.com/data/icons/barber-services-in-line-style/32/man-hair-dyeing-512.png"/></div>
             <div className = "selectedPart">
               <label className="hairCatagories">บริการย้อมผม</label>
               <select
@@ -177,7 +178,7 @@ function HairStyleSelection() {
     
           {/* Hair Cut */}
           <div className="servicesContainer">
-          <div className="servicePic"><img src="\src\assets\hair-cutting.png"/></div>
+          <div className="servicePic"><img src="https://cdn1.iconfinder.com/data/icons/barber-services-in-line-style/32/man-haircut-512.png"/></div>
             <div className = "selectedPart">
               <label className="hairCatagories">บริการตัดผม</label>
               <select
@@ -206,8 +207,8 @@ function HairStyleSelection() {
     
         
         <div className="summary">
-          <h2>Total Time: {totalTime} นาที</h2>
-          <h2>Total Price: {totalPrice} บาท</h2>
+          <h2>เวลาที่ใช้ทั้งหมด: {totalTime} นาที</h2>
+          <h2>ราคารวม: {totalPrice} บาท</h2>
           <div className="sumButtonContainer">
             <div className="backBut"><button className="btn-hover goBack" onClick={() => handleNavigate(`/shop/${shopid}`)}>กลับหน้าร้านค้า</button></div>
             <div className="selectSchedBut"><button className="btn-hover bookNow" onClick={() => handleNavigate(`/booking/schedule/${shopid}`)}>จองเวลา</button></div>
