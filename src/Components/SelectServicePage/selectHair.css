@@ -1,30 +1,56 @@
+.selectionPageContainer{
+  padding-top:5rem;
+  background-image: url('https://bestiebrand.com/wp-content/uploads/2023/08/nathon-oski-EW_rqoSdDes-unsplash-1355x900-1.webp');
+}
 .hairStyleSelection {
   width: 80%;
   margin: 4rem auto;
   padding: 2rem;
-  background-color: #ffffff;
+  background-color: rgba(243, 251, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-family: 'Arial', sans-serif;
 }
 
 .serviceSelection {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  /* grid-template-columns: 2fr 1fr; */
+  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding:2rem;
+  align-items: center;
+  
+}
+.serviceSelection > *:only-child {
+  flex: 1 1 100%; /* Make the single child take the full width */
+}
+.servicesContainer{
+  display: flex;
+  flex-direction: column;
+  width:50%;
+  background-color: rgb(255, 255, 255);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* .selectedPart{
+.selectedPart{
   display:flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-} */
+  gap:2rem;
+}
+.hairCatagories{
+  font-size:20px;
+}
 .serviceSelection label {
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #000000;
+  size: 100px;
 }
 
 .serviceSelection select {
@@ -53,6 +79,27 @@
 
 .textArea {
   margin-top: 1rem;
+
+}
+
+.servicePic {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+  width: 100%;
+  max-width: 75px;
+  height: 75px;
+  margin: 2rem;
+  align-self: center;
+  justify-content: center;
+  overflow: hidden; /* ซ่อนส่วนเกินของรูป */
+}
+
+.servicePic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  align-self: center;
+  justify-content: center;
 }
 
 .textArea textarea {
@@ -63,11 +110,46 @@
   border: 1px solid #ffffff;
   resize: none;
   box-sizing: border-box;
+  border-color: black;
+  margin-bottom: 2rem;
+  margin-top:2rem;
 }
 
 .textArea textarea:focus {
   border-color: #ffffff;
 }
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+
+.sumButtonContainer{
+  display: flex;
+  justify-content: center;
+  
+}
+
+
+.btn-hover.bookNow {
+  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+
+}
+
+.btn-hover.goBack {
+  background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+  box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+
 
 @media (min-width: 768px) {
   .serviceSelection {

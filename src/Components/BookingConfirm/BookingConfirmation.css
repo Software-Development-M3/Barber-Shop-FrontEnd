@@ -115,3 +115,7 @@ table td small {
   font-size: 16px;
   color: #333;
 }
+
+.shopname {
+  text-align: center;
+}

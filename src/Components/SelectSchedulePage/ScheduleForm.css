@@ -1,18 +1,10 @@
-
-
 .schedule_form_page {
     display: flex;
     align-items:center;
     justify-content: space-between;
     flex-direction: column;
     width: 100vw;
-
-}
-
-.schedule_form_page_data {
-    display: flex;
-    justify-content:center;
-    gap: 100px;
+    background-color: azure;
 }
 
 .form_schedule {
@@ -21,11 +13,11 @@
     justify-content: center;
     width: 100vw;
 	font-size: 18px;
-
+    margin-bottom: 50px;
 }
 
 .react-time-picker__clear-button.react-time-picker__button {
-	margin-top: 0px;
+	margin-top: 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -39,12 +31,6 @@
 	align-items: center;
 }
 
-.create_btn_createAppointment {
-	width: 200px;
-	margin: 0px;
-	height: 60px;
-    background-color: rgb(18, 250, 9);
-}
 
 .goback_btn {
 	height: 60px;
@@ -52,11 +38,11 @@
 	margin-left: 60vw;
 }
 input.react-time-picker__inputGroup__input:nth-child(4) {
-    width: 25px;
+	width: 25px;
 }
 
 input.react-time-picker__inputGroup__input:nth-child(2) {
-    width: 25px;
+	width: 25px;
     margin-left: 15px;
 }
 .react-time-picker__inputGroup__divider {
@@ -71,10 +57,12 @@ input.react-time-picker__inputGroup__input:nth-child(2) {
 
 .react-time-picker__wrapper {
 	margin-bottom: 5px;
+    height: 60px;
+    width: 160px;
 }
 
 .react-time-picker {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .react-time-picker__inputGroup__input.react-time-picker__inputGroup__amPm {
@@ -82,7 +70,8 @@ input.react-time-picker__inputGroup__input:nth-child(2) {
 }
 
 .select_barber {
-    font-size: 18px;
+    margin-top: 10px;
+	font-size: 18px;
     width: 200px;
 	height: 40px;
 }
@@ -96,4 +85,102 @@ input.react-time-picker__inputGroup__input:nth-child(2) {
 
 .Root-root > button {
 	width: 100%;
+}
+
+.schedule_form_page_data {
+    display: flex;
+    justify-content:center;
+    gap: 100px;
+    /* color: white; */
+	/* background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673); */
+	margin: 10px;
+	border-radius: 30px;
+	padding: 20px;
+}
+
+.button-appointment-container {
+
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+
+    display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+
+.btn-hover.color-1 {
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+
+
+.create_btn_createAppointment {
+	width: 200px;
+	margin: 0px;
+	height: 60px;
+	background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+
+}
+
+.btn-hover.goback_btn {
+    padding: 0px;
+    background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+    box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}   
+
+
+.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorPrimary.MuiIconButton-sizeLarge.NavigationButton-button.css-14du00d-MuiButtonBase-root-MuiIconButton-root {
+    left: 790px;
+    margin: 0 30px;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.OpenButton-textButton.css-u5i58i-MuiButtonBase-root-MuiButton-root {
+	left: 600px;
+}
+
+.table_schedule_page {
+    margin-top: 20px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1dfcyzw-MuiPaper-root-MuiPopover-paper {
+	margin-left: 1100px;
+    margin-top: 50px;
+    width: 350px;
 }

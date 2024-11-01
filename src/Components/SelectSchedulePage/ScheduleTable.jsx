@@ -58,27 +58,37 @@ export default class ScheduleTable extends React.PureComponent {
     const barber_list = this.props.barber_list;
     const availabelSchedule_format = this.props.availabelSchedule_format;
 
+    const formatTimeScaleDate = date => moment(date).format('hh:mm:ss');
+
     console.log("date_available: ", date_available);
     console.log("appointment: ", appointment);
-    console.log("barber_list: ",barber_list);
+    console.log("barber_list: ", barber_list);
     console.log("availabelSchedule: ", availabelSchedule_format);
     console.log("current date: ", this.props.date_available[0]);
 
 
 
     return (
-      <div>
+      <div className="table_schedule_page">
         <Paper>
-          <Scheduler data={availabelSchedule_format}>
+          <Scheduler 
+          data={availabelSchedule_format}
+          formatDate={formatTimeScaleDate}
+          >
             <ViewState defaultCurrentDate={this.state.currentDate} onCurrentDateChange={(e) => this.currentDateChange(e)}/>
             <GroupingState grouping={grouping} />
-            <DayView startDayHour={8} endDayHour={20} />
+            <DayView 
+            startDayHour={8} 
+            endDayHour={21} 
+            isShaded={true}
+            />
             <Appointments />
             <Resources data={resources} mainResourceName="barberId" />
             <IntegratedGrouping />
             <GroupingPanel />
             <Toolbar />
             <DateNavigator />
+            {/* <TodayButton /> */}
           </Scheduler>
         </Paper>
       </div>

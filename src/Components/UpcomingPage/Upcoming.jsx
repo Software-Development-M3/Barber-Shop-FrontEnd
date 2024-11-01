@@ -73,15 +73,35 @@ function Upcoming() {
     <div className='upcoming-container'>
       
 
-      <div className="main-section">
+      
         <h2>Upcoming</h2>
         {bookingData.map((item) => {
           // Concatenate the service names from haircut, hairDry, and hairWash
-          const serviceNames = [
-            item.services?.haircut?.serviceName,
-            item.services?.hairdyeing?.serviceName,
-            item.services?.hairwashing?.serviceName
-          ].filter(Boolean).join(' + ');
+          const services = [
+            item.services?.haircut,
+            item.services?.hairdyeing,
+            item.services?.hairwashing
+          ];
+
+          const serviceDetails = services
+            .filter(Boolean)
+            .map(service => {
+              // Start with the service name
+              const parts = [service.serviceName];
+            
+              // Add shampoo if it exists
+              if (service.shampoo) {
+                parts.push(service.shampoo);
+              }
+
+              // Add additional requirement if it exists
+              if (service.additionalRequirement) {
+                parts.push(service.additionalRequirement);
+              }
+            
+              // Join parts with ' | '
+              return parts.join(' | ');
+          });
          
           const formattedDate = formatDate(item.date);
           const formattedTimeRange = formatTimeRange(item.startTime, item.endTime);
@@ -91,7 +111,10 @@ function Upcoming() {
               <img src={item.image} alt={item.name} className="shop-image" />
               <div className="shop-details">
                 <h3>{item.shopName}</h3>
-                <p>{serviceNames}</p>
+                <h2 className="barberName_title">{item.barberName}</h2>
+                {serviceDetails.map((detail, index) => (
+                  <p key={index}>{detail} </p>
+                ))}
               </div>
               <div className="shop-meta">
                 <p>{formattedDate}</p>
@@ -105,7 +128,7 @@ function Upcoming() {
           );
         })}
       </div>
-      </div>
+      
     );
   };
 

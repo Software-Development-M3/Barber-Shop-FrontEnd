@@ -1,17 +1,19 @@
 
 
 .profile_page {
+    background-image: url('https://s.isanook.com/me/0/ud/14/71633/barber.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     margin-top: 35px;
-    background-image: url('../../assets/components/ShopBackground.jpg');
 }
 
 .background-container {
-    background-size: cover;
     background-position: center;
     height: 100vh;
     display: flex;
@@ -22,7 +24,7 @@
 .profile-card {
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    background-color: #f3fbff; /* Slight transparency */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -46,17 +48,16 @@
 }
 
 .profile_name {
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 600;
 }
 
 .profile_tel {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 400;
 }
 
 .profile_email {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 400;
 }
-

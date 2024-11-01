@@ -88,118 +88,132 @@ function HairStyleSelection() {
   }
   console.log(JSON.parse(sessionStorage.getItem("selectedServices")))
   return (
+    <div className="selectionPageContainer">
+
     <div className="hairStyleSelection">
-      <h1>Hairstyle Selection</h1>
+
+      <h1>เลือกบริการที่ต้องการ</h1>
       
       <div className="serviceSelection">
-        {/* Shampoo */}
-        <div className = "selectedPart">
-          <label>Shampoo</label>
-          <select onChange={(e) => setSelectedShampoo(e.target.value)}>
-            <option value="">Select Shampoo</option>
-            {services.shampoos && services.shampoos.map((shampoo, index) => (
-              <option key={index} value={shampoo}>
-                {shampoo}
-              </option>
-            ))}
-          </select>
-        </div>
-  
         {/* Hair wash */}
-        <div className = "selectedPart">
-          <label>Hair Wash</label>
-          <select
-            onChange={(e) =>
-              setSelectedHairWash(services.hairwashing.find((cut) => cut.serviceId === parseInt(e.target.value)))
-            }
-          >
-            <option value="">Select hair wash</option>
-            {services.hairwashing && services.hairwashing.map((wash) => (
-              <option key={wash.serviceId} value={wash.serviceId}>
-                {wash.serviceName} - {wash.duration} mins - {wash.price} baht
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="textArea">
-          <label>Description for hair wash</label>
-          <textarea
-            value={washDescription}
-            onChange={(e) => setWashDescription(e.target.value)}
-            placeholder="Additional details about the hairwash..."
-          />
-        </div>
+        <div className="servicesContainer">
+          <div className="servicePic"><img src="https://cdn1.iconfinder.com/data/icons/barber-services-in-line-style/32/man-hair-washing-512.png"/></div>
+          <div className = "selectedPart">
+            <label className="hairCatagories">บริการสระผม</label>
+            <select
+              onChange={(e) =>
+                setSelectedHairWash(services.hairwashing.find((cut) => cut.serviceId === parseInt(e.target.value)))
+              }
+            >
+              <option value="">Select hair wash</option>
+              {services.hairwashing && services.hairwashing.map((wash) => (
+                <option key={wash.serviceId} value={wash.serviceId}>
+                  {wash.serviceName} - {wash.duration} mins - {wash.price} baht
+                </option>
+              ))}
+              </select>
+            </div>
+            {/* Shampoo */}
+            <div className = "selectedPart">
+              <label></label>
+              <select onChange={(e) => setSelectedShampoo(e.target.value)}>
+                <option value="">Select Shampoo</option>
+                {services.shampoos && services.shampoos.map((shampoo, index) => (
+                  <option key={index} value={shampoo}>
+                    {shampoo}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="textArea">
+              <label></label>
+              <textarea
+                value={washDescription}
+                onChange={(e) => setWashDescription(e.target.value)}
+                placeholder="อยากบอกอะไรช่างเพิ่มเติมไหม? ..."
+              />
+            </div>
+          </div>
+          {/* Hair Dye */}
+          <div className="servicesContainer">
+          <div className="servicePic"><img src="https://cdn1.iconfinder.com/data/icons/barber-services-in-line-style/32/man-hair-dyeing-512.png"/></div>
+            <div className = "selectedPart">
+              <label className="hairCatagories">บริการย้อมผม</label>
+              <select
+                onChange={(e) =>
+                  setSelectedHairDye(services.hairdyeing.find((dye) => dye.serviceId === parseInt(e.target.value)))
+                }
+              >
+                <option value="">Select Hair Dye</option>
+                {services.hairdyeing && services.hairdyeing.map((dye) => (
+                  <option key={dye.serviceId} value={dye.serviceId}>
+                    {dye.serviceName} - {dye.duration} mins - {dye.price} baht
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* Colors */}
+            <div className = "selectedPart">
+              
+              <label></label>
+              <select onChange={(e) => setColorSelected(e.target.value)}>
+                <option value="">Select Color</option>
+                {services.colors && services.colors.map((color, index) => (
+                  <option key={index} value={color}>
+                    {color}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="textArea">
+              <label></label>
+              <textarea
+                value={dyeDescription}
+                onChange={(e) => setDyeDescription(e.target.value)}
+                placeholder="อยากบอกอะไรช่างเพิ่มเติมไหม? ..."
+              />
+            </div>
+          </div>
   
-        {/* Hair Cut */}
-        <div className = "selectedPart">
-          <label>Hair Cut</label>
-          <select
-            onChange={(e) =>
-              setSelectedHairCut(services.haircut.find((cut) => cut.serviceId === parseInt(e.target.value)))
-            }
-          >
-            <option value="">Select hair cut</option>
-            {services.haircut && services.haircut.map((cut) => (
-              <option key={cut.serviceId} value={cut.serviceId}>
-                {cut.serviceName} - {cut.duration} mins - {cut.price} baht
-              </option>
-            ))}
-          </select>
-        </div >
-        <div className="textArea">
-          <label>Description for hair cut</label>
-          <textarea
-            value={cutDescription}
-            onChange={(e) => setCutDescription(e.target.value)}
-            placeholder="Additional details about the haircut..."
-          />
+    
+          {/* Hair Cut */}
+          <div className="servicesContainer">
+          <div className="servicePic"><img src="https://cdn1.iconfinder.com/data/icons/barber-services-in-line-style/32/man-haircut-512.png"/></div>
+            <div className = "selectedPart">
+              <label className="hairCatagories">บริการตัดผม</label>
+              <select
+                onChange={(e) =>
+                  setSelectedHairCut(services.haircut.find((cut) => cut.serviceId === parseInt(e.target.value)))
+                }
+                >
+                <option value="">Select hair cut</option>
+                {services.haircut && services.haircut.map((cut) => (
+                  <option key={cut.serviceId} value={cut.serviceId}>
+                    {cut.serviceName} - {cut.duration} mins - {cut.price} baht
+                  </option>
+                ))}
+              </select>
+            </div >
+            <div className="textArea">
+              <label></label>
+              <textarea
+                value={cutDescription}
+                onChange={(e) => setCutDescription(e.target.value)}
+                placeholder="อยากบอกอะไรช่างเพิ่มเติมไหม? ..."
+                />
+            </div>
+          </div>
         </div>
-  
-        {/* Hair Dye */}
-        <div className = "selectedPart">
-          <label>Hair Dye</label>
-          <select
-            onChange={(e) =>
-              setSelectedHairDye(services.hairdyeing.find((dye) => dye.serviceId === parseInt(e.target.value)))
-            }
-          >
-            <option value="">Select Hair Dye</option>
-            {services.hairdyeing && services.hairdyeing.map((dye) => (
-              <option key={dye.serviceId} value={dye.serviceId}>
-                {dye.serviceName} - {dye.duration} mins - {dye.price} baht
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="textArea">
-          <label>Description for Hair Dye</label>
-          <textarea
-            value={dyeDescription}
-            onChange={(e) => setDyeDescription(e.target.value)}
-            placeholder="Additional details about the hair dye..."
-          />
-        </div>
-  
-        {/* Colors */}
-        <div className = "selectedPart">
-          <label>Colors</label>
-          <select onChange={(e) => setColorSelected(e.target.value)}>
-            <option value="">Select Color</option>
-            {services.colors && services.colors.map((color, index) => (
-              <option key={index} value={color}>
-                {color}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      
-      <div className="summary">
-        <h2>Total Time: {totalTime} mins</h2>
-        <h2>Total Price: {totalPrice} baht</h2>
-        <div className="sumButtonContainer">
-          <div className="selectSchedBut"><button onClick={() => handleNavigate(`/booking/schedule/${shopid}`)}>จองเวลา</button></div>
-          <div className="backBut"><button onClick={() => handleNavigate(`/shop/${shopid}`)}>กลับหน้าร้านค้า</button></div>
+    
+        
+        <div className="summary">
+          <h2>เวลาที่ใช้ทั้งหมด: {totalTime} นาที</h2>
+          <h2>ราคารวม: {totalPrice} บาท</h2>
+          <div className="sumButtonContainer">
+            <div className="backBut"><button className="btn-hover goBack" onClick={() => handleNavigate(`/shop/${shopid}`)}>กลับหน้าร้านค้า</button></div>
+            <div className="selectSchedBut"><button className="btn-hover bookNow" onClick={() => handleNavigate(`/booking/schedule/${shopid}`)}>จองเวลา</button></div>
+            
+          </div>
         </div>
       </div>
     </div>

@@ -9,8 +9,8 @@ const BarberBox = ({name,pic,exp,spec}) =>{
             />
             <div className="barberTextContainer">
             <p>{name}</p>
-            <p>EXP: {exp} years</p>
-            <p>Specialize: {spec}</p>
+            <p>ประสบการณ์ {exp} ปี</p>
+            <p>ความถนัด: {spec}</p>
             </div>
         </div>
     )

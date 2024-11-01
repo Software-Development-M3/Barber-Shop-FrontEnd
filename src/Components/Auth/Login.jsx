@@ -68,7 +68,7 @@ function Login() {
       <div className='form-container'>
         <div className='title'>เข้าสู่ระบบ</div>      
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className='emailbox'>
             <label>อีเมลล์:</label>
             <input 
               type="email" 
@@ -88,7 +88,7 @@ function Login() {
               required
             />
           </div>
-          <button type="submit" >เข้าสู่ระบบ</button>
+          <button className = 'btn_btn' type="submit" >เข้าสู่ระบบ</button>
           <div className ='movetoregister' onClick={handleNavigateToRegister}>หากยังไม่มีบัญชี สมัครสมาชิกที่นี่</div>
         </form>
         {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>} {/* แสดง error message */}
